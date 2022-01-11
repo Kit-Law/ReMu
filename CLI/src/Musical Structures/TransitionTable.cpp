@@ -11,7 +11,7 @@ namespace ReMu {
 	{
 		for (int i = 0; i < noteTransitions.size(); i++)
 		{
-			std::cout << noteTransitions.at(i).first.getNote() << " -> " << noteTransitions.at(i).second.getNote() << std::endl;
+			std::cout << noteTransitions.at(i).first << " -> " << noteTransitions.at(i).second << std::endl;
 		}
 	}
 

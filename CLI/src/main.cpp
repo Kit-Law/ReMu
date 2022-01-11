@@ -13,7 +13,7 @@ int main()//const char* argv[])
 {
 	std::ifstream stream;
 	//stream.open(argv[1]);
-	stream.open("U://3rd Yr Project//ReMu//programs//example.txt");
+	stream.open("..//Programs//example.txt");
 	antlr4::ANTLRInputStream input(stream);
 	SheetMusicLexer lexer(&input);
 	antlr4::CommonTokenStream tokens(&lexer);

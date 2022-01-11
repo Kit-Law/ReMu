@@ -33,8 +33,8 @@ namespace ReMu {
 	{
 		Note* rootNote = onInital ? &initalRootNote : &resultRootNote;
 
-		rootNote->setNote(ctx->children[0]->getText()[0]);
-		if (ctx->children.size() > 1) rootNote->setModifier(ctx->children[1]->getText()[0] == '#' ? Sharp : Flat);
+		rootNote->setStep(ctx->children[0]->getText()[0]);
+		if (ctx->children.size() > 1) rootNote->setAccidental(ctx->children[1]->getText()[0] == '#' ? Sharp : Flat);
 	}
 
 	void Listener::enterScale(SheetMusicParser::ScaleContext* ctx)

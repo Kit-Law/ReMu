@@ -36,3 +36,5 @@ ANTLR\obj
 *.exe
 *.out
 *.app
+
+.vs
