@@ -12,9 +12,12 @@ namespace ReMu {
 	{
 	private:
 		std::vector<std::pair<Note, Note>> noteTransitions;
+		std::vector<std::pair<std::vector<Note>, std::vector<Note>>> sequenceTransitions;
 	public:
 		void addTransition(Note inital, Note result);
-		void printTrans();
+		void addTransition(std::vector<Note> inital, std::vector<Note> result);
+
+		friend std::ostream& operator<<(std::ostream& os, const TransitionTable& transitionTable);
 	};
 
 }

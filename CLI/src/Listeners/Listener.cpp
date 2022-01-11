@@ -4,9 +4,13 @@ namespace ReMu {
 
 	void Listener::enterSectionDef(SheetMusicParser::SectionDefContext* ctx)
 	{
-		//std::cout << "Section def: " << ctx->getText() << std::endl;
+		sections[ctx->children[0]->getText()] = 
+			new Section(ctx->children[0]->getText(), std::stoi(ctx->children[2]->getText()), std::stoi(ctx->children[4]->getText()));
+	}
 
-		Tokens::sectionDef::evalSectionDefRule();
+	void Listener::enterSectionIdent(SheetMusicParser::SectionIdentContext* ctx)
+	{
+		currentSection = sections[ctx->children[0]->getText()];
 	}
 
 	void Listener::enterSection(SheetMusicParser::SectionContext* ctx)
@@ -19,22 +23,20 @@ namespace ReMu {
 		Tokens::chordRule::evalChordRule();
 	}
 
-	void Listener::enterNoteRule(SheetMusicParser::NoteRuleContext* ctx)
+	void Listener::exitNoteRule(SheetMusicParser::NoteRuleContext* ctx) 
 	{
-		Tokens::noteRule::evalNoteRule();
-	}
-
-	void Listener::enterScaleRule(SheetMusicParser::ScaleRuleContext* ctx)
-	{
-		ruleState = ScaleRule;
+		currentSection->getTransitionTable()->addTransition(initalNotes, resultNotes);
 	}
 
 	void Listener::enterNote(SheetMusicParser::NoteContext* ctx)
 	{
-		Note* rootNote = onInital ? &initalRootNote : &resultRootNote;
+		std::vector<Note>* notes = onInital ? &initalNotes : &resultNotes;
+		Note note;
 
-		rootNote->setStep(ctx->children[0]->getText()[0]);
-		if (ctx->children.size() > 1) rootNote->setAccidental(ctx->children[1]->getText()[0] == '#' ? Sharp : Flat);
+		note.setStep(ctx->children[0]->getText()[0]);
+		if (ctx->children.size() > 1) note.setAccidental(ctx->children[1]->getText()[0] == '#' ? Sharp : Flat);
+
+		notes->push_back(note);
 	}
 
 	void Listener::enterScale(SheetMusicParser::ScaleContext* ctx)
@@ -43,13 +45,9 @@ namespace ReMu {
 		else resultScale = ctx->children[1]->getText();
 	}
 
-	void Listener::exitScale(SheetMusicParser::ScaleContext* ctx) { onInital = !onInital; }
-
 	void Listener::exitScaleRule(SheetMusicParser::ScaleRuleContext* ctx)
 	{
-		Tokens::scaleRule::evalScaleRule(initalRootNote, initalScale.c_str(), resultRootNote, resultScale.c_str());
-
-		Tokens::scaleRule::transitionTable->printTrans();
+		Tokens::scaleRule::evalScaleRule(initalNotes.front(), initalScale.c_str(), resultNotes.front(), resultScale.c_str(), currentSection->getTransitionTable());
 	}
 
 }

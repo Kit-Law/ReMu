@@ -2,9 +2,7 @@
 
 namespace ReMu { namespace Tokens {
 
-	TransitionTable* scaleRule::transitionTable = new TransitionTable();
-
-	void scaleRule::evalScaleRule(const Note& initalRootNote, const char* initalScale, const Note& resultRootNote, const char* resultScale)
+	void scaleRule::evalScaleRule(const Note& initalRootNote, const char* initalScale, const Note& resultRootNote, const char* resultScale, TransitionTable* transitionTable)
 	{
 		ScaleInfo* initalScaleInfo = ScaleDatabase::getScale(initalScale);
 		ScaleInfo* resultScaleInfo = ScaleDatabase::getScale(resultScale);

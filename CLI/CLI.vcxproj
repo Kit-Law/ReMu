@@ -170,6 +170,7 @@
     <ClInclude Include="grammar\SheetMusicListener.h" />
     <ClInclude Include="grammar\SheetMusicParser.h" />
     <ClInclude Include="src\Listeners\Listener.h" />
+    <ClInclude Include="src\Musical Structures\Section.h" />
     <ClInclude Include="src\Tokens\chordRule.h" />
     <ClInclude Include="src\Musical Structures\Note\Note.h" />
     <ClInclude Include="src\Tokens\noteRule.h" />
