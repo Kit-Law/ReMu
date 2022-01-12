@@ -1,8 +1,8 @@
-#include "scaleRule.h"
+#include "ScaleRule.h"
 
 namespace ReMu { namespace Tokens {
 
-	void scaleRule::evalScaleRule(const Note& initalRootNote, const char* initalScale, const Note& resultRootNote, const char* resultScale, TransitionTable* transitionTable)
+	void ScaleRule::evalScaleRule(const Note& initalRootNote, const char* initalScale, const Note& resultRootNote, const char* resultScale, TransitionTable* transitionTable)
 	{
 		ScaleInfo* initalScaleInfo = ScaleDatabase::getScale(initalScale);
 		ScaleInfo* resultScaleInfo = ScaleDatabase::getScale(resultScale);
@@ -19,7 +19,7 @@ namespace ReMu { namespace Tokens {
 		}
 	}
 
-	Notes scaleRule::genNotes(ScaleInfo* scaleInfo, const Note& rootNote)
+	Notes ScaleRule::genNotes(ScaleInfo* scaleInfo, const Note& rootNote)
 	{
 		Notes notes = new Note[scaleInfo->getScaleLength()];
 		notes[0] = rootNote;

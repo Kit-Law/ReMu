@@ -5,8 +5,8 @@
 #include "SheetMusicParser.h"
 #include "SheetMusicBaseListener.h"
 
-#include "..\Tokens\chordRule.h"
-#include "..\Tokens\scaleRule.h"
+#include "..\Tokens\ChordRule.h"
+#include "..\Tokens\ScaleRule.h"
 
 #include "..\Musical Structures\Section.h"
 
@@ -21,14 +21,17 @@ namespace ReMu {
 	private:
 		bool onInital = true;
 
-		std::vector<Note> initalNotes;
-		std::vector<Note> resultNotes;
+		std::vector<Pitch> initalNotes;
+		std::vector<Pitch> resultNotes;
 
 		std::string initalScale;
 		std::string resultScale;
 
-		std::vector<Symbol> initalSymbols;
-		std::vector<Symbol> resultSymbols;
+		std::vector<std::string> initalAdditions;
+		std::vector<std::string> resultAdditions;
+
+		Symbol initalSymbol;
+		Symbol resultSymbol;
 
 		std::map<std::string, Section*> sections;
 		Section* currentSection;
@@ -40,9 +43,9 @@ namespace ReMu {
 		
 		void exitChordRule(SheetMusicParser::ChordRuleContext* ctx) override;
 
+		void enterSymbol(SheetMusicParser::SymbolContext* ctx) override;
+		void enterAdditions(SheetMusicParser::AdditionsContext* ctx) override;
 		inline void exitChord(SheetMusicParser::ChordContext* ctx) override { onInital = !onInital; }
-
-		void enterSection(SheetMusicParser::SectionContext* ctx) override;
 
 		inline void exitSequence(SheetMusicParser::SequenceContext* ctx) override { onInital = !onInital; }
 

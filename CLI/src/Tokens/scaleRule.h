@@ -7,7 +7,7 @@
 
 namespace ReMu { namespace Tokens {
 
-	class scaleRule
+	class ScaleRule
 	{
 	public:
 		static void evalScaleRule(const Note& initalRootNote, const char* initalScale, const Note& resultRootNote, const char* resultScale, TransitionTable* transitionTable);

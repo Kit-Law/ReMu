@@ -2,14 +2,19 @@
 
 namespace ReMu {
 
-	void TransitionTable::addTransition(std::vector<Note> inital, std::vector<Note> result)
+	void TransitionTable::addTransition(std::vector<Pitch> inital, std::vector<Pitch> result)
 	{
-		sequenceTransitions.push_back(std::pair<std::vector<Note>, std::vector<Note>>(inital, result));
+		sequenceTransitions.push_back(std::pair<std::vector<Pitch>, std::vector<Pitch>>(inital, result));
 	}
 
-	void TransitionTable::addTransition(Note inital, Note result) 
+	void TransitionTable::addTransition(Pitch inital, Pitch result) 
 	{ 
-		noteTransitions.push_back(std::pair<Note, Note>(inital, result)); 
+		noteTransitions.push_back(std::pair<Pitch, Pitch>(inital, result)); 
+	}
+
+	void TransitionTable::addTransition(Chord inital, Chord result)
+	{
+		chordTransitions.push_back(std::pair<Chord, Chord>(inital, result));
 	}
 	
 	std::ostream& operator<<(std::ostream& os, const TransitionTable& transitionTable)
@@ -21,16 +26,23 @@ namespace ReMu {
 			os << notes.first << " -> " << notes.second << std::endl;
 		}
 
+		os << "Chord Transitions:" << std::endl;
+
+		for (auto chords : transitionTable.chordTransitions)
+		{
+			os << chords.first << " -> " << chords.second << std::endl;
+		}
+
 		os << "Sequence Transitions:" << std::endl;
 
 		for (auto sequence : transitionTable.sequenceTransitions)
 		{
-			for (Note& note : sequence.first)
+			for (Pitch& note : sequence.first)
 				os << note << " ";
 
 			os << "-> ";
 
-			for (Note& note : sequence.second)
+			for (Pitch& note : sequence.second)
 				os << note << " ";
 
 			os << std::endl;

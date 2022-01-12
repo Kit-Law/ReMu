@@ -18,10 +18,10 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Tokens\scaleRule.cpp">
+    <ClCompile Include="src\Tokens\ScaleRule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Tokens\chordRule.cpp">
+    <ClCompile Include="src\Tokens\ChordRule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Listeners\Listener.cpp">
@@ -48,15 +48,21 @@
     <ClCompile Include="src\Musical Structures\TransitionTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Musical Structures\Note\Degree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Musical Structures\Note\Accidental.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Listeners\Listener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Tokens\chordRule.h">
+    <ClInclude Include="src\Tokens\ChordRule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Tokens\scaleRule.h">
+    <ClInclude Include="src\Tokens\ScaleRule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Musical Structures\Note\Note.h">
@@ -87,6 +93,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Musical Structures\Chord\Symbol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Musical Structures\Chord\Chord.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Musical Structures\Chord\Addition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Musical Structures\Note\Degree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Musical Structures\Note\Accidental.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Musical Structures\Note\Pitch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

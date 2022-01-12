@@ -15,12 +15,21 @@ namespace ReMu {
 
 	void Listener::exitChordRule(SheetMusicParser::ChordRuleContext* ctx)
 	{
-		Tokens::chordRule::evalChordRule();
+		Tokens::ChordRule::evalChordRule(initalNotes, initalSymbol, initalAdditions, resultNotes, resultSymbol, resultAdditions, currentSection->getTransitionTable());
 	}
 
-	void enterSection(SheetMusicParser::SectionContext* ctx)
+	void Listener::enterSymbol(SheetMusicParser::SymbolContext* ctx)
 	{
-		if (ctx->children.size() > 1)
+		Symbol symbol(ctx->children[0]->getText(), (ctx->children.size() > 1) ? std::stoi(ctx->children[1]->getText()) : 0);
+
+		if (onInital) initalSymbol = symbol;
+		else resultSymbol = symbol;
+	}
+
+	void Listener::enterAdditions(SheetMusicParser::AdditionsContext* ctx)
+	{
+		if (onInital) initalAdditions.push_back(ctx->children[0]->getText());
+		else resultAdditions.push_back(ctx->children[0]->getText());
 	}
 
 	void Listener::enterScale(SheetMusicParser::ScaleContext* ctx)
@@ -31,13 +40,13 @@ namespace ReMu {
 
 	void Listener::exitScaleRule(SheetMusicParser::ScaleRuleContext* ctx)
 	{
-		Tokens::scaleRule::evalScaleRule(initalNotes.front(), initalScale.c_str(), resultNotes.front(), resultScale.c_str(), currentSection->getTransitionTable());
+		Tokens::ScaleRule::evalScaleRule(static_cast<Note&>(initalNotes.front()), initalScale.c_str(), static_cast<Note&>(resultNotes.front()), resultScale.c_str(), currentSection->getTransitionTable());
 	}
 
 	void Listener::enterNote(SheetMusicParser::NoteContext* ctx)
 	{
-		std::vector<Note>* notes = onInital ? &initalNotes : &resultNotes;
-		Note note;
+		std::vector<Pitch>* notes = onInital ? &initalNotes : &resultNotes;
+		Pitch note;
 
 		note.setStep(ctx->children[0]->getText()[0]);
 		if (ctx->children.size() > 1) note.setAccidental(ctx->children[1]->getText()[0] == '#' ? Sharp : Flat);
