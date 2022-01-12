@@ -18,7 +18,7 @@ namespace ReMu {
 	public:
 		Degree() { }
 		Degree(char __note, Accidental __accidental = None) : Pitch(__note, __accidental) { }
-		Degree(class Pitch& pitch) : Pitch(*(pitch.getStep()), *(pitch.getAccidental())) { step -= '0'; }
+		Degree(class Pitch& pitch) : Pitch(pitch.getStep(), pitch.getAccidental()) { step -= '0'; }
 
 		Note evaluateNote(Note& rootNote);
 	};

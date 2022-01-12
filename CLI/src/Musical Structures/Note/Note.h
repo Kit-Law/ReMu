@@ -13,7 +13,7 @@ namespace ReMu {
 	public:
 		Note() { }
 		Note(char __note, Accidental __accidental = None) : Pitch(__note, __accidental) { }
-		Note(const class Pitch&) { }
+		Note(class Pitch& pitch) : Pitch(pitch.getStep(), pitch.getAccidental()) { }
 
 		Note incrementNote(int interval);
 	};

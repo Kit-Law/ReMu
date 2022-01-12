@@ -58,7 +58,12 @@ namespace ReMu {
 
 		void enterNote(SheetMusicParser::NoteContext* ctx) override;
 
-		void exitScript(SheetMusicParser::ScriptContext* ctx) override { std::cout << *currentSection; }
+		void exitScript(SheetMusicParser::ScriptContext* ctx) override 
+		{ 
+			std::cout << "==================================" << std::endl;
+			for(auto const& section : sections) 
+				std::cout << *section.second << std::endl << "==================================" << std::endl; 
+		}
 	};
 
 }

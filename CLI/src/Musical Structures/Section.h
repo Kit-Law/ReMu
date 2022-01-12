@@ -21,7 +21,7 @@ namespace ReMu {
 	
 	inline std::ostream& operator<<(std::ostream& os, const Section& section)
 	{
-		os << "Section: " << section.label << ", " << section.duration.first << " - " << section.duration.second;
+		os << std::endl << "Section: " << section.label << ", " << section.duration.first << " - " << section.duration.second << std::endl;
 		os << std::endl << section.transitionTable;
 		return os;
 	}

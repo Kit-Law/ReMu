@@ -18,8 +18,8 @@ namespace ReMu {
 		inline void setStep(char step) { this->step = step; }
 		inline void setAccidental(Accidental modifier) { this->accidental = modifier; }
 
-		inline char* getStep() { return &step; }
-		inline Accidental* getAccidental() { return &accidental; }
+		inline char getStep() { return step; }
+		inline Accidental getAccidental() { return accidental; }
 
 		friend bool operator==(const Pitch& lhs, const Pitch& rhs);
 		friend std::ostream& operator<<(std::ostream& os, const Pitch& note);

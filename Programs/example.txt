@@ -1,6 +1,9 @@
-"A" = 1 - 20;
+"Intro" = 1 - 20;
+"Chorus" = 21 - 60;
 
-"A":
+"Intro":
 Ab Major scale -> D Dorian scale,
-Ab E F -> A Eb G,
-A maj add2omit3 -> B min,
+Abb E F -> A### Eb G,
+
+"Chorus":
+A maj add2 omit3 -> B min,

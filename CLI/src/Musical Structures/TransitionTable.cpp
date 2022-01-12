@@ -19,21 +19,21 @@ namespace ReMu {
 	
 	std::ostream& operator<<(std::ostream& os, const TransitionTable& transitionTable)
 	{
-		os << "Scale Transitions:" << std::endl;
+		if (transitionTable.noteTransitions.size() > 0) os << "Scale Transitions:" << std::endl;
 
 		for (auto notes : transitionTable.noteTransitions)
 		{
 			os << notes.first << " -> " << notes.second << std::endl;
 		}
 
-		os << "Chord Transitions:" << std::endl;
+		if (transitionTable.chordTransitions.size() > 0) os << "Chord Transitions:" << std::endl;
 
 		for (auto chords : transitionTable.chordTransitions)
 		{
 			os << chords.first << " -> " << chords.second << std::endl;
 		}
 
-		os << "Sequence Transitions:" << std::endl;
+		if (transitionTable.sequenceTransitions.size() > 0) os << "Sequence Transitions:" << std::endl;
 
 		for (auto sequence : transitionTable.sequenceTransitions)
 		{
