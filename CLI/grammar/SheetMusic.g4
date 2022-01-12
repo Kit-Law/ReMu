@@ -47,24 +47,29 @@ sequence
  ;
 
 chord
- : note symbol
+ : note symbol additions*
  ;
 
 symbol
- : (QUALITY NUMBER)+
+ : QUALITY NUMBER
  | QUALITY
  ;
 
+additions
+ : ADDITIONS note;
+
 note
  : NATURAL
- | NATURAL MODIFIER
+ | NATURAL ACCIDENTAL
+ | NUMBER
+ | NUMBER ACCIDENTAL
  ;
 
-NUMBER    : [0-9]+;
+NUMBER     : [0-9]+;
 NATURAL    : [A-G];
-MODIFIER   : 'b' | '#';
-INTERVAL   : [1-9][1-3];
-QUALITY    : 'maj' | 'min' | 'dim' | 'aug' | 'sus' | 'alt' | 'M' | 'm' | '+' | '-' | '/';
+ACCIDENTAL : 'b' | 'bb' | 'bbb' | '###' | '##' | '#';
+QUALITY    : 'maj' | 'min' | 'dim' | 'aug' | 'alt' | 'M' | 'm' | '+' | '-' | '/';
+ADDITIONS  : 'sus' | 'add' | 'omit';
 
 STRING
  : '"' (~["\r\n] | '""')* '"'

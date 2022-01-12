@@ -3,3 +3,4 @@
 "A":
 Ab Major scale -> D Dorian scale,
 Ab E F -> A Eb G,
+A maj -> B min,

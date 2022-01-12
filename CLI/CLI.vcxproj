@@ -156,11 +156,8 @@
     <ClCompile Include="src\Tokens\chordRule.cpp" />
     <ClCompile Include="src\Listeners\Listener.cpp" />
     <ClCompile Include="src\Musical Structures\Note\Note.cpp" />
-    <ClCompile Include="src\Tokens\noteRule.cpp" />
     <ClCompile Include="src\Musical Structures\Scales\ScaleDatabase.cpp" />
     <ClCompile Include="src\Tokens\scaleRule.cpp" />
-    <ClCompile Include="src\Tokens\sectionDef.cpp" />
-    <ClCompile Include="src\Tokens\section.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Musical Structures\TransitionTable.cpp" />
   </ItemGroup>
@@ -170,16 +167,13 @@
     <ClInclude Include="grammar\SheetMusicListener.h" />
     <ClInclude Include="grammar\SheetMusicParser.h" />
     <ClInclude Include="src\Listeners\Listener.h" />
+    <ClInclude Include="src\Musical Structures\Chord\Symbol.h" />
     <ClInclude Include="src\Musical Structures\Section.h" />
     <ClInclude Include="src\Tokens\chordRule.h" />
     <ClInclude Include="src\Musical Structures\Note\Note.h" />
-    <ClInclude Include="src\Tokens\noteRule.h" />
-    <ClInclude Include="src\Tokens\Rule.h" />
     <ClInclude Include="src\Musical Structures\Scales\ScaleDatabase.h" />
     <ClInclude Include="src\Musical Structures\Scales\ScaleInfo.h" />
     <ClInclude Include="src\Tokens\scaleRule.h" />
-    <ClInclude Include="src\Tokens\section.h" />
-    <ClInclude Include="src\Tokens\sectionDef.h" />
     <ClInclude Include="src\Musical Structures\TransitionTable.h" />
   </ItemGroup>
   <ItemGroup>

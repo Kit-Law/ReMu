@@ -1,5 +1,5 @@
 
-// Generated from SheetMusic.g4 by ANTLR 4.7
+// Generated from SheetMusic.g4 by ANTLR 4.8
 
 #pragma once
 
@@ -54,6 +54,9 @@ public:
 
   virtual void enterSymbol(SheetMusicParser::SymbolContext * /*ctx*/) override { }
   virtual void exitSymbol(SheetMusicParser::SymbolContext * /*ctx*/) override { }
+
+  virtual void enterAdditions(SheetMusicParser::AdditionsContext * /*ctx*/) override { }
+  virtual void exitAdditions(SheetMusicParser::AdditionsContext * /*ctx*/) override { }
 
   virtual void enterNote(SheetMusicParser::NoteContext * /*ctx*/) override { }
   virtual void exitNote(SheetMusicParser::NoteContext * /*ctx*/) override { }

@@ -1,5 +1,5 @@
 
-// Generated from SheetMusic.g4 by ANTLR 4.7
+// Generated from SheetMusic.g4 by ANTLR 4.8
 
 #pragma once
 
@@ -13,7 +13,7 @@ class  SheetMusicParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, NUMBER = 7, 
-    NATURAL = 8, MODIFIER = 9, INTERVAL = 10, QUALITY = 11, STRING = 12, 
+    NATURAL = 8, ACCIDENTAL = 9, QUALITY = 10, ADDITIONS = 11, STRING = 12, 
     SCALE = 13, COMMENT = 14, SPACE = 15, OTHER = 16
   };
 
@@ -21,7 +21,7 @@ public:
     RuleScript = 0, RuleRulesSection = 1, RuleSectionDef = 2, RuleSection = 3, 
     RuleSectionIdent = 4, RuleTransitionRule = 5, RuleScaleRule = 6, RuleChordRule = 7, 
     RuleNoteRule = 8, RuleScale = 9, RuleSequence = 10, RuleChord = 11, 
-    RuleSymbol = 12, RuleNote = 13
+    RuleSymbol = 12, RuleAdditions = 13, RuleNote = 14
   };
 
   SheetMusicParser(antlr4::TokenStream *input);
@@ -47,6 +47,7 @@ public:
   class SequenceContext;
   class ChordContext;
   class SymbolContext;
+  class AdditionsContext;
   class NoteContext; 
 
   class  ScriptContext : public antlr4::ParserRuleContext {
@@ -212,6 +213,8 @@ public:
     virtual size_t getRuleIndex() const override;
     NoteContext *note();
     SymbolContext *symbol();
+    std::vector<AdditionsContext *> additions();
+    AdditionsContext* additions(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -224,10 +227,8 @@ public:
   public:
     SymbolContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<antlr4::tree::TerminalNode *> QUALITY();
-    antlr4::tree::TerminalNode* QUALITY(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> NUMBER();
-    antlr4::tree::TerminalNode* NUMBER(size_t i);
+    antlr4::tree::TerminalNode *QUALITY();
+    antlr4::tree::TerminalNode *NUMBER();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -236,12 +237,27 @@ public:
 
   SymbolContext* symbol();
 
+  class  AdditionsContext : public antlr4::ParserRuleContext {
+  public:
+    AdditionsContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *ADDITIONS();
+    NoteContext *note();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  AdditionsContext* additions();
+
   class  NoteContext : public antlr4::ParserRuleContext {
   public:
     NoteContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *NATURAL();
-    antlr4::tree::TerminalNode *MODIFIER();
+    antlr4::tree::TerminalNode *ACCIDENTAL();
+    antlr4::tree::TerminalNode *NUMBER();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

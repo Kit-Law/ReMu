@@ -13,19 +13,25 @@ namespace ReMu {
 		currentSection = sections[ctx->children[0]->getText()];
 	}
 
-	void Listener::enterSection(SheetMusicParser::SectionContext* ctx)
-	{
-		Tokens::section::evalSectionRule();
-	}
-
-	void Listener::enterChordRule(SheetMusicParser::ChordRuleContext* ctx)
+	void Listener::exitChordRule(SheetMusicParser::ChordRuleContext* ctx)
 	{
 		Tokens::chordRule::evalChordRule();
 	}
 
-	void Listener::exitNoteRule(SheetMusicParser::NoteRuleContext* ctx) 
+	void enterSection(SheetMusicParser::SectionContext* ctx)
 	{
-		currentSection->getTransitionTable()->addTransition(initalNotes, resultNotes);
+		if (ctx->children.size() > 1)
+	}
+
+	void Listener::enterScale(SheetMusicParser::ScaleContext* ctx)
+	{
+		if (onInital) initalScale = ctx->children[1]->getText();
+		else resultScale = ctx->children[1]->getText();
+	}
+
+	void Listener::exitScaleRule(SheetMusicParser::ScaleRuleContext* ctx)
+	{
+		Tokens::scaleRule::evalScaleRule(initalNotes.front(), initalScale.c_str(), resultNotes.front(), resultScale.c_str(), currentSection->getTransitionTable());
 	}
 
 	void Listener::enterNote(SheetMusicParser::NoteContext* ctx)
@@ -39,15 +45,9 @@ namespace ReMu {
 		notes->push_back(note);
 	}
 
-	void Listener::enterScale(SheetMusicParser::ScaleContext* ctx)
+	void Listener::exitNoteRule(SheetMusicParser::NoteRuleContext* ctx) 
 	{
-		if (onInital) initalScale = ctx->children[1]->getText();
-		else resultScale = ctx->children[1]->getText();
-	}
-
-	void Listener::exitScaleRule(SheetMusicParser::ScaleRuleContext* ctx)
-	{
-		Tokens::scaleRule::evalScaleRule(initalNotes.front(), initalScale.c_str(), resultNotes.front(), resultScale.c_str(), currentSection->getTransitionTable());
+		currentSection->getTransitionTable()->addTransition(initalNotes, resultNotes);
 	}
 
 }

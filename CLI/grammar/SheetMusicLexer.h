@@ -1,5 +1,5 @@
 
-// Generated from SheetMusic.g4 by ANTLR 4.7
+// Generated from SheetMusic.g4 by ANTLR 4.8
 
 #pragma once
 
@@ -13,7 +13,7 @@ class  SheetMusicLexer : public antlr4::Lexer {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, NUMBER = 7, 
-    NATURAL = 8, MODIFIER = 9, INTERVAL = 10, QUALITY = 11, STRING = 12, 
+    NATURAL = 8, ACCIDENTAL = 9, QUALITY = 10, ADDITIONS = 11, STRING = 12, 
     SCALE = 13, COMMENT = 14, SPACE = 15, OTHER = 16
   };
 
