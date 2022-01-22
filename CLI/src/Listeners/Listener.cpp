@@ -49,7 +49,7 @@ namespace ReMu {
 		Pitch note;
 
 		note.setStep(ctx->children[0]->getText()[0]);
-		if (ctx->children.size() > 1) note.setAccidental(ctx->children[1]->getText()[0] == '#' ? Sharp : Flat);
+		if (ctx->children.size() > 1) note.setAccidental(Accidental(ctx->children[1]->getText().size() * (ctx->children[1]->getText()[0] == '#' ? 1 : -1)));
 
 		notes->push_back(note);
 	}
