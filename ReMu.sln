@@ -9,6 +9,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "antlr4cpp-vs2019", "ANTLR\a
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pugixml_vs2019", "PUGIXML\scripts\pugixml_vs2019.vcxproj", "{07CF01C0-B887-499D-AD9C-799CB6A9FE64}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GUI", "GUI\GUI.vcxproj", "{A9974FD3-CF5C-4CEF-BE7C-0737396CA807}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestSuite", "TestSuite\TestSuite.vcxproj", "{8B5EB4AC-92AC-4FF6-95F0-8FACC8CAADD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +45,20 @@ Global
 		{07CF01C0-B887-499D-AD9C-799CB6A9FE64}.Release|x64.Build.0 = Release|x64
 		{07CF01C0-B887-499D-AD9C-799CB6A9FE64}.Release|x86.ActiveCfg = Release|Win32
 		{07CF01C0-B887-499D-AD9C-799CB6A9FE64}.Release|x86.Build.0 = Release|Win32
+		{A9974FD3-CF5C-4CEF-BE7C-0737396CA807}.Debug|x64.ActiveCfg = Debug|x64
+		{A9974FD3-CF5C-4CEF-BE7C-0737396CA807}.Debug|x64.Build.0 = Debug|x64
+		{A9974FD3-CF5C-4CEF-BE7C-0737396CA807}.Debug|x86.ActiveCfg = Debug|x64
+		{A9974FD3-CF5C-4CEF-BE7C-0737396CA807}.Release|x64.ActiveCfg = Release|x64
+		{A9974FD3-CF5C-4CEF-BE7C-0737396CA807}.Release|x64.Build.0 = Release|x64
+		{A9974FD3-CF5C-4CEF-BE7C-0737396CA807}.Release|x86.ActiveCfg = Release|x64
+		{8B5EB4AC-92AC-4FF6-95F0-8FACC8CAADD5}.Debug|x64.ActiveCfg = Debug|x64
+		{8B5EB4AC-92AC-4FF6-95F0-8FACC8CAADD5}.Debug|x64.Build.0 = Debug|x64
+		{8B5EB4AC-92AC-4FF6-95F0-8FACC8CAADD5}.Debug|x86.ActiveCfg = Debug|Win32
+		{8B5EB4AC-92AC-4FF6-95F0-8FACC8CAADD5}.Debug|x86.Build.0 = Debug|Win32
+		{8B5EB4AC-92AC-4FF6-95F0-8FACC8CAADD5}.Release|x64.ActiveCfg = Release|x64
+		{8B5EB4AC-92AC-4FF6-95F0-8FACC8CAADD5}.Release|x64.Build.0 = Release|x64
+		{8B5EB4AC-92AC-4FF6-95F0-8FACC8CAADD5}.Release|x86.ActiveCfg = Release|Win32
+		{8B5EB4AC-92AC-4FF6-95F0-8FACC8CAADD5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

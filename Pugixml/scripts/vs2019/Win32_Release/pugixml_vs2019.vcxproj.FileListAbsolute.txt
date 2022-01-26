@@ -1,0 +1,1 @@
+U:\3rd Yr Project\TEst\ReMu\PUGIXML\scripts\vs2019\Win32_Release\pugixml.lib

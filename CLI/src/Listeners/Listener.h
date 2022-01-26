@@ -64,6 +64,8 @@ namespace ReMu {
 			for(auto const& section : sections) 
 				std::cout << *section.second << std::endl << "==================================" << std::endl; 
 		}
+
+		inline std::map<std::string, Section*> getSections() { return sections; }
 	};
 
 }
