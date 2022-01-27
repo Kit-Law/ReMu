@@ -23,6 +23,7 @@ namespace ReMu {
 		}
 
 		friend std::ostream& operator<<(std::ostream& os, const Chord& chord);
+		friend bool operator==(const Chord& lhs, const Chord& rhs);
 	};
 
 	inline std::ostream& operator<<(std::ostream& os, const Chord& chord)
@@ -31,6 +32,32 @@ namespace ReMu {
 			os << component << " ";
 
 		return os;
+	}
+
+	inline bool operator==(const Chord& lhs, const Chord& rhs)
+	{
+		bool diff = false;
+		bool found = false;
+
+		for (Note lnote : lhs.components)
+		{
+			found = false;
+
+			for (Note rnote : rhs.components)
+				if (lnote == rnote)
+				{
+					found = true;
+					break;
+				}
+
+			if (!found)
+			{
+				diff = true;
+				break;
+			}
+		}
+			
+		return !diff && lhs.components.size() == rhs.components.size();
 	}
 
 }

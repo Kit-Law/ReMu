@@ -1,0 +1,4 @@
+"test" = 1 - 20;
+
+"test":
+A B C D -> A B C D,

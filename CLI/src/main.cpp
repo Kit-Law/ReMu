@@ -1,9 +1,9 @@
 #include <iostream>
 
 #include "antlr4-runtime.h"
-#include "SheetMusicLexer.h"
-#include "SheetMusicParser.h"
-#include "SheetMusicBaseListener.h"
+#include ".\Grammar\SheetMusicLexer.h"
+#include ".\Grammar\SheetMusicParser.h"
+#include ".\Grammar\SheetMusicBaseListener.h"
 
 #include "Listeners/Listener.h"
 

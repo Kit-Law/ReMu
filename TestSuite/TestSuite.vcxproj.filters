@@ -15,39 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="src\Parsing\ParsingTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SheetMusicBaseListener.cpp">
+    <ClCompile Include="src\Transitions\Transpositions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SheetMusicLexer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SheetMusicListener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SheetMusicParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ParsingTests.cpp">
+    <ClCompile Include="src\Transitions\TransitionsToSelf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SheetMusicParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SheetMusicBaseListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SheetMusicLexer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SheetMusicListener.h">
+    <ClInclude Include="src\Helper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

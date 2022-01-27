@@ -21,6 +21,10 @@ namespace ReMu {
 		void addTransition(std::vector<Pitch> inital, std::vector<Pitch> result);
 		void addTransition(Chord inital, Chord result);
 
+		std::vector<std::pair<Pitch, Pitch>>* const getNoteTransitions() { return &noteTransitions; }
+		std::vector<std::pair<std::vector<Pitch>, std::vector<Pitch>>>* const getSequenceTransitions() { return &sequenceTransitions; }
+		std::vector<std::pair<Chord, Chord>>* const getChordTransitions() { return &chordTransitions; }
+
 		friend std::ostream& operator<<(std::ostream& os, const TransitionTable& transitionTable);
 	};
 

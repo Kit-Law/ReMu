@@ -27,13 +27,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -90,7 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)ANTLR\src;$(ProjectDir)grammar;$(SolutionDir)Pugixml\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ANTLR\src;$(SolutionDir)Pugixml\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -106,7 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)ANTLR\src;$(ProjectDir)grammar;$(SolutionDir)Pugixml\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ANTLR\src;$(SolutionDir)Pugixml\src</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
     </ClCompile>
     <Link>
@@ -123,7 +123,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)ANTLR\src;$(ProjectDir)grammar;$(SolutionDir)Pugixml\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ANTLR\src;$(SolutionDir)Pugixml\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,7 +139,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)ANTLR\src;$(ProjectDir)grammar;$(SolutionDir)Pugixml\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ANTLR\src;$(SolutionDir)Pugixml\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,10 +152,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="grammar\SheetMusicBaseListener.cpp" />
-    <ClCompile Include="grammar\SheetMusicLexer.cpp" />
-    <ClCompile Include="grammar\SheetMusicListener.cpp" />
-    <ClCompile Include="grammar\SheetMusicParser.cpp" />
+    <ClCompile Include="src\Grammar\SheetMusicBaseListener.cpp" />
+    <ClCompile Include="src\Grammar\SheetMusicLexer.cpp" />
+    <ClCompile Include="src\Grammar\SheetMusicListener.cpp" />
+    <ClCompile Include="src\Grammar\SheetMusicParser.cpp" />
     <ClCompile Include="src\Musical Structures\Note\Accidental.cpp" />
     <ClCompile Include="src\Musical Structures\Note\Degree.cpp" />
     <ClCompile Include="src\Timers\DeltaTime.cpp" />
@@ -168,10 +168,10 @@
     <ClCompile Include="src\Musical Structures\TransitionTable.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="grammar\SheetMusicBaseListener.h" />
-    <ClInclude Include="grammar\SheetMusicLexer.h" />
-    <ClInclude Include="grammar\SheetMusicListener.h" />
-    <ClInclude Include="grammar\SheetMusicParser.h" />
+    <ClInclude Include="src\Grammar\SheetMusicBaseListener.h" />
+    <ClInclude Include="src\Grammar\SheetMusicLexer.h" />
+    <ClInclude Include="src\Grammar\SheetMusicListener.h" />
+    <ClInclude Include="src\Grammar\SheetMusicParser.h" />
     <ClInclude Include="src\Listeners\Listener.h" />
     <ClInclude Include="src\Musical Structures\Chord\Addition.h" />
     <ClInclude Include="src\Musical Structures\Chord\Chord.h" />
@@ -190,10 +190,10 @@
     <ClInclude Include="src\Musical Structures\TransitionTable.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="grammar\SheetMusic.interp" />
-    <None Include="grammar\SheetMusic.tokens" />
-    <None Include="grammar\SheetMusicLexer.interp" />
-    <None Include="grammar\SheetMusicLexer.tokens" />
+    <None Include="src\Grammar\SheetMusic.interp" />
+    <None Include="src\Grammar\SheetMusic.tokens" />
+    <None Include="src\Grammar\SheetMusicLexer.interp" />
+    <None Include="src\Grammar\SheetMusicLexer.tokens" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ANTLR\antlr4cpp-vs2019.vcxproj">

@@ -27,16 +27,16 @@
     <ClCompile Include="src\Listeners\Listener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="grammar\SheetMusicBaseListener.cpp">
+    <ClCompile Include="src\Grammar\SheetMusicBaseListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="grammar\SheetMusicLexer.cpp">
+    <ClCompile Include="src\Grammar\SheetMusicLexer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="grammar\SheetMusicListener.cpp">
+    <ClCompile Include="src\Grammar\SheetMusicListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="grammar\SheetMusicParser.cpp">
+    <ClCompile Include="src\Grammar\SheetMusicParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Musical Structures\Scales\ScaleDatabase.cpp">
@@ -77,16 +77,16 @@
     <ClInclude Include="src\Musical Structures\TransitionTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="grammar\SheetMusicBaseListener.h">
+    <ClInclude Include="src\Grammar\SheetMusicBaseListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="grammar\SheetMusicLexer.h">
+    <ClInclude Include="src\Grammar\SheetMusicLexer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="grammar\SheetMusicListener.h">
+    <ClInclude Include="src\Grammar\SheetMusicListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="grammar\SheetMusicParser.h">
+    <ClInclude Include="src\Grammar\SheetMusicParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Musical Structures\Scales\ScaleDatabase.h">
@@ -121,9 +121,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="grammar\SheetMusic.interp" />
-    <None Include="grammar\SheetMusic.tokens" />
-    <None Include="grammar\SheetMusicLexer.interp" />
-    <None Include="grammar\SheetMusicLexer.tokens" />
+    <None Include="src\Grammar\SheetMusic.interp" />
+    <None Include="src\Grammar\SheetMusic.tokens" />
+    <None Include="src\Grammar\SheetMusicLexer.interp" />
+    <None Include="src\Grammar\SheetMusicLexer.tokens" />
   </ItemGroup>
 </Project>
