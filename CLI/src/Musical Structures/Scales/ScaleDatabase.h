@@ -10,7 +10,7 @@
 #define PHRYGIAN_SCALE_INFO		new ScaleInfo(new int[7]{ 1,2,2,2,1,2,2 }, 7)
 #define LYDIAN_SCALE_INFO		new ScaleInfo(new int[7]{ 2,2,2,1,2,2,1 }, 7)
 #define MIXOLYDIAN_SCALE_INFO	new ScaleInfo(new int[7]{ 2,2,1,2,2,1,2 }, 7)
-#define AEOLIANAND_SCALE_INFO	new ScaleInfo(new int[7]{ 2,1,2,2,1,2,2 }, 7)
+#define AEOLIAN_SCALE_INFO	    new ScaleInfo(new int[7]{ 2,1,2,2,1,2,2 }, 7)
 #define LOCRIAN_SCALE_INFO		new ScaleInfo(new int[7]{ 1,2,2,1,2,2,2 }, 7)
 
 namespace ReMu {

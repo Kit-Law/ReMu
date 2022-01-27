@@ -24,6 +24,9 @@
     <ClCompile Include="src\Transitions\TransitionsToSelf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Transitions\RelativeKeys.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Helper.h">

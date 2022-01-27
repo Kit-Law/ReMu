@@ -8,7 +8,7 @@ namespace ReMu { namespace Tokens {
 		ScaleInfo* resultScaleInfo = ScaleDatabase::getScale(resultScale);
 
 		Notes initalNotes = genNotes(initalScaleInfo, initalRootNote);
-		Notes resultNotes = genNotes(initalScaleInfo, resultRootNote);
+		Notes resultNotes = genNotes(resultScaleInfo, resultRootNote);
 
 		for (int i = 0; i < initalScaleInfo->getScaleLength(); i++)
 		{

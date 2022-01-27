@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Transitions\RelativeKeys.cpp" />
     <ClCompile Include="src\Transitions\TransitionsToSelf.cpp" />
     <ClCompile Include="src\Parsing\ParsingTests.cpp" />
     <ClCompile Include="src\Transitions\Transpositions.cpp" />
