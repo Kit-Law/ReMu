@@ -23,6 +23,11 @@ namespace ReMu {
 
 		friend bool operator==(const Pitch& lhs, const Pitch& rhs);
 		friend std::ostream& operator<<(std::ostream& os, const Pitch& note);
+
+		size_t operator()(const Pitch& p) const
+		{
+			return step * accidental;
+		}
 	};
 
 	inline bool operator==(const Pitch& lhs, const Pitch& rhs)

@@ -17,6 +17,8 @@ namespace ReMu { namespace Tokens {
 		
 			transitionTable->addTransition(initalNotes[i], resultNotes[i]);
 		}
+
+		transitionTable->setRelativeMajorKey(resultScaleInfo->getRelativeMajorKey(resultRootNote));
 	}
 
 	Notes ScaleRule::genNotes(ScaleInfo* scaleInfo, const Note& rootNote)

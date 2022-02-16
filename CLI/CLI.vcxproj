@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -27,26 +27,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -156,6 +156,7 @@
     <ClCompile Include="src\Grammar\SheetMusicLexer.cpp" />
     <ClCompile Include="src\Grammar\SheetMusicListener.cpp" />
     <ClCompile Include="src\Grammar\SheetMusicParser.cpp" />
+    <ClCompile Include="src\Musical Structures\KeySig\KeySig.cpp" />
     <ClCompile Include="src\Musical Structures\Note\Accidental.cpp" />
     <ClCompile Include="src\Musical Structures\Note\Degree.cpp" />
     <ClCompile Include="src\Timers\DeltaTime.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="src\Musical Structures\Chord\Addition.h" />
     <ClInclude Include="src\Musical Structures\Chord\Chord.h" />
     <ClInclude Include="src\Musical Structures\Chord\Symbol.h" />
+    <ClInclude Include="src\Musical Structures\KeySig\KeySig.h" />
     <ClInclude Include="src\Musical Structures\Note\Accidental.h" />
     <ClInclude Include="src\Musical Structures\Note\Degree.h" />
     <ClInclude Include="src\Musical Structures\Note\Pitch.h" />

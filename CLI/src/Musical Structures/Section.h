@@ -17,6 +17,9 @@ namespace ReMu {
 
 		inline TransitionTable* getTransitionTable() { return &transitionTable; }
 
+		inline int getStartingMessure() { return duration.first; }
+		inline int getEndingMessure() { return duration.second; }
+
 		friend std::ostream& operator<<(std::ostream& os, const Section& section);
 	};
 	
