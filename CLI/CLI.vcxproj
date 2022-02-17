@@ -152,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Evaluators\Evaluator.cpp" />
     <ClCompile Include="src\Grammar\SheetMusicBaseListener.cpp" />
     <ClCompile Include="src\Grammar\SheetMusicLexer.cpp" />
     <ClCompile Include="src\Grammar\SheetMusicListener.cpp" />
@@ -169,6 +170,9 @@
     <ClCompile Include="src\Musical Structures\TransitionTable.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Evaluators\Evaluator.h" />
+    <ClInclude Include="src\Evaluators\NoteEvaluator.h" />
+    <ClInclude Include="src\Evaluators\SequenceBuffer.h" />
     <ClInclude Include="src\Grammar\SheetMusicBaseListener.h" />
     <ClInclude Include="src\Grammar\SheetMusicLexer.h" />
     <ClInclude Include="src\Grammar\SheetMusicListener.h" />

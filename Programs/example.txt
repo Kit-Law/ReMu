@@ -2,8 +2,8 @@
 "Chorus" = 21 - 60;
 
 "Intro":
-D Major scale -> D Lydian scale,
-Abb E F -> A### Eb G,
+//D Major scale -> D Lydian scale,
+B C# D E F# G A B -> A A A A A A A A,
 
 "Chorus":
 A maj add2 omit3 -> B min,
