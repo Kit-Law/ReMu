@@ -75,7 +75,7 @@
 			<attributes>
 				<divisions>1</divisions>
 				<key>
-					<fifths>0</fifths>
+					<fifths>3</fifths>
 					<mode>dorian</mode>
 				</key>
 				<time>
@@ -147,6 +147,7 @@
 			<note default-x="13.96" default-y="5.00">
 				<pitch>
 					<step>G</step>
+					<alter>1</alter>
 					<octave>5</octave>
 				</pitch>
 				<duration>4</duration>

@@ -54,7 +54,6 @@ int main()//const char* argv[])
 		return -1;
 	//1:45 meeting on thur
 #ifdef XPATH
-	//pugi::xpath_node_set notes = doc.select_nodes("/score-partwise/part[@id='P1']/measure/note/pitch");
 	std::map<std::string, ReMu::Section*> sections = listener.getSections();
 
 	for (auto const& section : sections)
@@ -63,15 +62,10 @@ int main()//const char* argv[])
 		ReMu::TransitionTable* transitionTable = section.second->getTransitionTable();
 
 		const ReMu::Pitch* relativeMajorKey = transitionTable->getRelativeMajorKey();
-		std::unordered_map<char, ReMu::Accidental> initalKeySigNotes;
-		const std::unordered_map<char, ReMu::Accidental> resultKeySigNotes = ReMu::KeySig::getNoteMapping(relativeMajorKey);
 		pugi::xpath_node_set keys = doc.select_nodes(("/score-partwise/part/measure[@number >= " + std::to_string(section.second->getStartingMessure()) + " and @number < " + std::to_string(section.second->getEndingMessure()) + "] /attributes/key/fifths").c_str());
 
 		for (pugi::xpath_node key : keys) //Let key change notes in sections
-		{
-			initalKeySigNotes = ReMu::KeySig::getNoteMapping(std::stoi(key.node().first_child().value()));
 			key.node().first_child().set_value(std::to_string(ReMu::KeySig::getFiths(relativeMajorKey)).c_str());
-		}
 
 		std::unordered_map<ReMu::Pitch, ReMu::Pitch, ReMu::Pitch> noteTransitions;
 		for (auto transition : *(transitionTable->getNoteTransitions()))
@@ -81,21 +75,25 @@ int main()//const char* argv[])
 		{
 			pugi::xml_node note = node.node();
 
-			ReMu::Pitch intialNote = ReMu::Pitch(note.child_value("step")[0], GetWithDef(initalKeySigNotes, note.child_value("step")[0], ReMu::Accidental::None));
+			ReMu::Pitch intialNote = ReMu::Pitch(note.child_value("step")[0], note.child("alter") ? ReMu::Accidental(std::stoi(note.child_value("alter"))) : ReMu::Accidental::None);
 
 			if (noteTransitions.count(intialNote) > 0)
 			{
-				pugi::char_t noteStep[2] = { noteTransitions.at(intialNote).getStep() };
+				ReMu::Note resultNote = noteTransitions.at(intialNote);
+
+				pugi::char_t noteStep[2] = { resultNote.getStep() };
 				note.child("step").last_child().set_value(noteStep);
+
+				if (note.child("alter"))
+				{
+					if (resultNote.getAccidental() == ReMu::Accidental::None)
+						note.remove_child("alter");
+					else
+						note.child("alter").last_child().set_value(std::to_string(resultNote.getAccidental()).c_str());
+				}
+				else if (!resultNote.getAccidental() == ReMu::Accidental::None)
+					note.insert_child_after("alter", note.child("step")).text().set(std::to_string(resultNote.getAccidental()).c_str());
 			}
-
-			/*if (noteTransitions.count(ReMu::Pitch(*note.child_value("step"), ReMu::None)) > 0)
-			{
-				note.child("step").last_child().set_value((const pugi::char_t*)(noteTransitions.at(ReMu::Pitch(*note.child_value("step"), ReMu::None)).getStep()));
-			}*/
-
-			
-			//std::cout << note.child("step") << std::endl << "Note: " << note.child_value("step") << " " << note.child_value("octave") << std::endl;
 		}
 	}
 

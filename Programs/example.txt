@@ -2,7 +2,7 @@
 "Chorus" = 21 - 60;
 
 "Intro":
-D Major scale -> D Dorian scale,
+D Major scale -> D Lydian scale,
 Abb E F -> A### Eb G,
 
 "Chorus":
