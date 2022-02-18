@@ -170,8 +170,10 @@
     <ClCompile Include="src\Musical Structures\TransitionTable.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Evaluators\ChordTransitionEvaluator.h" />
     <ClInclude Include="src\Evaluators\Evaluator.h" />
     <ClInclude Include="src\Evaluators\NoteEvaluator.h" />
+    <ClInclude Include="src\Evaluators\NoteTransitionEvaluator.h" />
     <ClInclude Include="src\Evaluators\SequenceBuffer.h" />
     <ClInclude Include="src\Grammar\SheetMusicBaseListener.h" />
     <ClInclude Include="src\Grammar\SheetMusicLexer.h" />

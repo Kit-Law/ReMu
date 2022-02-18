@@ -23,14 +23,14 @@ namespace ReMu { namespace Evaluator {
 		inline static void setNote(pugi::xml_node note, Note resultNote)
 		{
 			pugi::char_t noteStep[2] = { resultNote.getStep() };
-			note.child("step").last_child().set_value(noteStep);
+			note.child("step").text() = noteStep;
 
 			if (note.child("alter"))
 			{
 				if (resultNote.getAccidental() == ReMu::Accidental::None)
 					note.remove_child("alter");
 				else
-					note.child("alter").last_child().set_value(std::to_string(resultNote.getAccidental()).c_str());
+					note.child("alter").text() = resultNote.getAccidental();
 			}
 			else if (!resultNote.getAccidental() == ReMu::Accidental::None)
 				note.insert_child_after("alter", note.child("step")).text().set(std::to_string(resultNote.getAccidental()).c_str());

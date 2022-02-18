@@ -8,72 +8,11 @@ namespace ReMu { namespace Evaluator {
 
 		for (auto const& section : sections)
 		{
-			pugi::xpath_node_set notes = doc.select_nodes(("/score-partwise/part/measure[@number >= " + std::to_string(section.second->getStartingMessure()) + " and @number < " + std::to_string(section.second->getEndingMessure()) + " and not(note/chord)] /note/pitch").c_str());
-			ReMu::TransitionTable* transitionTable = section.second->getTransitionTable();
+			changeKey(section.second->getTransitionTable()->getRelativeMajorKey(), section.second, doc);
 
-			changeKey(transitionTable->getRelativeMajorKey(), section.second, doc);
+			NoteTransitionEvaluator::evaluate(doc, section.second);
 
-			//TODO: Clean this block up
-			std::vector<SequenceBuffer*> sequenceBuffers;
-			for (auto const& sequence : *section.second->getTransitionTable()->getSequenceTransitions())
-				sequenceBuffers.push_back(new SequenceBuffer(sequence));
-
-			//TODO: Clean this block up
-			std::unordered_map<ReMu::Pitch, ReMu::Pitch, ReMu::Pitch> noteTransitions;
-			for (auto transition : *(transitionTable->getNoteTransitions()))
-				noteTransitions[transition.first] = transition.second;
-
-			for (pugi::xpath_node node : notes)
-			{
-				pugi::xml_node note = node.node();
-				ReMu::Pitch intialNote = NoteEvaluator::parseNote(note);
-
-				for (auto sequence : sequenceBuffers)
-					sequence->evaluate(note);
-
-				if (noteTransitions.count(intialNote) > 0)
-					NoteEvaluator::setNote(note, noteTransitions.at(intialNote));
-			}
-
-			pugi::xpath_node_set messures = doc.select_nodes(("/score-partwise/part/measure[@number >= " + std::to_string(section.second->getStartingMessure()) + " and @number < " + std::to_string(section.second->getEndingMessure()) + " and note/chord]").c_str());
-			for (pugi::xpath_node node : messures)
-			{
-				std::vector<Note> components;
-				pugi::xml_node messure = node.node();
-
-				for (pugi::xml_node note : messure.children("note"))
-				{
-					Pitch initalNote = NoteEvaluator::parseNote(note.child("pitch"));
-
-					components.push_back(initalNote);
-				}
-
-			 	Chord initalChord(components);
-
-				for (std::pair<Chord, Chord> transition : *transitionTable->getChordTransitions())
-				{
-					if (initalChord == transition.first)
-					{
-						short i = 0;
-						pugi::xml_node* lastNote = nullptr;
-						for (pugi::xml_node note : messure.children("note"))
-						{
-							if (i < transition.second.getComponents()->size())
-								NoteEvaluator::setNote(note.child("pitch"), transition.second.getComponents()->at(i));
-							else
-								note.parent().remove_child(note);
-
-							i++;
-							lastNote = &note;
-						}
-
-						for (; i < transition.second.getComponents()->size(); i++)
-							NoteEvaluator::setNote(messure.append_copy(*lastNote).child("pitch"), transition.second.getComponents()->at(i));
-
-						break;
-					}
-				}
-			}
+			ChordTransitionEvaluator::evaluate(doc, section.second);
 		}
 
 		closeDoc(doc, output);

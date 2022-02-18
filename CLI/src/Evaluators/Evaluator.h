@@ -4,8 +4,8 @@
 #include "../Musical Structures/KeySig/KeySig.h"
 #include "../Listeners/Listener.h"
 
-#include "./SequenceBuffer.h"
-#include "./NoteEvaluator.h"
+#include "./NoteTransitionEvaluator.h"
+#include "./ChordTransitionEvaluator.h"
 
 #include "pugixml.hpp"
 
