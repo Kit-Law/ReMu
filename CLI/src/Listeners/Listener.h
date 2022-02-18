@@ -39,7 +39,7 @@ namespace ReMu {
 		void enterSectionDef(SheetMusicParser::SectionDefContext* ctx) override;
 		void enterSectionIdent(SheetMusicParser::SectionIdentContext* ctx) override;
 
-		inline void enterTransitionRule(SheetMusicParser::TransitionRuleContext* ctx) override { initalNotes.clear(); resultNotes.clear(); }
+		inline void enterTransitionRule(SheetMusicParser::TransitionRuleContext* ctx) override { initalNotes.clear(); resultNotes.clear(); initalAdditions.clear(); resultAdditions.clear(); }
 		
 		void exitChordRule(SheetMusicParser::ChordRuleContext* ctx) override;
 
