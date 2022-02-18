@@ -8,7 +8,7 @@ namespace ReMu { namespace Evaluator {
 
 		for (auto const& section : sections)
 		{
-			pugi::xpath_node_set notes = doc.select_nodes(("/score-partwise/part/measure[@number >= " + std::to_string(section.second->getStartingMessure()) + " and @number < " + std::to_string(section.second->getEndingMessure()) + "] /note/pitch").c_str());
+			pugi::xpath_node_set notes = doc.select_nodes(("/score-partwise/part/measure[@number >= " + std::to_string(section.second->getStartingMessure()) + " and @number < " + std::to_string(section.second->getEndingMessure()) + " and not(note/chord)] /note/pitch").c_str());
 			ReMu::TransitionTable* transitionTable = section.second->getTransitionTable();
 
 			changeKey(transitionTable->getRelativeMajorKey(), section.second, doc);
@@ -34,6 +34,46 @@ namespace ReMu { namespace Evaluator {
 				if (noteTransitions.count(intialNote) > 0)
 					NoteEvaluator::setNote(note, noteTransitions.at(intialNote));
 			}
+
+			pugi::xpath_node_set messures = doc.select_nodes(("/score-partwise/part/measure[@number >= " + std::to_string(section.second->getStartingMessure()) + " and @number < " + std::to_string(section.second->getEndingMessure()) + " and note/chord]").c_str());
+			for (pugi::xpath_node node : messures)
+			{
+				std::vector<Note> components;
+				pugi::xml_node messure = node.node();
+
+				for (pugi::xml_node note : messure.children("note"))
+				{
+					Pitch initalNote = NoteEvaluator::parseNote(note.child("pitch"));
+
+					components.push_back(initalNote);
+				}
+
+			 	Chord initalChord(components);
+
+				for (std::pair<Chord, Chord> transition : *transitionTable->getChordTransitions())
+				{
+					if (initalChord == transition.first)
+					{
+						short i = 0;
+						pugi::xml_node* lastNote = nullptr;
+						for (pugi::xml_node note : messure.children("note"))
+						{
+							if (i < transition.second.getComponents()->size())
+								NoteEvaluator::setNote(note.child("pitch"), transition.second.getComponents()->at(i));
+							else
+								note.parent().remove_child(note);
+
+							i++;
+							lastNote = &note;
+						}
+
+						for (; i < transition.second.getComponents()->size(); i++)
+							NoteEvaluator::setNote(messure.append_copy(*lastNote).child("pitch"), transition.second.getComponents()->at(i));
+
+						break;
+					}
+				}
+			}
 		}
 
 		closeDoc(doc, output);
@@ -41,6 +81,7 @@ namespace ReMu { namespace Evaluator {
 
 	void Evaluator::changeKey(const ReMu::Pitch* relativeMajorKey, Section* section, pugi::xml_document& doc)
 	{
+		//Use text() rather than set whatever tf
 		pugi::xpath_node_set keys = doc.select_nodes(("/score-partwise/part/measure[@number >= " + std::to_string(section->getStartingMessure()) + " and @number < " + std::to_string(section->getEndingMessure()) + "] /attributes/key/fifths").c_str());
 
 		for (pugi::xpath_node key : keys) //Let key change notes in sections

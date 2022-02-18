@@ -22,6 +22,11 @@ namespace ReMu {
 			std::remove_if(components.begin(), components.end(), [note](Note& component) { return component == note; });
 		}
 
+		inline const std::vector<Note>* getComponents()
+		{
+			return &components;
+		}
+
 		friend std::ostream& operator<<(std::ostream& os, const Chord& chord);
 		friend bool operator==(const Chord& lhs, const Chord& rhs);
 	};

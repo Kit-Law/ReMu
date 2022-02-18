@@ -40,8 +40,9 @@ int main()//const char* argv[])
 	deltaTime.calDeltaTime();
 	std::cout << "Parsing Time = " << deltaTime.getDeltaTime() << "s" << std::endl;
 
-	ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//A.musicxml");
+	//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//Chord.musicxml", "..//MusicXMLFiles//Output//Gmin.musicxml");
 	//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//D_Lydian_scale.musicxml");
+	ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Output//Gmin.musicxml", "..//MusicXMLFiles//Output//Reverce.musicxml");
 
 	deltaTime.calDeltaTime();
 	std::cout << "Evaluation Time = " << deltaTime.getDeltaTime() << "s" << std::endl;
