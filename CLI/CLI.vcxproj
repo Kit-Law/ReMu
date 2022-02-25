@@ -40,13 +40,13 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -152,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\API.cpp" />
     <ClCompile Include="src\Evaluators\Evaluator.cpp" />
     <ClCompile Include="src\Grammar\SheetMusicBaseListener.cpp" />
     <ClCompile Include="src\Grammar\SheetMusicLexer.cpp" />
@@ -170,6 +171,7 @@
     <ClCompile Include="src\Musical Structures\TransitionTable.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\API.h" />
     <ClInclude Include="src\Evaluators\ChordTransitionEvaluator.h" />
     <ClInclude Include="src\Evaluators\Evaluator.h" />
     <ClInclude Include="src\Evaluators\NoteEvaluator.h" />
