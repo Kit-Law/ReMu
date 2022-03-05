@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>ReMu</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget
@@ -218,17 +218,17 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>Project</string>
     </property>
-    <addaction name="actionNew_Project"/>
-    <addaction name="actionOpen_Project"/>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
     <addaction name="separator"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
     <addaction name="separator"/>
-    <addaction name="actionPrint"/>
+    <addaction name="actionChange_Input"/>
     <addaction name="separator"/>
-    <addaction name="actionQuit"/>
+    <addaction name="actionChange_Output"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -256,14 +256,14 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
   </widget>
-  <action name="actionNew_Project">
+  <action name="actionNew">
    <property name="text">
-    <string>New Project</string>
+    <string>New</string>
    </property>
   </action>
-  <action name="actionOpen_Project">
+  <action name="actionOpen">
    <property name="text">
-    <string>Open Project</string>
+    <string>Open</string>
    </property>
   </action>
   <action name="actionSave">
@@ -276,9 +276,9 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
     <string>Save As</string>
    </property>
   </action>
-  <action name="actionPrint">
+  <action name="actionChange_Input">
    <property name="text">
-    <string>Print</string>
+    <string>Change Input</string>
    </property>
   </action>
   <action name="actionQuit">
@@ -334,6 +334,11 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
   <action name="actionSettings">
    <property name="text">
     <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionChange_Output">
+   <property name="text">
+    <string>Export</string>
    </property>
   </action>
  </widget>
