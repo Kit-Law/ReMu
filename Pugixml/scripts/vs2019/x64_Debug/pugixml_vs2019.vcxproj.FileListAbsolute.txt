@@ -1,1 +1,2 @@
 U:\3rd Yr Project\TEst\ReMu\PUGIXML\scripts\vs2019\x64_Debug\pugixml.lib
+U:\3rd Yr Project\ReMu\PUGIXML\scripts\vs2019\x64_Debug\pugixml.lib

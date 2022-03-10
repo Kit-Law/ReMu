@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
+#include <QPdfDocument>
 
 #include <filesystem>
 #include <fstream>  
@@ -27,6 +28,10 @@ class MainWindow : public QMainWindow
 private:
     Ui::MainWindow* ui;
     SyntaxHighlighter* highlighter;
+
+    QTabWidget* tabWidget;
+
+    QPrinter* inputScore;
 
     std::string projectName;
     std::string projectFile;

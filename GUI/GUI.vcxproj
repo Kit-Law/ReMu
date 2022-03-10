@@ -97,6 +97,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ImageViewer.cpp" />
     <ClCompile Include="ProjectWindow.cpp" />
     <ClCompile Include="SyntaxHighlighter.cpp" />
     <QtRcc Include="mainwindow.qrc" />
@@ -116,6 +117,9 @@
     <ProjectReference Include="..\PUGIXML\scripts\pugixml_vs2019.vcxproj">
       <Project>{07cf01c0-b887-499d-ad9c-799cb6a9fe64}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ImageViewer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
