@@ -1,4 +1,16 @@
 "Intro" = 1 - 20;
 
+\addScale name {2,3,5,6,7,4,3}
+\addChord userChord {3,2,1,2,3}
+
 "Intro":
-_[2.3] -> A,
+gutiar
+{
+	Scale: D Major -> D name,
+	B#[3] C# D (E maj add 2) F# G A B -> A userChord A A A {A, A} A A A,
+	_[3] -> _[4],
+	Occurrance 4: _[1] A[2] -> _[2] A[1],
+}
+
+G maj -> D min add2,
+D min add2 -> G maj,

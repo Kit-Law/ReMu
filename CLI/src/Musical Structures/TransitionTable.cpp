@@ -2,9 +2,9 @@
 
 namespace ReMu {
 
-	void TransitionTable::addTransition(Sequence inital, Sequence result, std::string instrument)
+	void TransitionTable::addTransition(Sequence inital, Sequence result, int occurance, std::string instrument)
 	{
-		sequenceTransitions[instrument].push_back(std::pair<Sequence, Sequence>(inital, result));
+		sequenceTransitions[instrument].push_back(std::tuple<Sequence, Sequence, int>(inital, result, occurance));
 	}
 
 	void TransitionTable::addTransition(Pitch inital, Pitch result, std::string instrument)
@@ -27,16 +27,19 @@ namespace ReMu {
 			}
 		}
 
-		if (transitionTable.sequenceTransitions.size() > 0) os << "Sequence Transitions:" << std::endl;
+		if (transitionTable.sequenceTransitions.size() > 0) os << "----------------------------------" << std::endl << "Sequence Transitions:" << std::endl;
 
 		for (auto instrumnetSequenceTransitions : transitionTable.sequenceTransitions)
 		{
 			if (instrumnetSequenceTransitions.first != "")
 				os << std::endl << "Instrument: " << instrumnetSequenceTransitions.first << std::endl;
 
-			for (std::pair<Sequence, Sequence> sequence : instrumnetSequenceTransitions.second)
+			for (std::tuple<Sequence, Sequence, int> sequence : instrumnetSequenceTransitions.second)
 			{
-				for (std::pair<void*, structType>& seq : *sequence.first.getStuctsToMapping())
+				if (std::get<2>(sequence) > 0)
+					os << "Every " << std::get<2>(sequence) << " occurance: ";
+
+				for (std::pair<void*, structType>& seq : *std::get<0>(sequence).getStuctsToMapping())
 				{
 					if (seq.second == PITCH)
 						os << *(Pitch*)seq.first << " ";
@@ -46,7 +49,7 @@ namespace ReMu {
 
 				os << "-> ";
 
-				for (std::pair<void*, structType>& seq : *sequence.second.getStuctsToMapping())
+				for (std::pair<void*, structType>& seq : *std::get<1>(sequence).getStuctsToMapping())
 				{
 					if (seq.second == PITCH)
 						os << *(Pitch*)seq.first << " ";

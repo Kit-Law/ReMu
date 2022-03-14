@@ -92,7 +92,7 @@ namespace ReMu {
 	void Listener::enterPitch(SheetMusicParser::PitchContext* ctx)
 	{
 		Pitch note;
-
+		
 		note.setStep(ctx->children[0]->getText()[0]);
 		if (ctx->children.size() > 1) note.setAccidental(Accidental(ctx->children[1]->getText().size() * (ctx->children[1]->getText()[0] == '#' ? 1 : -1)));
 
@@ -101,7 +101,7 @@ namespace ReMu {
 
 	void Listener::exitSequenceRule(SheetMusicParser::SequenceRuleContext* ctx)
 	{
-		currentSection->getTransitionTable()->addTransition(initalSequence, resultSequence, currentIntstument);
+		currentSection->getTransitionTable()->addTransition(initalSequence, resultSequence, occurance, currentIntstument);
 	}
 
 }
