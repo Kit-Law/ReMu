@@ -13,30 +13,63 @@ namespace ReMu {
 		currentSection = sections[ctx->children[0]->getText()];
 	}
 
+	void Listener::enterScaleDef(SheetMusicParser::ScaleDefContext* ctx)
+	{
+		std::string scaleName = ctx->WORD()->getText();
+		int size = (ctx->children.size() - 3) / 2;
+		int* intervals = new int[size];
+
+		for (int i = 0; i < size; i++)
+			intervals[i] = std::stoi(ctx->NUMBER(i)->getText());
+
+		ScaleDatabase::addScale(scaleName.c_str(), new ScaleInfo(intervals, size, 0));
+	}
+
+	void Listener::enterChordDef(SheetMusicParser::ChordDefContext* ctx)
+	{
+		chordName = ctx->WORD()->getText();
+	}
+
+	void Listener::exitChordDef(SheetMusicParser::ChordDefContext* ctx)
+	{
+		Symbol::addSymbol(chordName, &notes);
+
+		notes.clear();
+	}
+
 	void Listener::exitChord(SheetMusicParser::ChordContext* ctx)
 	{
-		std::vector<Pitch>* notes; Symbol* symbol; std::vector<std::string>* additions; Sequence* sequence;
+		Sequence* sequence;
 
 		if (onInital)
-		{	notes = &initalNotes; symbol = &initalSymbol; additions = &initalAdditions; sequence = &initalSequence; }
+			sequence = &initalSequence;
 		else
-		{	notes = &resultNotes; symbol = &resultSymbol; additions = &resultAdditions; sequence = &resultSequence; }
+			sequence = &resultSequence;
 
-		sequence->pushBack(Tokens::ChordRule::genChord(notes, symbol, additions));
+		sequence->pushBack(Tokens::ChordRule::genChord(&notes, &symbol, &additions));
+
+		notes.clear();
+		additions.clear();
+	}
+
+	void Listener::exitNote(SheetMusicParser::NoteContext* ctx)
+	{
+		if (onInital)
+			initalSequence.pushBack(notes.at(0));
+		else
+			resultSequence.pushBack(notes.at(0));
+
+		notes.clear();
 	}
 
 	void Listener::enterSymbol(SheetMusicParser::SymbolContext* ctx)
 	{
-		Symbol symbol(ctx->children[0]->getText(), (ctx->children.size() > 1) ? std::stoi(ctx->children[1]->getText()) : 0);
-
-		if (onInital) initalSymbol = symbol;
-		else resultSymbol = symbol;
+		symbol = Symbol(ctx->children[0]->getText(), (ctx->children.size() > 1) ? std::stoi(ctx->children[1]->getText()) : 0);
 	}
 
 	void Listener::enterAdditions(SheetMusicParser::AdditionsContext* ctx)
 	{
-		if (onInital) initalAdditions.push_back(ctx->children[0]->getText());
-		else resultAdditions.push_back(ctx->children[0]->getText());
+		additions.push_back(ctx->children[0]->getText());
 	}
 
 	void Listener::enterScale(SheetMusicParser::ScaleContext* ctx)
@@ -47,23 +80,25 @@ namespace ReMu {
 
 	void Listener::exitScaleRule(SheetMusicParser::ScaleRuleContext* ctx)
 	{
-		Tokens::ScaleRule::evalScaleRule(static_cast<Note&>(initalNotes.front()), initalScale.c_str(), static_cast<Note&>(resultNotes.front()), resultScale.c_str(), currentSection->getTransitionTable());
+		if (notes.size() == 1)
+			Tokens::ScaleRule::evalScaleRule(static_cast<Note&>(notes.at(0)), initalScale.c_str(), currentIntstument, currentSection->getTransitionTable());
+		if (notes.size() == 2)
+			Tokens::ScaleRule::evalScaleRule(static_cast<Note&>(notes.at(0)), initalScale.c_str(), static_cast<Note&>(notes.at(1)), resultScale.c_str(), currentIntstument, currentSection->getTransitionTable());
 	}
 
 	void Listener::enterPitch(SheetMusicParser::PitchContext* ctx)
 	{
-		std::vector<Pitch>* notes = onInital ? &initalNotes : &resultNotes;
 		Pitch note;
 
 		note.setStep(ctx->children[0]->getText()[0]);
 		if (ctx->children.size() > 1) note.setAccidental(Accidental(ctx->children[1]->getText().size() * (ctx->children[1]->getText()[0] == '#' ? 1 : -1)));
 
-		notes->push_back(note);
+		notes.push_back(note);
 	}
 
 	void Listener::exitSequenceRule(SheetMusicParser::SequenceRuleContext* ctx)
 	{
-		currentSection->getTransitionTable()->addTransition(initalSequence, resultSequence);
+		currentSection->getTransitionTable()->addTransition(initalSequence, resultSequence, currentIntstument);
 	}
 
 }

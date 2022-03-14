@@ -22,6 +22,7 @@ namespace ReMu {
 	public:
 		static void initalize();
 		static ScaleInfo* getScale(const char* scaleName);
+		static void addScale(const char* scaleName, ScaleInfo* scale);
 	};
 
 }

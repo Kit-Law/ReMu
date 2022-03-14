@@ -21,14 +21,9 @@ namespace ReMu {
 	private:
 		bool onInital = true;
 
-		std::vector<Pitch> initalNotes;
-		std::vector<Pitch> resultNotes;
-
-		std::vector<std::string> initalAdditions;
-		std::vector<std::string> resultAdditions;
-
-		Symbol initalSymbol;
-		Symbol resultSymbol;
+		std::vector<Pitch> notes;
+		Symbol symbol;
+		std::vector<std::string> additions;
 
 		std::string initalScale;
 		std::string resultScale;
@@ -38,15 +33,28 @@ namespace ReMu {
 
 		std::map<std::string, Section*> sections;
 		Section* currentSection;
+
+		std::string currentIntstument;
+
+		std::string chordName;
 	public:
 		void enterSectionDef(SheetMusicParser::SectionDefContext* ctx) override;
 		void enterSectionIdent(SheetMusicParser::SectionIdentContext* ctx) override;
 
-		inline void enterTransitionRule(SheetMusicParser::TransitionRuleContext* ctx) override { initalNotes.clear(); resultNotes.clear(); initalAdditions.clear(); resultAdditions.clear(); initalSequence.getStuctsToMapping()->clear(); resultSequence.getStuctsToMapping()->clear(); }
+		void enterScaleDef(SheetMusicParser::ScaleDefContext* ctx) override;
+		void enterChordDef(SheetMusicParser::ChordDefContext* ctx) override;
+		void exitChordDef(SheetMusicParser::ChordDefContext* ctx) override;
+
+		inline void enterInstrument(SheetMusicParser::InstrumentContext* ctx) override { currentIntstument = ctx->WORD()->getText(); }
+		inline void exitInstrument(SheetMusicParser::InstrumentContext* ctx) override { currentIntstument = ""; }
+
+		inline void enterTransitionRule(SheetMusicParser::TransitionRuleContext* ctx) override { notes.clear(); initalSequence.getStuctsToMapping()->clear(); resultSequence.getStuctsToMapping()->clear(); }
 
 		void enterSymbol(SheetMusicParser::SymbolContext* ctx) override;
 		void enterAdditions(SheetMusicParser::AdditionsContext* ctx) override;
 		void exitChord(SheetMusicParser::ChordContext* ctx) override;
+
+		void exitNote(SheetMusicParser::NoteContext* ctx) override;
 
 		inline void exitSequence(SheetMusicParser::SequenceContext* ctx) override { onInital = !onInital; }
 

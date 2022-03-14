@@ -1,8 +1,13 @@
 "Intro" = 1 - 20;
 
+\addScale name {20,0,0,0,0,0,0}
+
 "Intro":
-//D Major scale -> D Lydian scale,
+gitar
+{
+	Scale: D Major -> D name,
 //Scale: D Lydian scale,
 //B C# D E F# G A B -> A A A A A A A A,
-G maj -> D min add2,
+G maj A B -> D min add2 B C maj,
 D min add2 -> G maj,
+}

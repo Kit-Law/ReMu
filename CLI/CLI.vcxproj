@@ -160,6 +160,7 @@
     <ClCompile Include="src\Grammar\SheetMusicLexer.cpp" />
     <ClCompile Include="src\Grammar\SheetMusicListener.cpp" />
     <ClCompile Include="src\Grammar\SheetMusicParser.cpp" />
+    <ClCompile Include="src\Musical Structures\Chord\Symbol.cpp" />
     <ClCompile Include="src\Musical Structures\KeySig\KeySig.cpp" />
     <ClCompile Include="src\Musical Structures\Note\Accidental.cpp" />
     <ClCompile Include="src\Musical Structures\Note\Degree.cpp" />

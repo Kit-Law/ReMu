@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 #include "..\Note\Degree.h"
 
@@ -12,6 +13,8 @@ namespace ReMu {
 	private:
 		std::string quality;
 		int interval;
+
+		static std::map<std::string, std::vector<Degree>> userDef;
 
 		enum Quality
 		{
@@ -25,32 +28,11 @@ namespace ReMu {
 		Symbol() { }
 		Symbol(std::string __quality, int __interval = 0) { quality = __quality, interval = __interval; }
 
-		inline std::vector<Degree> eval()
-		{
-			switch (is(quality))
-			{
-			case major:
-				return std::vector<Degree>{ Degree(3, None), Degree(5, None) };
-			case minor:
-				return std::vector<Degree>{ Degree(3, Flat), Degree(5, None) };
-			case diminished:
-				return std::vector<Degree>{ Degree(3, Flat), Degree(5, Flat) };
-			case augmented:
-				return std::vector<Degree>{ Degree(3, None), Degree(5, Sharp) };
-			case altered:
-				return std::vector<Degree>{ 3, 5 };
-			}
-		}
+		std::vector<Degree> eval();
 
-		Quality is(std::string const& quality)
-		{
-			if (quality == "maj" || quality == "M") return major;
-			else if (quality == "min" || quality == "m") return minor;
-			else if (quality == "dim" || quality == "o") return diminished;
-			else if (quality == "aug" || quality == "+") return augmented;
-			else if (quality == "alt") return altered;
-			else throw;
-		}
+		static void addSymbol(std::string name, std::vector<Pitch>* intervals);
+	private:
+		Quality is(std::string const& quality);
 	};
 
 }

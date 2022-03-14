@@ -16,9 +16,9 @@ namespace ReMu {
 	private:
 		std::vector<std::pair<void*, structType>> structsToMapping;
 	public:
-		inline void pushBack(Pitch* note)
+		inline void pushBack(Pitch& note)
 		{
-			structsToMapping.push_back(std::pair<void*, structType>(note, PITCH));
+			structsToMapping.push_back(std::pair<void*, structType>(new Pitch(note), PITCH));
 		}
 
 		inline void pushBack(Chord* chord)

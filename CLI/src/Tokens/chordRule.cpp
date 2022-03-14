@@ -2,12 +2,6 @@
 
 namespace ReMu { namespace Tokens {
 
-	/*void ChordRule::evalChordRule(std::vector<Pitch> initalNotes, Symbol initalSymbol, std::vector<std::string> initalAdditions,
-					              std::vector<Pitch> resultNotes, Symbol resultSymbol, std::vector<std::string> resultAdditions, TransitionTable* transitionTable)
-	{
-		transitionTable->addTransition(genChord(initalNotes, initalSymbol, initalAdditions), genChord(resultNotes, resultSymbol, resultAdditions));
-	}*/
-
 	Chord* ChordRule::genChord(std::vector<Pitch>* notes, Symbol* symbol, std::vector<std::string>* additions)
 	{
 		std::vector<Degree> initalComponents = symbol->eval();
