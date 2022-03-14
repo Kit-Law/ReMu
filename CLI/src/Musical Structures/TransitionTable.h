@@ -8,24 +8,23 @@
 
 #include ".\Chord\Chord.h"
 
+#include ".\Sequence\Sequence.h"
+
 namespace ReMu {
 
 	class TransitionTable
 	{
 	private:
 		std::vector<std::pair<Pitch, Pitch>> noteTransitions;
-		std::vector<std::pair<std::vector<Pitch>, std::vector<Pitch>>> sequenceTransitions;
-		std::vector<std::pair<Chord, Chord>> chordTransitions;
+		std::vector<std::pair<Sequence, Sequence>> sequenceTransitions;
 
 		Pitch relativeMajorKey;
 	public:
 		void addTransition(Pitch inital, Pitch result);
-		void addTransition(std::vector<Pitch> inital, std::vector<Pitch> result);
-		void addTransition(Chord inital, Chord result);
+		void addTransition(Sequence inital, Sequence result);
 
 		std::vector<std::pair<Pitch, Pitch>>* const getNoteTransitions() { return &noteTransitions; }
-		std::vector<std::pair<std::vector<Pitch>, std::vector<Pitch>>>* const getSequenceTransitions() { return &sequenceTransitions; }
-		std::vector<std::pair<Chord, Chord>>* const getChordTransitions() { return &chordTransitions; }
+		std::vector<std::pair<Sequence, Sequence>>* const getSequenceTransitions() { return &sequenceTransitions; }
 
 		inline const void setRelativeMajorKey(Pitch relativeMajorKey) { this->relativeMajorKey = relativeMajorKey;  }
 		inline const Pitch* getRelativeMajorKey() { return &relativeMajorKey; }

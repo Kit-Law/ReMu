@@ -21,7 +21,7 @@ namespace ReMu {
 
 	void API::eval(ReMu::Listener* listener, const char* input, const char* output)
 	{
-		ReMu::Evaluator::Evaluator(listener->getSections(), input, output);
+		//ReMu::Evaluator::Evaluator(listener->getSections(), input, output);
 	}
 
 }

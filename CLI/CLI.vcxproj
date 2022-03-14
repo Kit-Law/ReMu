@@ -91,6 +91,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)ANTLR\src;$(SolutionDir)Pugixml\src</AdditionalIncludeDirectories>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -108,6 +109,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)ANTLR\src;$(SolutionDir)Pugixml\src</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -190,6 +192,7 @@
     <ClInclude Include="src\Musical Structures\Note\Degree.h" />
     <ClInclude Include="src\Musical Structures\Note\Pitch.h" />
     <ClInclude Include="src\Musical Structures\Section.h" />
+    <ClInclude Include="src\Musical Structures\Sequence\Sequence.h" />
     <ClInclude Include="src\Timers\DeltaTime.h" />
     <ClInclude Include="src\Timers\Timer.h" />
     <ClInclude Include="src\Tokens\ChordRule.h" />

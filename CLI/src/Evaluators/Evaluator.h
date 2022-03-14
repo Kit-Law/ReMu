@@ -1,5 +1,5 @@
 #pragma once
-
+/*
 #include "../Musical Structures/Section.h"
 #include "../Musical Structures/KeySig/KeySig.h"
 #include "../Listeners/Listener.h"
@@ -38,4 +38,4 @@ namespace ReMu { namespace Evaluator {
 		void changeKey(const ReMu::Pitch* relativeMajorKey, Section* section, pugi::xml_document& doc);
 	};
 
-} }
+} }*/

@@ -12,16 +12,19 @@
 class  SheetMusicParser : public antlr4::Parser {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, NUMBER = 7, 
-    NATURAL = 8, ACCIDENTAL = 9, QUALITY = 10, ADDITIONS = 11, STRING = 12, 
-    SCALE = 13, COMMENT = 14, SPACE = 15, OTHER = 16
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
+    T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, 
+    T__14 = 15, T__15 = 16, T__16 = 17, NUMBER = 18, NATURAL = 19, ACCIDENTAL = 20, 
+    QUALITY = 21, ADDITIONS = 22, STRING = 23, WORD = 24, COMMENT = 25, 
+    SPACE = 26, OTHER = 27
   };
 
   enum {
-    RuleScript = 0, RuleRulesSection = 1, RuleSectionDef = 2, RuleSection = 3, 
-    RuleSectionIdent = 4, RuleTransitionRule = 5, RuleScaleRule = 6, RuleChordRule = 7, 
-    RuleNoteRule = 8, RuleScale = 9, RuleSequence = 10, RuleChord = 11, 
-    RuleSymbol = 12, RuleAdditions = 13, RuleNote = 14
+    RuleScript = 0, RuleSectionDef = 1, RuleUserDef = 2, RuleScaleDef = 3, 
+    RuleChordDef = 4, RuleRulesSection = 5, RuleSection = 6, RuleSectionIdent = 7, 
+    RuleInstrument = 8, RuleTransitionRule = 9, RuleScaleRule = 10, RuleScale = 11, 
+    RuleOccurrenceRule = 12, RuleSequenceRule = 13, RuleSequence = 14, RuleChord = 15, 
+    RuleSymbol = 16, RuleAdditions = 17, RulePitch = 18, RuleNote = 19
   };
 
   SheetMusicParser(antlr4::TokenStream *input);
@@ -35,19 +38,24 @@ public:
 
 
   class ScriptContext;
-  class RulesSectionContext;
   class SectionDefContext;
+  class UserDefContext;
+  class ScaleDefContext;
+  class ChordDefContext;
+  class RulesSectionContext;
   class SectionContext;
   class SectionIdentContext;
+  class InstrumentContext;
   class TransitionRuleContext;
   class ScaleRuleContext;
-  class ChordRuleContext;
-  class NoteRuleContext;
   class ScaleContext;
+  class OccurrenceRuleContext;
+  class SequenceRuleContext;
   class SequenceContext;
   class ChordContext;
   class SymbolContext;
   class AdditionsContext;
+  class PitchContext;
   class NoteContext; 
 
   class  ScriptContext : public antlr4::ParserRuleContext {
@@ -57,6 +65,8 @@ public:
     RulesSectionContext *rulesSection();
     std::vector<SectionDefContext *> sectionDef();
     SectionDefContext* sectionDef(size_t i);
+    std::vector<UserDefContext *> userDef();
+    UserDefContext* userDef(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -64,20 +74,6 @@ public:
   };
 
   ScriptContext* script();
-
-  class  RulesSectionContext : public antlr4::ParserRuleContext {
-  public:
-    RulesSectionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    std::vector<SectionContext *> section();
-    SectionContext* section(size_t i);
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-   
-  };
-
-  RulesSectionContext* rulesSection();
 
   class  SectionDefContext : public antlr4::ParserRuleContext {
   public:
@@ -94,6 +90,66 @@ public:
 
   SectionDefContext* sectionDef();
 
+  class  UserDefContext : public antlr4::ParserRuleContext {
+  public:
+    UserDefContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    std::vector<ScaleDefContext *> scaleDef();
+    ScaleDefContext* scaleDef(size_t i);
+    std::vector<ChordDefContext *> chordDef();
+    ChordDefContext* chordDef(size_t i);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  UserDefContext* userDef();
+
+  class  ScaleDefContext : public antlr4::ParserRuleContext {
+  public:
+    ScaleDefContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *WORD();
+    std::vector<antlr4::tree::TerminalNode *> NUMBER();
+    antlr4::tree::TerminalNode* NUMBER(size_t i);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  ScaleDefContext* scaleDef();
+
+  class  ChordDefContext : public antlr4::ParserRuleContext {
+  public:
+    ChordDefContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *WORD();
+    std::vector<antlr4::tree::TerminalNode *> NUMBER();
+    antlr4::tree::TerminalNode* NUMBER(size_t i);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  ChordDefContext* chordDef();
+
+  class  RulesSectionContext : public antlr4::ParserRuleContext {
+  public:
+    RulesSectionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    std::vector<SectionContext *> section();
+    SectionContext* section(size_t i);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  RulesSectionContext* rulesSection();
+
   class  SectionContext : public antlr4::ParserRuleContext {
   public:
     SectionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -101,6 +157,8 @@ public:
     SectionIdentContext *sectionIdent();
     std::vector<TransitionRuleContext *> transitionRule();
     TransitionRuleContext* transitionRule(size_t i);
+    std::vector<InstrumentContext *> instrument();
+    InstrumentContext* instrument(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -122,13 +180,28 @@ public:
 
   SectionIdentContext* sectionIdent();
 
+  class  InstrumentContext : public antlr4::ParserRuleContext {
+  public:
+    InstrumentContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *WORD();
+    std::vector<TransitionRuleContext *> transitionRule();
+    TransitionRuleContext* transitionRule(size_t i);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  InstrumentContext* instrument();
+
   class  TransitionRuleContext : public antlr4::ParserRuleContext {
   public:
     TransitionRuleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     ScaleRuleContext *scaleRule();
-    ChordRuleContext *chordRule();
-    NoteRuleContext *noteRule();
+    OccurrenceRuleContext *occurrenceRule();
+    SequenceRuleContext *sequenceRule();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -151,23 +224,37 @@ public:
 
   ScaleRuleContext* scaleRule();
 
-  class  ChordRuleContext : public antlr4::ParserRuleContext {
+  class  ScaleContext : public antlr4::ParserRuleContext {
   public:
-    ChordRuleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    ScaleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<ChordContext *> chord();
-    ChordContext* chord(size_t i);
+    PitchContext *pitch();
+    antlr4::tree::TerminalNode *WORD();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
    
   };
 
-  ChordRuleContext* chordRule();
+  ScaleContext* scale();
 
-  class  NoteRuleContext : public antlr4::ParserRuleContext {
+  class  OccurrenceRuleContext : public antlr4::ParserRuleContext {
   public:
-    NoteRuleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    OccurrenceRuleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *NUMBER();
+    SequenceRuleContext *sequenceRule();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  OccurrenceRuleContext* occurrenceRule();
+
+  class  SequenceRuleContext : public antlr4::ParserRuleContext {
+  public:
+    SequenceRuleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<SequenceContext *> sequence();
     SequenceContext* sequence(size_t i);
@@ -177,21 +264,7 @@ public:
    
   };
 
-  NoteRuleContext* noteRule();
-
-  class  ScaleContext : public antlr4::ParserRuleContext {
-  public:
-    ScaleContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    NoteContext *note();
-    antlr4::tree::TerminalNode *SCALE();
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-   
-  };
-
-  ScaleContext* scale();
+  SequenceRuleContext* sequenceRule();
 
   class  SequenceContext : public antlr4::ParserRuleContext {
   public:
@@ -199,6 +272,8 @@ public:
     virtual size_t getRuleIndex() const override;
     std::vector<NoteContext *> note();
     NoteContext* note(size_t i);
+    std::vector<ChordContext *> chord();
+    ChordContext* chord(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -211,10 +286,13 @@ public:
   public:
     ChordContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    NoteContext *note();
+    std::vector<PitchContext *> pitch();
+    PitchContext* pitch(size_t i);
     SymbolContext *symbol();
     std::vector<AdditionsContext *> additions();
     AdditionsContext* additions(size_t i);
+    antlr4::tree::TerminalNode *NUMBER();
+    antlr4::tree::TerminalNode *WORD();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -242,7 +320,7 @@ public:
     AdditionsContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *ADDITIONS();
-    NoteContext *note();
+    PitchContext *pitch();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -251,13 +329,28 @@ public:
 
   AdditionsContext* additions();
 
-  class  NoteContext : public antlr4::ParserRuleContext {
+  class  PitchContext : public antlr4::ParserRuleContext {
   public:
-    NoteContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    PitchContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *NATURAL();
     antlr4::tree::TerminalNode *ACCIDENTAL();
     antlr4::tree::TerminalNode *NUMBER();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  PitchContext* pitch();
+
+  class  NoteContext : public antlr4::ParserRuleContext {
+  public:
+    NoteContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    PitchContext *pitch();
+    std::vector<antlr4::tree::TerminalNode *> NUMBER();
+    antlr4::tree::TerminalNode* NUMBER(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

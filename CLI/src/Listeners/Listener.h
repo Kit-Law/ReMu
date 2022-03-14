@@ -24,14 +24,17 @@ namespace ReMu {
 		std::vector<Pitch> initalNotes;
 		std::vector<Pitch> resultNotes;
 
-		std::string initalScale;
-		std::string resultScale;
-
 		std::vector<std::string> initalAdditions;
 		std::vector<std::string> resultAdditions;
 
 		Symbol initalSymbol;
 		Symbol resultSymbol;
+
+		std::string initalScale;
+		std::string resultScale;
+
+		Sequence initalSequence;
+		Sequence resultSequence;
 
 		std::map<std::string, Section*> sections;
 		Section* currentSection;
@@ -39,13 +42,11 @@ namespace ReMu {
 		void enterSectionDef(SheetMusicParser::SectionDefContext* ctx) override;
 		void enterSectionIdent(SheetMusicParser::SectionIdentContext* ctx) override;
 
-		inline void enterTransitionRule(SheetMusicParser::TransitionRuleContext* ctx) override { initalNotes.clear(); resultNotes.clear(); initalAdditions.clear(); resultAdditions.clear(); }
-		
-		void exitChordRule(SheetMusicParser::ChordRuleContext* ctx) override;
+		inline void enterTransitionRule(SheetMusicParser::TransitionRuleContext* ctx) override { initalNotes.clear(); resultNotes.clear(); initalAdditions.clear(); resultAdditions.clear(); initalSequence.getStuctsToMapping()->clear(); resultSequence.getStuctsToMapping()->clear(); }
 
 		void enterSymbol(SheetMusicParser::SymbolContext* ctx) override;
 		void enterAdditions(SheetMusicParser::AdditionsContext* ctx) override;
-		inline void exitChord(SheetMusicParser::ChordContext* ctx) override { onInital = !onInital; }
+		void exitChord(SheetMusicParser::ChordContext* ctx) override;
 
 		inline void exitSequence(SheetMusicParser::SequenceContext* ctx) override { onInital = !onInital; }
 
@@ -54,9 +55,9 @@ namespace ReMu {
 		void enterScale(SheetMusicParser::ScaleContext* ctx) override;
 		inline void exitScale(SheetMusicParser::ScaleContext* ctx) override { onInital = !onInital; }
 
-		void exitNoteRule(SheetMusicParser::NoteRuleContext* ctx) override;
+		void enterPitch(SheetMusicParser::PitchContext* ctx) override;
 
-		void enterNote(SheetMusicParser::NoteContext* ctx) override;
+		void exitSequenceRule(SheetMusicParser::SequenceRuleContext* ctx) override;
 
 		void exitScript(SheetMusicParser::ScriptContext* ctx) override 
 		{ 

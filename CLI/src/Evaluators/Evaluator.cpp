@@ -1,5 +1,5 @@
 #include "./Evaluator.h"
-
+/*
 namespace ReMu { namespace Evaluator {
 
 	Evaluator::Evaluator(std::map<std::string, Section*> sections, const char* input, const char* output)
@@ -27,4 +27,4 @@ namespace ReMu { namespace Evaluator {
 			key.node().first_child().set_value(std::to_string(ReMu::KeySig::getFiths(relativeMajorKey)).c_str());
 	}
 
-} }
+} }*/

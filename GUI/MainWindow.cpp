@@ -8,9 +8,9 @@ MainWindow::MainWindow(QWidget* parent)
     ui->setupUi(this);
     
     tabWidget = (QTabWidget*) ui->splitter->children().at(0);
-    tabWidget->addTab(inputScore, "Input");
+   // tabWidget->addTab(inputScore, "Input");
 
-    inputScore->setPixmap();
+   // inputScore->setPixmap();
 
     setupEditor();
 }

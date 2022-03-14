@@ -19,11 +19,20 @@ public:
   virtual void enterScript(SheetMusicParser::ScriptContext * /*ctx*/) override { }
   virtual void exitScript(SheetMusicParser::ScriptContext * /*ctx*/) override { }
 
-  virtual void enterRulesSection(SheetMusicParser::RulesSectionContext * /*ctx*/) override { }
-  virtual void exitRulesSection(SheetMusicParser::RulesSectionContext * /*ctx*/) override { }
-
   virtual void enterSectionDef(SheetMusicParser::SectionDefContext * /*ctx*/) override { }
   virtual void exitSectionDef(SheetMusicParser::SectionDefContext * /*ctx*/) override { }
+
+  virtual void enterUserDef(SheetMusicParser::UserDefContext * /*ctx*/) override { }
+  virtual void exitUserDef(SheetMusicParser::UserDefContext * /*ctx*/) override { }
+
+  virtual void enterScaleDef(SheetMusicParser::ScaleDefContext * /*ctx*/) override { }
+  virtual void exitScaleDef(SheetMusicParser::ScaleDefContext * /*ctx*/) override { }
+
+  virtual void enterChordDef(SheetMusicParser::ChordDefContext * /*ctx*/) override { }
+  virtual void exitChordDef(SheetMusicParser::ChordDefContext * /*ctx*/) override { }
+
+  virtual void enterRulesSection(SheetMusicParser::RulesSectionContext * /*ctx*/) override { }
+  virtual void exitRulesSection(SheetMusicParser::RulesSectionContext * /*ctx*/) override { }
 
   virtual void enterSection(SheetMusicParser::SectionContext * /*ctx*/) override { }
   virtual void exitSection(SheetMusicParser::SectionContext * /*ctx*/) override { }
@@ -31,20 +40,23 @@ public:
   virtual void enterSectionIdent(SheetMusicParser::SectionIdentContext * /*ctx*/) override { }
   virtual void exitSectionIdent(SheetMusicParser::SectionIdentContext * /*ctx*/) override { }
 
+  virtual void enterInstrument(SheetMusicParser::InstrumentContext * /*ctx*/) override { }
+  virtual void exitInstrument(SheetMusicParser::InstrumentContext * /*ctx*/) override { }
+
   virtual void enterTransitionRule(SheetMusicParser::TransitionRuleContext * /*ctx*/) override { }
   virtual void exitTransitionRule(SheetMusicParser::TransitionRuleContext * /*ctx*/) override { }
 
   virtual void enterScaleRule(SheetMusicParser::ScaleRuleContext * /*ctx*/) override { }
   virtual void exitScaleRule(SheetMusicParser::ScaleRuleContext * /*ctx*/) override { }
 
-  virtual void enterChordRule(SheetMusicParser::ChordRuleContext * /*ctx*/) override { }
-  virtual void exitChordRule(SheetMusicParser::ChordRuleContext * /*ctx*/) override { }
-
-  virtual void enterNoteRule(SheetMusicParser::NoteRuleContext * /*ctx*/) override { }
-  virtual void exitNoteRule(SheetMusicParser::NoteRuleContext * /*ctx*/) override { }
-
   virtual void enterScale(SheetMusicParser::ScaleContext * /*ctx*/) override { }
   virtual void exitScale(SheetMusicParser::ScaleContext * /*ctx*/) override { }
+
+  virtual void enterOccurrenceRule(SheetMusicParser::OccurrenceRuleContext * /*ctx*/) override { }
+  virtual void exitOccurrenceRule(SheetMusicParser::OccurrenceRuleContext * /*ctx*/) override { }
+
+  virtual void enterSequenceRule(SheetMusicParser::SequenceRuleContext * /*ctx*/) override { }
+  virtual void exitSequenceRule(SheetMusicParser::SequenceRuleContext * /*ctx*/) override { }
 
   virtual void enterSequence(SheetMusicParser::SequenceContext * /*ctx*/) override { }
   virtual void exitSequence(SheetMusicParser::SequenceContext * /*ctx*/) override { }
@@ -57,6 +69,9 @@ public:
 
   virtual void enterAdditions(SheetMusicParser::AdditionsContext * /*ctx*/) override { }
   virtual void exitAdditions(SheetMusicParser::AdditionsContext * /*ctx*/) override { }
+
+  virtual void enterPitch(SheetMusicParser::PitchContext * /*ctx*/) override { }
+  virtual void exitPitch(SheetMusicParser::PitchContext * /*ctx*/) override { }
 
   virtual void enterNote(SheetMusicParser::NoteContext * /*ctx*/) override { }
   virtual void exitNote(SheetMusicParser::NoteContext * /*ctx*/) override { }

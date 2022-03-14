@@ -13,9 +13,16 @@ namespace ReMu {
 		currentSection = sections[ctx->children[0]->getText()];
 	}
 
-	void Listener::exitChordRule(SheetMusicParser::ChordRuleContext* ctx)
+	void Listener::exitChord(SheetMusicParser::ChordContext* ctx)
 	{
-		Tokens::ChordRule::evalChordRule(initalNotes, initalSymbol, initalAdditions, resultNotes, resultSymbol, resultAdditions, currentSection->getTransitionTable());
+		std::vector<Pitch>* notes; Symbol* symbol; std::vector<std::string>* additions; Sequence* sequence;
+
+		if (onInital)
+		{	notes = &initalNotes; symbol = &initalSymbol; additions = &initalAdditions; sequence = &initalSequence; }
+		else
+		{	notes = &resultNotes; symbol = &resultSymbol; additions = &resultAdditions; sequence = &resultSequence; }
+
+		sequence->pushBack(Tokens::ChordRule::genChord(notes, symbol, additions));
 	}
 
 	void Listener::enterSymbol(SheetMusicParser::SymbolContext* ctx)
@@ -43,7 +50,7 @@ namespace ReMu {
 		Tokens::ScaleRule::evalScaleRule(static_cast<Note&>(initalNotes.front()), initalScale.c_str(), static_cast<Note&>(resultNotes.front()), resultScale.c_str(), currentSection->getTransitionTable());
 	}
 
-	void Listener::enterNote(SheetMusicParser::NoteContext* ctx)
+	void Listener::enterPitch(SheetMusicParser::PitchContext* ctx)
 	{
 		std::vector<Pitch>* notes = onInital ? &initalNotes : &resultNotes;
 		Pitch note;
@@ -54,9 +61,9 @@ namespace ReMu {
 		notes->push_back(note);
 	}
 
-	void Listener::exitNoteRule(SheetMusicParser::NoteRuleContext* ctx) 
+	void Listener::exitSequenceRule(SheetMusicParser::SequenceRuleContext* ctx)
 	{
-		currentSection->getTransitionTable()->addTransition(initalNotes, resultNotes);
+		currentSection->getTransitionTable()->addTransition(initalSequence, resultSequence);
 	}
 
 }

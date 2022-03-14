@@ -1,53 +1,72 @@
 grammar SheetMusic;
 
 script
- : sectionDef* rulesSection
- ;
-
-rulesSection
- : section+
+ : (sectionDef | userDef)* rulesSection
  ;
 
 sectionDef
  : sectionIdent '=' NUMBER '-' NUMBER';'
  ;
 
+userDef
+ : (scaleDef | chordDef)+
+ ;
+
+scaleDef
+ : '\\addScale' WORD '{' (NUMBER ',')* NUMBER '}'
+ ;
+
+chordDef
+ : '\\addChord' WORD '{' (NUMBER ',')* NUMBER '}'
+ ;
+
+rulesSection
+ : section+
+ ;
+
 section
- : sectionIdent':' transitionRule+
+ : sectionIdent':' (transitionRule | instrument)+
  ;
 
 sectionIdent
  : STRING
  ;
 
+instrument
+ : WORD '{' transitionRule+ '}'
+ ;
+
 transitionRule
  : scaleRule
- | chordRule
- | noteRule
+ | occurrenceRule
+ | sequenceRule
  ;
 
 scaleRule
- : scale '->' scale','
- ;
-
-chordRule
- : chord '->' chord','
- ;
-
-noteRule
- : sequence '->' sequence','
+ : 'Scale:' scale '->' scale','
+ | 'Scale:' scale','
  ;
 
 scale
- : note SCALE
+ : pitch WORD
+ ;
+
+occurrenceRule
+ : 'Occurrance' NUMBER ':' sequenceRule
+ ;
+
+sequenceRule
+ : sequence '->' sequence','
  ;
 
 sequence
- : note+
+ : (note | chord | '(' chord ')')+
  ;
 
 chord
- : note symbol additions*
+ : pitch symbol additions* ('[' NUMBER ']')?
+ | '{' (pitch ',')* pitch '}'
+ | pitch WORD
  ;
 
 symbol
@@ -56,16 +75,22 @@ symbol
  ;
 
 additions
- : ADDITIONS note;
+ : ADDITIONS pitch;
 
-note
+pitch
  : NATURAL
  | NATURAL ACCIDENTAL
  | NUMBER
  | NUMBER ACCIDENTAL
  ;
 
-NUMBER     : [0-9]+;
+note
+ : (pitch | '_') NUMBER? ('[' NUMBER ']')?
+ ;
+
+NUMBER     : [0-9]+
+           | [0-9]+ '.' [0-9]*
+           | '.' [0-9]+ ;
 NATURAL    : [A-G];
 ACCIDENTAL : 'b' | 'bb' | 'bbb' | '###' | '##' | '#';
 QUALITY    : 'maj' | 'min' | 'dim' | 'aug' | 'alt' | 'M' | 'm' | '+' | '-' | '/';
@@ -75,8 +100,8 @@ STRING
  : '"' (~["\r\n] | '""')* '"'
  ;
 
-SCALE
- : ([a-zA-Z])+ ' scale'
+WORD
+ : ([a-zA-Z])+
  ;
 
 COMMENT

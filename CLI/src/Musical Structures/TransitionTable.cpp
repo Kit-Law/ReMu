@@ -2,19 +2,14 @@
 
 namespace ReMu {
 
-	void TransitionTable::addTransition(std::vector<Pitch> inital, std::vector<Pitch> result)
+	void TransitionTable::addTransition(Sequence inital, Sequence result)
 	{
-		sequenceTransitions.push_back(std::pair<std::vector<Pitch>, std::vector<Pitch>>(inital, result));
+		sequenceTransitions.push_back(std::pair<Sequence, Sequence>(inital, result));
 	}
 
 	void TransitionTable::addTransition(Pitch inital, Pitch result) 
 	{ 
 		noteTransitions.push_back(std::pair<Pitch, Pitch>(inital, result)); 
-	}
-
-	void TransitionTable::addTransition(Chord inital, Chord result)
-	{
-		chordTransitions.push_back(std::pair<Chord, Chord>(inital, result));
 	}
 	
 	std::ostream& operator<<(std::ostream& os, const TransitionTable& transitionTable)
@@ -26,24 +21,27 @@ namespace ReMu {
 			os << notes.first << " -> " << notes.second << std::endl;
 		}
 
-		if (transitionTable.chordTransitions.size() > 0) os << "Chord Transitions:" << std::endl;
-
-		for (auto chords : transitionTable.chordTransitions)
-		{
-			os << chords.first << " -> " << chords.second << std::endl;
-		}
-
 		if (transitionTable.sequenceTransitions.size() > 0) os << "Sequence Transitions:" << std::endl;
 
-		for (auto sequence : transitionTable.sequenceTransitions)
+		for (std::pair<Sequence, Sequence> sequence : transitionTable.sequenceTransitions)
 		{
-			for (Pitch& note : sequence.first)
-				os << note << " ";
+			for (std::pair<void*, structType>& seq : *sequence.first.getStuctsToMapping())
+			{
+				if (seq.second == PITCH)
+					os << *(Pitch*)seq.first << " ";
+				else if (seq.second == CHORD)
+					os << *(Chord*)seq.first << " ";
+			}
 
 			os << "-> ";
 
-			for (Pitch& note : sequence.second)
-				os << note << " ";
+			for (std::pair<void*, structType>& seq : *sequence.second.getStuctsToMapping())
+			{
+				if (seq.second == PITCH)
+					os << *(Pitch*)seq.first << " ";
+				else if (seq.second == CHORD)
+					os << *(Chord*)seq.first << " ";
+			}
 
 			os << std::endl;
 		}

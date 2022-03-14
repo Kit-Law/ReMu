@@ -60,10 +60,10 @@
     <ClCompile Include="src\Musical Structures\KeySig\KeySig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Evaluators\Evaluator.cpp">
+    <ClCompile Include="src\API.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\API.cpp">
+    <ClCompile Include="src\Evaluators\Evaluator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -131,7 +131,13 @@
     <ClInclude Include="src\Musical Structures\KeySig\KeySig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Evaluators\SequenceBuffer.h">
+    <ClInclude Include="src\API.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Musical Structures\Sequence\Sequence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Evaluators\ChordTransitionEvaluator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Evaluators\Evaluator.h">
@@ -140,13 +146,10 @@
     <ClInclude Include="src\Evaluators\NoteEvaluator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Evaluators\ChordTransitionEvaluator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Evaluators\NoteTransitionEvaluator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\API.h">
+    <ClInclude Include="src\Evaluators\SequenceBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

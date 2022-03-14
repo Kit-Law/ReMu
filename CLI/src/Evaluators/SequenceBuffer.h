@@ -1,5 +1,5 @@
 #pragma once
-
+/*
 #include "../Musical Structures/Note/Pitch.h"
 
 #include "./NoteEvaluator.h"
@@ -54,4 +54,4 @@ namespace ReMu { namespace Evaluator {
 		}
 	};
 
-} }
+} }*/
