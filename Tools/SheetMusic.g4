@@ -17,7 +17,7 @@ scaleDef
  ;
 
 chordDef
- : '\\addChord' WORD '{' (NUMBER ',')* NUMBER '}'
+ : '\\addChord' WORD '{' (pitch ',')* pitch '}'
  ;
 
 rulesSection
@@ -85,13 +85,13 @@ pitch
  ;
 
 note
- : (pitch | '_') NUMBER? ('[' NUMBER ']')?
+ : pitch NUMBER? ('[' NUMBER ']')?
  ;
 
 NUMBER     : [0-9]+
            | [0-9]+ '.' [0-9]*
            | '.' [0-9]+ ;
-NATURAL    : [A-G];
+NATURAL    : [A-G] | '_';
 ACCIDENTAL : 'b' | 'bb' | 'bbb' | '###' | '##' | '#';
 QUALITY    : 'maj' | 'min' | 'dim' | 'aug' | 'alt' | 'M' | 'm' | '+' | '-' | '/';
 ADDITIONS  : 'sus' | 'add' | 'omit';

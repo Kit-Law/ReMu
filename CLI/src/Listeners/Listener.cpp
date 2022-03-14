@@ -54,6 +54,9 @@ namespace ReMu {
 
 	void Listener::exitNote(SheetMusicParser::NoteContext* ctx)
 	{
+		if (ctx->NUMBER(0) != nullptr)
+			notes.back().setDuration(std::stof(ctx->NUMBER(0)->toString()));
+
 		if (onInital)
 			initalSequence.pushBack(notes.at(0));
 		else

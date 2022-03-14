@@ -11,15 +11,19 @@ namespace ReMu {
 	protected:
 		char step;
 		Accidental accidental = None;
+		float duration = -1;
 	public:
 		Pitch() { }
 		Pitch(char __note, Accidental __accidental = None) { step = __note; accidental = __accidental; }
+		Pitch(char __note, int __duration, Accidental __accidental = None) { step = __note; __duration = duration; accidental = __accidental; }
 
 		inline void setStep(char step) { this->step = step; }
 		inline void setAccidental(Accidental modifier) { this->accidental = modifier; }
+		inline void setDuration(float duration) { this->duration = duration; }
 
 		inline char getStep() { return step; }
 		inline Accidental getAccidental() { return accidental; }
+		inline float getDuration() { return duration; }
 
 		friend bool operator==(const Pitch& lhs, const Pitch& rhs);
 		friend std::ostream& operator<<(std::ostream& os, const Pitch& note);
@@ -38,6 +42,8 @@ namespace ReMu {
 	inline std::ostream& operator<<(std::ostream& os, const Pitch& note)
 	{
 		os << note.step << note.accidental;
+		if (note.duration > 0) os << "[" << note.duration << "]";
+
 		return os;
 	}
 
