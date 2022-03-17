@@ -175,11 +175,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\API.h" />
-    <ClInclude Include="src\Evaluators\ChordTransitionEvaluator.h" />
+    <ClInclude Include="src\Evaluators\ChordEvaluator.h" />
     <ClInclude Include="src\Evaluators\Evaluator.h" />
     <ClInclude Include="src\Evaluators\NoteEvaluator.h" />
-    <ClInclude Include="src\Evaluators\NoteTransitionEvaluator.h" />
-    <ClInclude Include="src\Evaluators\SequenceBuffer.h" />
+    <ClInclude Include="src\Evaluators\SequenceEvaluator.h" />
     <ClInclude Include="src\Grammar\SheetMusicBaseListener.h" />
     <ClInclude Include="src\Grammar\SheetMusicLexer.h" />
     <ClInclude Include="src\Grammar\SheetMusicListener.h" />

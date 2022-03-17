@@ -27,6 +27,7 @@ namespace ReMu {
 		}
 
 		inline std::vector<std::pair<void*, structType>>* getStuctsToMapping() { return &structsToMapping; }
+		inline size_t size() { return structsToMapping.size(); }
 	};
 
 }

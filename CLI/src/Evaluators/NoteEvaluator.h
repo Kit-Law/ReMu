@@ -1,5 +1,5 @@
 #pragma once
-/*
+
 #include "../Musical Structures/Note/Pitch.h"
 #include "../Musical Structures/Note/Note.h"
 #include "../Musical Structures/Note/Accidental.h"
@@ -20,21 +20,29 @@ namespace ReMu { namespace Evaluator {
 			return Pitch(note.child_value("step")[0], note.child("alter") ? Accidental(std::stoi(note.child_value("alter"))) : Accidental::None);
 		}
 
-		inline static void setNote(pugi::xml_node note, Note resultNote)
+		inline static void setNotes(std::vector<pugi::xml_node>* notes, Pitch* resultNote)
 		{
-			pugi::char_t noteStep[2] = { resultNote.getStep() };
-			note.child("step").text() = noteStep;
+			setNote(&notes->front(), resultNote);
 
-			if (note.child("alter"))
+			for (int i = 1; i < notes->size(); i++)
+				notes->at(i).parent().parent().remove_child(notes->at(i).parent());
+		}
+
+		inline static void setNote(pugi::xml_node* note, Pitch* resultNote)
+		{
+			pugi::char_t noteStep[2] = { resultNote->getStep() };
+			note->child("step").text() = noteStep;
+
+			if (note->child("alter"))
 			{
-				if (resultNote.getAccidental() == ReMu::Accidental::None)
-					note.remove_child("alter");
+				if (resultNote->getAccidental() == ReMu::Accidental::None)
+					note->remove_child("alter");
 				else
-					note.child("alter").text() = resultNote.getAccidental();
+					note->child("alter").text() = resultNote->getAccidental();
 			}
-			else if (!resultNote.getAccidental() == ReMu::Accidental::None)
-				note.insert_child_after("alter", note.child("step")).text().set(std::to_string(resultNote.getAccidental()).c_str());
+			else if (!resultNote->getAccidental() == ReMu::Accidental::None)
+				note->insert_child_after("alter", note->child("step")).text().set(std::to_string(resultNote->getAccidental()).c_str());
 		}
 	};
 
-} }*/
+} }
