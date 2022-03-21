@@ -5,6 +5,8 @@
 
 #include ".\ScaleInfo.h"
 
+#include "..\..\Exceptions\ParseExceptions.h"
+
 #define MAJOR_SCALE_INFO		new ScaleInfo(new int[7]{ 2,2,1,2,2,2,1 }, 7, 0)
 #define DORIAN_SCALE_INFO		new ScaleInfo(new int[7]{ 2,1,2,2,2,1,2 }, 7, 6)
 #define PHRYGIAN_SCALE_INFO		new ScaleInfo(new int[7]{ 1,2,2,2,1,2,2 }, 7, 5)
@@ -21,8 +23,8 @@ namespace ReMu {
 		static std::map<std::string, ScaleInfo*> database; //TODO: Destroy me :(
 	public:
 		static void initalize();
-		static ScaleInfo* getScale(const char* scaleName);
-		static void addScale(const char* scaleName, ScaleInfo* scale);
+		static ScaleInfo* getScale(const char* scaleName, short line);
+		static void addScale(const char* scaleName, ScaleInfo* scale, short line);
 	};
 
 }

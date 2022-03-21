@@ -61,14 +61,11 @@ namespace ReMu { namespace Evaluator {
 				}
 			}
 
-			//ReMu::Pitch intialNote = NoteEvaluator::parseNote(note);
-
 			for (auto sequence : sequenceBuffers)
-				sequence->evaluate(notesBuffers);
-				//sequence->evaluate(note);
+				sequence->evaluate(notesBuffers, notesBuffers.second.front().parent().child("duration").text().as_float());
 
-			//if (noteTransitions.count(intialNote) > 0)
-			//	NoteEvaluator::setNote(&note, &noteTransitions.at(intialNote));
+			if (notesBuffers.first.size() == 1 && noteTransitions.count(notesBuffers.first.at(0)) > 0)
+				NoteEvaluator::setNote(&notesBuffers.second.at(0), &noteTransitions.at(notesBuffers.first.at(0)));
 		}
 	}
 

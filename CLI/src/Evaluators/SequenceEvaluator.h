@@ -25,21 +25,24 @@ namespace ReMu { namespace Evaluator {
 			nodeBuffer = new std::vector<pugi::xml_node>[std::get<0>(__sequenceTransitions).size()];
 		}
 
-		void evaluate(std::pair<std::vector<ReMu::Pitch>, std::vector<pugi::xml_node>>& intialNotes)
+		void evaluate(std::pair<std::vector<ReMu::Pitch>, std::vector<pugi::xml_node>>& intialNotes, float duration)
 		{
 			std::pair<void*, structType>* next = &std::get<0>(*sequenceTransitions).getStuctsToMapping()->at(nextNode);
 			std::pair<void*, structType>* first = &std::get<0>(*sequenceTransitions).getStuctsToMapping()->at(0);
+			bool hasDuration = std::get<0>(*sequenceTransitions).hasDuration();
 			bool currentMatch = false;
 			bool firstMatch = false;
 
 			if (next->second == PITCH)
 			{
-				if (intialNotes.first.front() == *(Pitch*)next->first) 
+				if ((intialNotes.first.front() == *(Pitch*)next->first || ((Pitch*)next->first)->getStep() == '_')
+					&& (!hasDuration || ((Pitch*)next->first)->getDuration() == duration))
 					currentMatch = true;
 			}
 			else if (next->second == CHORD)
 			{
-				if (intialNotes.first == *(Chord*)next->first)
+				if (intialNotes.first == *(Chord*)next->first
+					&& (!hasDuration || ((Chord*)first->first)->getDuration() == duration))
 					currentMatch = true;
 			}
 
@@ -47,12 +50,14 @@ namespace ReMu { namespace Evaluator {
 			{
 				if (first->second == PITCH)
 				{
-					if (nextNode > 0 && intialNotes.first.front() == *(Pitch*)first->first)
+					if ((nextNode > 0 && intialNotes.first.front() == *(Pitch*)first->first || ((Pitch*)first->first)->getStep() == '_')
+						&& (!hasDuration || ((Pitch*)first->first)->getDuration() == duration))
 						firstMatch = true;
 				}
 				else if (first->second == CHORD)
 				{
-					if (nextNode > 0 && intialNotes.first == *(Chord*)first->first)
+					if ((nextNode > 0 && intialNotes.first == *(Chord*)first->first)
+						&& (!hasDuration || ((Chord*)first->first)->getDuration() == duration))
 						firstMatch = true;
 				}
 			}

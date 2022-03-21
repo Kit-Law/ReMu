@@ -35,19 +35,28 @@ int main()//const char* argv[])
 
 	antlr4::tree::ParseTree* tree = parser.script();
 	ReMu::Listener listener;
-	antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, tree);
 
-	deltaTime.calDeltaTime();
-	std::cout << "Parsing Time = " << deltaTime.getDeltaTime() << "s" << std::endl;
+	try
+	{
+		antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, tree);
 
-	//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//Chord.musicxml", "..//MusicXMLFiles//Output//Gmin.musicxml");
-	//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//D_Lydian_scale.musicxml");
-	ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Output//AAAAAA.musicxml", "..//MusicXMLFiles//Output//PatternTest.musicxml");
+		deltaTime.calDeltaTime();
+		std::cout << "Parsing Time = " << deltaTime.getDeltaTime() << "s" << std::endl;
 
-	//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//AAAAAA.musicxml");
+		//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//Chord.musicxml", "..//MusicXMLFiles//Output//Gmin.musicxml");
+		//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//D_Lydian_scale.musicxml");
+		ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Output//rytssdah.musicxml", "..//MusicXMLFiles//Output//rythTest.musicxml");
 
-	deltaTime.calDeltaTime();
-	std::cout << "Evaluation Time = " << deltaTime.getDeltaTime() << "s" << std::endl;
+		//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//AAAAAA.musicxml");
+
+		deltaTime.calDeltaTime();
+		std::cout << "Evaluation Time = " << deltaTime.getDeltaTime() << "s" << std::endl;
+
+	}
+	catch (std::exception& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
 	return 0;
 }

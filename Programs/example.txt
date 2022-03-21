@@ -1,7 +1,7 @@
 "Intro" = 0 - 20;
 
 "Intro":
-A A A E -> F maj B C D min add 2,
+_[2]_[2]_[2] -> A B[1]C[3],
 
 /*"Intro" = 1 - 20;
 
@@ -14,8 +14,10 @@ gutiar
 	Scale: D Major -> D name,
 	B#[3] C# D (E maj add 2) F# G A B -> A userChord A A A {A, A} A A A,
 	_[3] -> _[4],
-	Occurrance 4: _[1] A[2] -> _[2] A[1],
+	Occurrence 4: _[1] A[2] -> _[2] A[1], //Fix occ
 }
 
 G maj -> D min add2,
-D min add2 -> G maj,*/
+D min add2 -> G maj,
+
+/.ergo 2*/

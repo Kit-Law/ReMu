@@ -39,25 +39,7 @@ namespace ReMu {
 				if (std::get<2>(sequence) > 0)
 					os << "Every " << std::get<2>(sequence) << " occurance: ";
 
-				for (std::pair<void*, structType>& seq : *std::get<0>(sequence).getStuctsToMapping())
-				{
-					if (seq.second == PITCH)
-						os << *(Pitch*)seq.first << " ";
-					else if (seq.second == CHORD)
-						os << "(" << *(Chord*)seq.first << "\b) ";
-				}
-
-				os << "-> ";
-
-				for (std::pair<void*, structType>& seq : *std::get<1>(sequence).getStuctsToMapping())
-				{
-					if (seq.second == PITCH)
-						os << *(Pitch*)seq.first << " ";
-					else if (seq.second == CHORD)
-						os << "(" << *(Chord*)seq.first << "\b) ";
-				}
-
-				os << std::endl;
+				os << std::get<0>(sequence) << "-> " << std::get<1>(sequence) << std::endl;
 			}
 		}
 

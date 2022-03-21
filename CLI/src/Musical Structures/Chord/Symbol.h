@@ -6,6 +6,8 @@
 
 #include "..\Note\Degree.h"
 
+#include "..\..\Exceptions\ParseExceptions.h"
+
 namespace ReMu {
 
 	class Symbol
@@ -22,7 +24,8 @@ namespace ReMu {
 			minor,
 			diminished,
 			augmented,
-			altered
+			altered,
+			userDefined
 		};
 	public:
 		Symbol() { }

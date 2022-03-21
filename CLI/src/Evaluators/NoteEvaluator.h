@@ -42,6 +42,16 @@ namespace ReMu { namespace Evaluator {
 			}
 			else if (!resultNote->getAccidental() == ReMu::Accidental::None)
 				note->insert_child_after("alter", note->child("step")).text().set(std::to_string(resultNote->getAccidental()).c_str());
+
+			if (resultNote->getDuration() > 0)
+			{
+				note->parent().child("duration").text() = resultNote->getDuration();
+
+				if (resultNote->getDuration() == 1)
+				{
+					//TODO: Fix duration and type :((
+				}
+			}
 		}
 	};
 

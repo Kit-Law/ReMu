@@ -18,13 +18,19 @@ namespace ReMu {
 		database["Locrian"] = LOCRIAN_SCALE_INFO;
 	}
 
-	ScaleInfo* ScaleDatabase::getScale(const char* scaleName)
+	ScaleInfo* ScaleDatabase::getScale(const char* scaleName, short line)
 	{ 
+		if (database.count(scaleName) == 0)
+			throw ScaleNotFonud(scaleName, line);
+
 		return database.at(scaleName); 
 	} //TODO: make this secure
 
-	void ScaleDatabase::addScale(const char* scaleName, ScaleInfo* scale)
+	void ScaleDatabase::addScale(const char* scaleName, ScaleInfo* scale, short line)
 	{
+		if (database.count(scaleName) > 0)
+			throw RedefinedScale(scaleName, line);
+
 		database[scaleName] = scale;
 	}
 

@@ -12,6 +12,8 @@
 
 #include "..\Musical Structures\Chord\Symbol.h"
 
+#include "..\Exceptions\ParseExceptions.h"
+
 #include <string>
 
 namespace ReMu {

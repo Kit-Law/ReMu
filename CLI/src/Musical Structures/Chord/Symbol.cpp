@@ -18,13 +18,19 @@ namespace ReMu {
 			return std::vector<Degree>{ Degree(3, None), Degree(5, Sharp) };
 		case altered:
 			return std::vector<Degree>{ 3, 5 };
-		default:
+		case userDefined:
+			if (userDef.count(quality) == 0)
+				throw ChordNotFonud(quality);
+
 			return userDef[quality];
 		}
 	}
 
 	void Symbol::addSymbol(std::string name, std::vector<Pitch>* intervals)
 	{
+		if (userDef.count(name) > 0)
+			throw RedefinedChord(name);
+
 		std::vector<Degree> intervalBuffer;
 
 		for (Pitch interval : *intervals)
@@ -40,7 +46,7 @@ namespace ReMu {
 		else if (quality == "dim" || quality == "o") return diminished;
 		else if (quality == "aug" || quality == "+") return augmented;
 		else if (quality == "alt") return altered;
-		else throw;
+		else return userDefined;
 	}
 
 }

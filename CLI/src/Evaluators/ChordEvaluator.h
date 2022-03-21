@@ -42,6 +42,8 @@ namespace ReMu { namespace Evaluator {
 				if (i < chord->getComponents()->size())
 				{
 					auto pitchBuffer = static_cast<Pitch>(chord->getComponents()->at(i));
+					pitchBuffer.setDuration(chord->getDuration());
+
 					NoteEvaluator::setNote(&note, &pitchBuffer);
 				}
 					

@@ -10,6 +10,7 @@ namespace ReMu {
 	{
 	private:
 		std::vector<Note> components;
+		float duration = -1;
 	public:
 		Chord(std::vector<Note> __components) {	components = __components; }
 
@@ -26,6 +27,9 @@ namespace ReMu {
 		{
 			return &components;
 		}
+
+		inline void setDuration(float duration) { this->duration = duration; }
+		inline const float getDuration() { return duration; }
 
 		friend std::ostream& operator<<(std::ostream& os, const Chord& chord);
 		friend bool operator==(const Chord& lhs, const Chord& rhs);

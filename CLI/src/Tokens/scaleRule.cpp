@@ -2,10 +2,10 @@
 
 namespace ReMu { namespace Tokens {
 
-	void ScaleRule::evalScaleRule(const Note& initalRootNote, const char* initalScale, const Note& resultRootNote, const char* resultScale, std::string instrument, TransitionTable* transitionTable)
+	void ScaleRule::evalScaleRule(const Note& initalRootNote, const char* initalScale, const Note& resultRootNote, const char* resultScale, std::string instrument, TransitionTable* transitionTable, short line)
 	{
-		ScaleInfo* initalScaleInfo = ScaleDatabase::getScale(initalScale);
-		ScaleInfo* resultScaleInfo = ScaleDatabase::getScale(resultScale);
+		ScaleInfo* initalScaleInfo = ScaleDatabase::getScale(initalScale, line);
+		ScaleInfo* resultScaleInfo = ScaleDatabase::getScale(resultScale, line);
 
 		Notes initalNotes = genNotes(initalScaleInfo, initalRootNote);
 		Notes resultNotes = genNotes(resultScaleInfo, resultRootNote);
@@ -21,14 +21,14 @@ namespace ReMu { namespace Tokens {
 		transitionTable->setRelativeMajorKey(resultScaleInfo->getRelativeMajorKey(resultRootNote));
 	}
 	
-	void ScaleRule::evalScaleRule(const Note& rootNote, const char* scale, std::string instrument, TransitionTable* transitionTable)
+	void ScaleRule::evalScaleRule(const Note& rootNote, const char* scale, std::string instrument, TransitionTable* transitionTable, short line)
 	{
-		transitionTable->setScaleBuffer(rootNote, scale, instrument);
+		transitionTable->setScaleBuffer(rootNote, scale, instrument, line);
 	}
 
 	void ScaleRule::evalScaleBuffer(const Note& rootNote, const char* scale, TransitionTable* transitionTable)
 	{
-		evalScaleRule(rootNote, scale, std::get<1>(transitionTable->getScaleBuffer()), std::get<0>(transitionTable->getScaleBuffer()), std::get<2>(transitionTable->getScaleBuffer()), transitionTable);
+		evalScaleRule(rootNote, scale, std::get<1>(transitionTable->getScaleBuffer()), std::get<0>(transitionTable->getScaleBuffer()), std::get<2>(transitionTable->getScaleBuffer()), transitionTable, std::get<3>(transitionTable->getScaleBuffer()));
 	}
 
 	Notes ScaleRule::genNotes(ScaleInfo* scaleInfo, const Note& rootNote)

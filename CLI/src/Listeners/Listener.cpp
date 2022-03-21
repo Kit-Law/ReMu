@@ -4,12 +4,21 @@ namespace ReMu {
 
 	void Listener::enterSectionDef(SheetMusicParser::SectionDefContext* ctx)
 	{
+		int startMesure = std::stoi(ctx->children[2]->getText());
+		int endMesure = std::stoi(ctx->children[4]->getText());
+
+		if (startMesure > endMesure || startMesure < 0 || endMesure < 0)
+			throw SectionDefOutOfBounds(ctx->children[0]->getText(), ctx->start->getLine());
+
 		sections[ctx->children[0]->getText()] = 
-			new Section(ctx->children[0]->getText(), std::stoi(ctx->children[2]->getText()), std::stoi(ctx->children[4]->getText()));
+			new Section(ctx->children[0]->getText(), startMesure, endMesure);
 	}
 
 	void Listener::enterSectionIdent(SheetMusicParser::SectionIdentContext* ctx)
 	{
+		if (sections.count(ctx->children[0]->getText()) == 0)
+			throw UndefinedSection(ctx->children[0]->getText(), ctx->start->getLine());
+
 		currentSection = sections[ctx->children[0]->getText()];
 	}
 
@@ -22,7 +31,7 @@ namespace ReMu {
 		for (int i = 0; i < size; i++)
 			intervals[i] = std::stoi(ctx->NUMBER(i)->getText());
 
-		ScaleDatabase::addScale(scaleName.c_str(), new ScaleInfo(intervals, size, 0));
+		ScaleDatabase::addScale(scaleName.c_str(), new ScaleInfo(intervals, size, 0), ctx->start->getLine());
 	}
 
 	void Listener::enterChordDef(SheetMusicParser::ChordDefContext* ctx)
@@ -46,7 +55,22 @@ namespace ReMu {
 		else
 			sequence = &resultSequence;
 
-		sequence->pushBack(Tokens::ChordRule::genChord(&notes, &symbol, &additions));
+		Chord* chordBuffer = Tokens::ChordRule::genChord(&notes, &symbol, &additions);
+		
+		if (sequence->size() == 0 && ctx->NUMBER() != nullptr)
+			sequence->setDurationFlag(true);
+
+		if (ctx->NUMBER() != nullptr)
+		{
+			if (sequence->hasDuration())
+				chordBuffer->setDuration(std::stof(ctx->NUMBER()->toString()));
+			else
+				throw IncompleteTranstionRythem(ctx->start->getLine());
+		}
+		else if (sequence->hasDuration())
+			throw IncompleteTranstionRythem(ctx->start->getLine());
+
+		sequence->pushBack(chordBuffer);
 
 		notes.clear();
 		additions.clear();
@@ -54,14 +78,27 @@ namespace ReMu {
 
 	void Listener::exitNote(SheetMusicParser::NoteContext* ctx)
 	{
-		if (ctx->NUMBER(0) != nullptr)
-			notes.back().setDuration(std::stof(ctx->NUMBER(0)->toString()));
+		Sequence* sequence;
 
 		if (onInital)
-			initalSequence.pushBack(notes.at(0));
+			sequence = &initalSequence;
 		else
-			resultSequence.pushBack(notes.at(0));
+			sequence = &resultSequence;
 
+		if (sequence->size() == 0 && ctx->NUMBER(0) != nullptr)
+			sequence->setDurationFlag(true);
+
+		if (ctx->NUMBER(0) != nullptr)
+		{
+			if (sequence->hasDuration())
+				notes.back().setDuration(std::stof(ctx->NUMBER(0)->toString()));
+			else
+				throw IncompleteTranstionRythem(ctx->start->getLine());
+		}
+		else if (sequence->hasDuration())
+			throw IncompleteTranstionRythem(ctx->start->getLine());
+
+		sequence->pushBack(notes.at(0));
 		notes.clear();
 	}
 
@@ -84,9 +121,9 @@ namespace ReMu {
 	void Listener::exitScaleRule(SheetMusicParser::ScaleRuleContext* ctx)
 	{
 		if (notes.size() == 1)
-			Tokens::ScaleRule::evalScaleRule(static_cast<Note&>(notes.at(0)), initalScale.c_str(), currentIntstument, currentSection->getTransitionTable());
+			Tokens::ScaleRule::evalScaleRule(static_cast<Note&>(notes.at(0)), initalScale.c_str(), currentIntstument, currentSection->getTransitionTable(), ctx->start->getLine());
 		if (notes.size() == 2)
-			Tokens::ScaleRule::evalScaleRule(static_cast<Note&>(notes.at(0)), initalScale.c_str(), static_cast<Note&>(notes.at(1)), resultScale.c_str(), currentIntstument, currentSection->getTransitionTable());
+			Tokens::ScaleRule::evalScaleRule(static_cast<Note&>(notes.at(0)), initalScale.c_str(), static_cast<Note&>(notes.at(1)), resultScale.c_str(), currentIntstument, currentSection->getTransitionTable(), ctx->start->getLine());
 	}
 
 	void Listener::enterPitch(SheetMusicParser::PitchContext* ctx)
