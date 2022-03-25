@@ -1,4 +1,4 @@
 "test" = 1 - 20;
 
 "test":
-C Major scale -> G Mixolydian scale,
+Scale: C Major -> G Mixolydian,

@@ -38,7 +38,7 @@ namespace ReMu {
 		std::map<std::string, Section*> sections;
 		Section* currentSection;
 
-		std::string currentIntstument;
+		std::string currentIntstument = "";
 
 		std::string chordName;
 	public:

@@ -12,13 +12,15 @@
 
 #include ".\Sequence\Sequence.h"
 
+#include "..\Exceptions\ParseExceptions.h"
+
 namespace ReMu {
 
 	class TransitionTable
 	{
 	private:
-		std::map<std::string, std::vector<std::pair<Pitch, Pitch>>> noteTransitions;
-		std::map<std::string, std::vector<std::tuple<Sequence, Sequence, int>>> sequenceTransitions;
+		std::map<std::string, std::vector<std::pair<Pitch, Pitch>*>> noteTransitions;
+		std::map<std::string, std::vector<std::tuple<Sequence, Sequence, int>*>> sequenceTransitions;
 
 		Pitch relativeMajorKey;
 		std::tuple<const char*, Note, std::string, short> scaleBuffer;
@@ -26,8 +28,8 @@ namespace ReMu {
 		void addTransition(Pitch inital, Pitch result, std::string instrument);
 		void addTransition(Sequence inital, Sequence result, int occurance, std::string instrument);
 
-		std::vector<std::pair<Pitch, Pitch>>* const getNoteTransitions(std::string instrument = "") { return &noteTransitions[instrument]; }
-		std::vector<std::tuple<Sequence, Sequence, int>>* const getSequenceTransitions(std::string instrument = "") { return &sequenceTransitions[instrument]; }
+		std::vector<std::pair<Pitch, Pitch>*>* const getNoteTransitions(std::string instrument = "") { return &noteTransitions[instrument]; }
+		std::vector<std::tuple<Sequence, Sequence, int>*>* const getSequenceTransitions(std::string instrument = "") { return &sequenceTransitions[instrument]; }
 
 		inline const void setRelativeMajorKey(Pitch relativeMajorKey) { this->relativeMajorKey = relativeMajorKey;  }
 		inline const Pitch* getRelativeMajorKey() { return &relativeMajorKey; }

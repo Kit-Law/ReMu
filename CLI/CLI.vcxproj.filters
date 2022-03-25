@@ -155,9 +155,6 @@
     <ClInclude Include="src\Exceptions\ParseExceptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Exceptions\EvaluationExceptions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Grammar\SheetMusic.interp" />

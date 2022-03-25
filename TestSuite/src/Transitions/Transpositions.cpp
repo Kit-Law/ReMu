@@ -24,7 +24,6 @@ namespace Transitions
 			for (auto const& section : sections)
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
-				Assert::AreEqual(section.second->getTransitionTable()->getChordTransitions()->size(), (size_t)0);
 
 				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>>* transition = section.second->getTransitionTable()->getNoteTransitions();
 
@@ -53,7 +52,6 @@ namespace Transitions
 			for (auto const& section : sections)
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
-				Assert::AreEqual(section.second->getTransitionTable()->getChordTransitions()->size(), (size_t)0);
 
 				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>>* transition = section.second->getTransitionTable()->getNoteTransitions();
 
@@ -82,7 +80,6 @@ namespace Transitions
 			for (auto const& section : sections)
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
-				Assert::AreEqual(section.second->getTransitionTable()->getChordTransitions()->size(), (size_t)0);
 
 				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>>* transition = section.second->getTransitionTable()->getNoteTransitions();
 
@@ -111,7 +108,6 @@ namespace Transitions
 			for (auto const& section : sections)
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
-				Assert::AreEqual(section.second->getTransitionTable()->getChordTransitions()->size(), (size_t)0);
 
 				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>>* transition = section.second->getTransitionTable()->getNoteTransitions();
 
@@ -140,7 +136,6 @@ namespace Transitions
 			for (auto const& section : sections)
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
-				Assert::AreEqual(section.second->getTransitionTable()->getChordTransitions()->size(), (size_t)0);
 
 				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>>* transition = section.second->getTransitionTable()->getNoteTransitions();
 
@@ -169,7 +164,6 @@ namespace Transitions
 			for (auto const& section : sections)
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
-				Assert::AreEqual(section.second->getTransitionTable()->getChordTransitions()->size(), (size_t)0);
 
 				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>>* transition = section.second->getTransitionTable()->getNoteTransitions();
 

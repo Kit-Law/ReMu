@@ -1,4 +1,4 @@
 "test" = 1 - 20;
 
 "test":
-C Major scale -> A Aeolian scale,
+Scale: C Major -> A Aeolian,

@@ -45,7 +45,7 @@ int main()//const char* argv[])
 
 		//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//Chord.musicxml", "..//MusicXMLFiles//Output//Gmin.musicxml");
 		//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//D_Lydian_scale.musicxml");
-		ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Output//rytssdah.musicxml", "..//MusicXMLFiles//Output//rythTest.musicxml");
+		ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Output//C_Major.musicxml", "..//MusicXMLFiles//Output//D#_Mixolydian.musicxml");
 
 		//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//AAAAAA.musicxml");
 

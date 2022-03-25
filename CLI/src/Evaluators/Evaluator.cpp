@@ -33,12 +33,12 @@ namespace ReMu { namespace Evaluator {
 		//TODO: Clean this block up
 		std::vector<SequenceEvaluator*> sequenceBuffers;
 		for (auto& sequence : *transitionTable->getSequenceTransitions())
-			sequenceBuffers.push_back(new SequenceEvaluator(sequence));
+			sequenceBuffers.push_back(new SequenceEvaluator(*sequence));
 
 		//TODO: Clean this block up
 		std::unordered_map<ReMu::Pitch, ReMu::Pitch, ReMu::Pitch> noteTransitions;
 		for (auto transition : *transitionTable->getNoteTransitions())
-			noteTransitions[transition.first] = transition.second;
+			noteTransitions[transition->first] = transition->second;
 
 		for (int i = 0; i < notes.size(); i++)// pugi::xpath_node node : notes)
 		{

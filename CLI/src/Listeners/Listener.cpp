@@ -10,6 +10,18 @@ namespace ReMu {
 		if (startMesure > endMesure || startMesure < 0 || endMesure < 0)
 			throw SectionDefOutOfBounds(ctx->children[0]->getText(), ctx->start->getLine());
 
+		if (sections.count(ctx->children[0]->getText()) > 0)
+			throw RedefinedSection(ctx->children[0]->getText(), ctx->start->getLine());
+
+		for (auto section : sections)
+		{
+			if (section.second->getStartingMessure() > startMesure &&
+				section.second->getStartingMessure() < endMesure ||
+				section.second->getEndingMessure() < startMesure &&
+				section.second->getEndingMessure() > endMesure)
+				throw OverlappingSections(section.first, ctx->children[0]->getText(), ctx->start->getLine());
+		}
+
 		sections[ctx->children[0]->getText()] = 
 			new Section(ctx->children[0]->getText(), startMesure, endMesure);
 	}

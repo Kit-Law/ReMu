@@ -1,4 +1,4 @@
 "test" = 1 - 20;
 
 "test":
-A Major scale -> B Major scale,
+Scale: A Major -> B Major,

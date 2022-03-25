@@ -27,6 +27,21 @@ namespace ReMu {
 			structsToMapping.push_back(std::pair<void*, structType>(chord, CHORD));
 		}
 
+		inline float calDuration()
+		{
+			float duration = 0.0f;
+
+			for (std::pair<void*, structType> seq : structsToMapping)
+			{
+				if (seq.second == PITCH)
+					duration += ((Pitch*)seq.first)->getDuration();
+				else if (seq.second == CHORD)
+					duration += ((Chord*)seq.first)->getDuration();
+			}
+
+			return duration;
+		}
+
 		inline std::vector<std::pair<void*, structType>>* getStuctsToMapping() { return &structsToMapping; }
 		inline size_t size() { return structsToMapping.size(); }
 

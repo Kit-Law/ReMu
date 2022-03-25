@@ -1,4 +1,4 @@
 "test" = 1 - 20;
 
 "test":
-C Major scale -> D Dorian scale,
+Scale: C Major -> D Dorian,

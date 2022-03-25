@@ -1,4 +1,4 @@
 "test" = 1 - 20;
 
 "test":
-A Major scale -> C Major scale,
+Scale: A Major -> C Major,

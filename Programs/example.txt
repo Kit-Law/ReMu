@@ -1,7 +1,7 @@
 "Intro" = 0 - 20;
 
 "Intro":
-_[2]_[2]_[2] -> A B[1]C[3],
+ Scale: C Major -> D# Mixolydian,
 
 /*"Intro" = 1 - 20;
 
@@ -21,3 +21,4 @@ G maj -> D min add2,
 D min add2 -> G maj,
 
 /.ergo 2*/
+//Add an or operator

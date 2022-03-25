@@ -25,7 +25,6 @@ namespace Transitions
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
-				Assert::AreEqual(section.second->getTransitionTable()->getChordTransitions()->size(), (size_t)0);
 			}
 		}
 
@@ -36,11 +35,10 @@ namespace Transitions
 			for (auto const& section : sections)
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
-				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
 
-				for (std::pair<ReMu::Chord, ReMu::Chord> transition : *section.second->getTransitionTable()->getChordTransitions())
+				for (auto transition : *section.second->getTransitionTable()->getSequenceTransitions())
 				{
-					Assert::AreEqual(transition.first == transition.second, true);
+					Assert::AreEqual(std::get<0>(transition).getStuctsToMapping()->at(0) == std::get<1>(transition).getStuctsToMapping()->at(0), true);
 				}
 			}
 		}
@@ -52,11 +50,10 @@ namespace Transitions
 			for (auto const& section : sections)
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
-				Assert::AreEqual(section.second->getTransitionTable()->getChordTransitions()->size(), (size_t)0);
 
-				for (std::pair<std::vector<ReMu::Pitch>, std::vector<ReMu::Pitch>> transition : *section.second->getTransitionTable()->getSequenceTransitions())
+				for (auto transition : *section.second->getTransitionTable()->getSequenceTransitions())
 				{
-					Assert::AreEqual(transition.first == transition.second, true);
+					Assert::AreEqual(std::get<0>(transition).getStuctsToMapping()->at(0) == std::get<1>(transition).getStuctsToMapping()->at(0), true);
 				}
 			}
 		}

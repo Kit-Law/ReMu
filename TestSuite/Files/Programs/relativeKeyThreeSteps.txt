@@ -1,4 +1,4 @@
 "test" = 1 - 20;
 
 "test":
-C Major scale -> F Lydian scale,
+Scale: C Major -> F Lydian,

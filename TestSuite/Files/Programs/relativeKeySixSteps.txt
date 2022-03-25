@@ -1,4 +1,4 @@
 "test" = 1 - 20;
 
 "test":
-C Major scale -> B Locrian scale,
+Scale: C Major -> B Locrian,

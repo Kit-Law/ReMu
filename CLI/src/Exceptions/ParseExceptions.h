@@ -30,6 +30,30 @@ struct UndefinedSection : public std::exception
     }
 };
 
+struct RedefinedSection : public std::exception
+{
+    std::string message;
+
+    RedefinedSection(std::string section, short line) : message{ "Section: " + section + ", at line " + std::to_string(line) + ", is redefined." } { }
+
+    const char* what() const throw ()
+    {
+        return message.c_str();
+    }
+};
+
+struct OverlappingSections : public std::exception
+{
+    std::string message;
+
+    OverlappingSections(std::string a, std::string b, short line) : message{ "Section: " + a + ", and section: " + b + ", at line " + std::to_string(line) + ", have overlapping mesures." } { }
+
+    const char* what() const throw ()
+    {
+        return message.c_str();
+    }
+};
+
 struct RedefinedScale : public std::exception
 {
     std::string message;
