@@ -20,9 +20,11 @@ namespace ReMu {
 	class ScaleDatabase
 	{
 	private:
-		static std::map<std::string, ScaleInfo*> database; //TODO: Destroy me :(
+		static std::map<std::string, ScaleInfo*> database;
 	public:
 		static void initalize();
+		static void destruct();
+
 		static ScaleInfo* getScale(const char* scaleName, short line);
 		static void addScale(const char* scaleName, ScaleInfo* scale, short line);
 	};

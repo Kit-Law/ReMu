@@ -35,7 +35,7 @@ namespace ReMu { namespace Evaluator {
 
 		inline static void setChord(std::vector<pugi::xml_node>* notes, Chord* chord)
 		{
-			short i = 0;
+			size_t i = 0;
 			pugi::xml_node* lastNote = nullptr;
 			for (pugi::xml_node note : *notes)
 			{

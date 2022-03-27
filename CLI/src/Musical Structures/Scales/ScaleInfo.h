@@ -26,7 +26,6 @@ namespace ReMu {
 
 		inline const int* getIntervales() { return intervales; }
 		inline const int getScaleLength() { return scaleLength; }
-		//inline const short relativeMajorKeyStep() { return relativeMajorKeyStep; }
 	};
 
 }

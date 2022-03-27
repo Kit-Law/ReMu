@@ -7,6 +7,8 @@
 #include "Pitch.h"
 #include "Note.h"
 
+
+
 #define MAJOR_INTERVALS { 2,2,1,2,2,2,1 }
 
 namespace ReMu {

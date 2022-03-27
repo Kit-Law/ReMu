@@ -29,7 +29,7 @@ namespace ReMu {
 		};
 	public:
 		Symbol() { }
-		Symbol(std::string __quality, int __interval = 0) { quality = __quality, interval = __interval; }
+		Symbol(std::string __quality, int __interval = 0) :  quality(__quality), interval(__interval) { }
 
 		std::vector<Degree> eval();
 

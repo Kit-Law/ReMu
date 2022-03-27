@@ -37,10 +37,10 @@ namespace ReMu {
 	void Listener::enterScaleDef(SheetMusicParser::ScaleDefContext* ctx)
 	{
 		std::string scaleName = ctx->WORD()->getText();
-		int size = (ctx->children.size() - 3) / 2;
+		size_t size = (ctx->children.size() - 3) / 2;
 		int* intervals = new int[size];
 
-		for (int i = 0; i < size; i++)
+		for (size_t i = 0; i < size; i++)
 			intervals[i] = std::stoi(ctx->NUMBER(i)->getText());
 
 		ScaleDatabase::addScale(scaleName.c_str(), new ScaleInfo(intervals, size, 0), ctx->start->getLine());

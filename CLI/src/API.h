@@ -25,9 +25,12 @@ namespace ReMu {
 	class API
 	{
 	public:
+		static ReMu::Listener* parse(std::ifstream& inputProgram);
 		static ReMu::Listener* parse(std::stringstream &inputProgram);
 
 		static void eval(ReMu::Listener* listener, const char* input, const char* output);
+	private:
+		static ReMu::Listener* parse(antlr4::ANTLRInputStream input);
 	};
 
 }

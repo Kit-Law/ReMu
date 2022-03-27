@@ -7,8 +7,8 @@ namespace ReMu { namespace Tokens {
 		ScaleInfo* initalScaleInfo = ScaleDatabase::getScale(initalScale, line);
 		ScaleInfo* resultScaleInfo = ScaleDatabase::getScale(resultScale, line);
 
-		Notes initalNotes = genNotes(initalScaleInfo, initalRootNote);
-		Notes resultNotes = genNotes(resultScaleInfo, resultRootNote);
+		std::vector<Note> initalNotes = genNotes(initalScaleInfo, initalRootNote);
+		std::vector<Note> resultNotes = genNotes(resultScaleInfo, resultRootNote);
 
 		for (int i = 0; i < initalScaleInfo->getScaleLength(); i++)
 		{
@@ -31,14 +31,14 @@ namespace ReMu { namespace Tokens {
 		evalScaleRule(rootNote, scale, std::get<1>(transitionTable->getScaleBuffer()), std::get<0>(transitionTable->getScaleBuffer()), std::get<2>(transitionTable->getScaleBuffer()), transitionTable, std::get<3>(transitionTable->getScaleBuffer()));
 	}
 
-	Notes ScaleRule::genNotes(ScaleInfo* scaleInfo, const Note& rootNote)
+	std::vector<Note> ScaleRule::genNotes(ScaleInfo* scaleInfo, const Note& rootNote)
 	{
-		Notes notes = new Note[scaleInfo->getScaleLength()];
-		notes[0] = rootNote;
+		std::vector<Note> notes;
+		notes.push_back(rootNote);
 
 		for (int i = 1; i < scaleInfo->getScaleLength() + 1; i++)
-			notes[i] = notes[i - 1].incrementNote(scaleInfo->getIntervales()[i - 1]);
-
+			notes.push_back(notes[i - 1].incrementNote(scaleInfo->getIntervales()[i - 1]));
+			
 		return notes;
 	}
 

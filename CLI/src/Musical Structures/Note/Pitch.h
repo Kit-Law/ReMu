@@ -14,8 +14,8 @@ namespace ReMu {
 		float duration = -1;
 	public:
 		Pitch() { }
-		Pitch(char __note, Accidental __accidental = None) { step = __note; accidental = __accidental; }
-		Pitch(char __note, int __duration, Accidental __accidental = None) { step = __note; __duration = duration; accidental = __accidental; }
+		Pitch(char __note, Accidental __accidental = None) : step(__note), accidental(__accidental) {  }
+		Pitch(char __note, float __duration, Accidental __accidental = None) : step(__note), duration(__duration), accidental(__accidental) { }
 
 		inline void setStep(char step) { this->step = step; }
 		inline void setAccidental(Accidental modifier) { this->accidental = modifier; }

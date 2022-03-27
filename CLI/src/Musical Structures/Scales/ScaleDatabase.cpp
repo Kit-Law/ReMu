@@ -7,7 +7,7 @@ namespace ReMu {
 
 	std::map<std::string, ScaleInfo*> ScaleDatabase::database;
 
-	void ScaleDatabase::initalize() //TODO::fix the space issue
+	void ScaleDatabase::initalize()
 	{
 		database["Major"] = MAJOR_SCALE_INFO;
 		database["Dorian"] = DORIAN_SCALE_INFO;
@@ -18,13 +18,21 @@ namespace ReMu {
 		database["Locrian"] = LOCRIAN_SCALE_INFO;
 	}
 
+	void ScaleDatabase::destruct()
+	{
+		for (std::map<std::string, ScaleInfo*>::iterator itr = database.begin(); itr != database.end(); itr++)
+			delete (itr->second);
+
+		database.clear();
+	}
+
 	ScaleInfo* ScaleDatabase::getScale(const char* scaleName, short line)
 	{ 
 		if (database.count(scaleName) == 0)
 			throw ScaleNotFonud(scaleName, line);
 
 		return database.at(scaleName); 
-	} //TODO: make this secure
+	}
 
 	void ScaleDatabase::addScale(const char* scaleName, ScaleInfo* scale, short line)
 	{

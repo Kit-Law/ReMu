@@ -1631,7 +1631,7 @@ std::vector<std::string> SheetMusicParser::_ruleNames = {
 
 std::vector<std::string> SheetMusicParser::_literalNames = {
   "", "'='", "'-'", "';'", "'\\addScale'", "'{'", "','", "'}'", "'\\addChord'", 
-  "':'", "'Scale:'", "'->'", "'Occurrance'", "'('", "')'", "'['", "']'"
+  "':'", "'Scale:'", "'->'", "'Occurrence'", "'('", "')'", "'['", "']'"
 };
 
 std::vector<std::string> SheetMusicParser::_symbolicNames = {

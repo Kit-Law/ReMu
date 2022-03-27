@@ -15,7 +15,7 @@ namespace ReMu { namespace Tokens {
 		
 		static void evalScaleBuffer(const Note& rootNote, const char* scale, TransitionTable* transitionTable);
 	private:
-		static inline Notes genNotes(ScaleInfo* scaleInfo, const Note& rootNote);
+		static inline std::vector<Note> genNotes(ScaleInfo* scaleInfo, const Note& rootNote);
 	};
 
 } }

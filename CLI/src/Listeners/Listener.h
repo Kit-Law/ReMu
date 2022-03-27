@@ -42,6 +42,8 @@ namespace ReMu {
 
 		std::string chordName;
 	public:
+		~Listener() { for (auto section : sections) delete section.second; }
+
 		void enterSectionDef(SheetMusicParser::SectionDefContext* ctx) override;
 		void enterSectionIdent(SheetMusicParser::SectionIdentContext* ctx) override;
 
@@ -76,7 +78,7 @@ namespace ReMu {
 
 		void exitScript(SheetMusicParser::ScriptContext* ctx) override 
 		{ 
-			std::cout << "==================================" << std::endl;
+			std::cout << std::string("==================================") << std::endl;
 			for(auto const& section : sections) 
 				std::cout << *section.second << std::endl << "==================================" << std::endl; 
 		}

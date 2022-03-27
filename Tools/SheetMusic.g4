@@ -52,7 +52,7 @@ scale
  ;
 
 occurrenceRule
- : 'Occurrance' NUMBER ':' sequenceRule
+ : 'Occurrence' NUMBER ':' sequenceRule
  ;
 
 sequenceRule
@@ -88,9 +88,7 @@ note
  : pitch NUMBER? ('[' NUMBER ']')?
  ;
 
-NUMBER     : [0-9]+
-           | [0-9]+ '.' [0-9]*
-           | '.' [0-9]+ ;
+NUMBER     : [0-9]+;
 NATURAL    : [A-G] | '_';
 ACCIDENTAL : 'b' | 'bb' | 'bbb' | '###' | '##' | '#';
 QUALITY    : 'maj' | 'min' | 'dim' | 'aug' | 'alt' | 'M' | 'm' | '+' | '-' | '/';

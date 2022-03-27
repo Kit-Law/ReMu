@@ -15,21 +15,26 @@ namespace ReMu { namespace Evaluator {
 	class SequenceEvaluator
 	{
 	private:
-		std::tuple<Sequence, Sequence, int>* sequenceTransitions;
+		std::tuple<Sequence, Sequence, int> sequenceTransitions;
 		std::vector<pugi::xml_node>* nodeBuffer;
 		int nextNode = 0;
 	public:
-		SequenceEvaluator(std::tuple<Sequence, Sequence, int>& __sequenceTransitions)
+		SequenceEvaluator(std::tuple<Sequence, Sequence, int> __sequenceTransitions)
 		{
-			sequenceTransitions = &__sequenceTransitions;
+			sequenceTransitions = __sequenceTransitions;
 			nodeBuffer = new std::vector<pugi::xml_node>[std::get<0>(__sequenceTransitions).size()];
+		}
+
+		~SequenceEvaluator()
+		{
+			delete nodeBuffer;
 		}
 
 		void evaluate(std::pair<std::vector<ReMu::Pitch>, std::vector<pugi::xml_node>>& intialNotes, float duration)
 		{
-			std::pair<void*, structType>* next = &std::get<0>(*sequenceTransitions).getStuctsToMapping()->at(nextNode);
-			std::pair<void*, structType>* first = &std::get<0>(*sequenceTransitions).getStuctsToMapping()->at(0);
-			bool hasDuration = std::get<0>(*sequenceTransitions).hasDuration();
+			std::pair<void*, structType>* next = &std::get<0>(sequenceTransitions).getStuctsToMapping()->at(nextNode);
+			std::pair<void*, structType>* first = &std::get<0>(sequenceTransitions).getStuctsToMapping()->at(0);
+			bool hasDuration = std::get<0>(sequenceTransitions).hasDuration();
 			bool currentMatch = false;
 			bool firstMatch = false;
 
@@ -75,7 +80,7 @@ namespace ReMu { namespace Evaluator {
 			else
 				nextNode = 0;
 
-			if (nextNode == std::get<0>(*sequenceTransitions).size())
+			if (nextNode == std::get<0>(sequenceTransitions).size())
 			{
 				colapse();
 				nextNode = 0;
@@ -84,9 +89,9 @@ namespace ReMu { namespace Evaluator {
 	private:
 		void colapse()
 		{
-			for (int j = 0; j < std::get<1>(*sequenceTransitions).size(); j++)
+			for (size_t j = 0; j < std::get<1>(sequenceTransitions).size(); j++)
 			{
-				std::pair<void*, structType>* next = &std::get<1>(*sequenceTransitions).getStuctsToMapping()->at(j);
+				std::pair<void*, structType>* next = &std::get<1>(sequenceTransitions).getStuctsToMapping()->at(j);
 
 				if (next->second == PITCH)
 					NoteEvaluator::setNotes(&nodeBuffer[j], (Pitch*)next->first);

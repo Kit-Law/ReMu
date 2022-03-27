@@ -18,7 +18,6 @@ namespace ReMu { namespace Evaluator {
 
 	void Evaluator::changeKey(const ReMu::Pitch* relativeMajorKey, Section* section, pugi::xml_document& doc)
 	{
-		//Use text() rather than set whatever tf
 		pugi::xpath_node_set keys = doc.select_nodes(("/score-partwise/part/measure[@number >= " + std::to_string(section->getStartingMessure()) + " and @number < " + std::to_string(section->getEndingMessure()) + "] /attributes/key/fifths").c_str());
 
 		for (pugi::xpath_node key : keys) //Let key change notes in sections
@@ -30,17 +29,15 @@ namespace ReMu { namespace Evaluator {
 		pugi::xpath_node_set notes = doc.select_nodes(("/score-partwise/part/measure[@number >= " + std::to_string(section->getStartingMessure()) + " and @number < " + std::to_string(section->getEndingMessure()) + "] /note/pitch").c_str());
 		ReMu::TransitionTable* transitionTable = section->getTransitionTable();
 		
-		//TODO: Clean this block up
 		std::vector<SequenceEvaluator*> sequenceBuffers;
-		for (auto& sequence : *transitionTable->getSequenceTransitions())
-			sequenceBuffers.push_back(new SequenceEvaluator(*sequence));
+		for (auto sequence : *transitionTable->getSequenceTransitions())
+			sequenceBuffers.push_back(new SequenceEvaluator(sequence));
 
-		//TODO: Clean this block up
 		std::unordered_map<ReMu::Pitch, ReMu::Pitch, ReMu::Pitch> noteTransitions;
 		for (auto transition : *transitionTable->getNoteTransitions())
 			noteTransitions[transition->first] = transition->second;
 
-		for (int i = 0; i < notes.size(); i++)// pugi::xpath_node node : notes)
+		for (int i = 0; i < notes.size(); i++)
 		{
 			std::pair<std::vector<Pitch>, std::vector<pugi::xml_node>> notesBuffers;
 			

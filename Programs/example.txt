@@ -1,7 +1,7 @@
 "Intro" = 0 - 20;
 
 "Intro":
- Scale: C Major -> D# Mixolydian,
+Scale: C Major -> D Dorian,
 
 /*"Intro" = 1 - 20;
 

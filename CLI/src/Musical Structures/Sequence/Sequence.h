@@ -17,6 +17,17 @@ namespace ReMu {
 		std::vector<std::pair<void*, structType>> structsToMapping;
 		bool hasDurationFlag = false;
 	public:
+		~Sequence()
+		{
+			for (auto buffer : structsToMapping)
+			{
+				delete buffer.first;
+				buffer.first = nullptr;
+			}
+				
+			structsToMapping.clear();
+		}
+
 		inline void pushBack(Pitch& note)
 		{
 			structsToMapping.push_back(std::pair<void*, structType>(new Pitch(note), PITCH));

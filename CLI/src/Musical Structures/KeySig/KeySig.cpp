@@ -39,19 +39,6 @@ namespace ReMu {
 		database[Pitch('C', Accidental::Sharp)] = 7;
 	}
 
-	/*const std::unordered_set<Pitch> KeySig::getNotesSet(const Pitch* rootNote)
-	{
-		std::unordered_set<Pitch> notes;
-
-		for (int i = 0; i < database[*rootNote]; i++)
-			notes.insert(sharpNotes[i]);
-
-		for (int i = 0; i < -database[*rootNote]; i++)
-			notes.insert(flatNotes[i]);
-
-		return notes;
-	}*/
-
 	const std::unordered_map<char, Accidental> KeySig::getNoteMapping(const Pitch* rootNote)
 	{
 		return genNoteMapping(database[*rootNote]);

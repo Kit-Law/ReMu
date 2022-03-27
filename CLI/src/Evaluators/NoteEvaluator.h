@@ -24,7 +24,7 @@ namespace ReMu { namespace Evaluator {
 		{
 			setNote(&notes->front(), resultNote);
 
-			for (int i = 1; i < notes->size(); i++)
+			for (size_t i = 1; i < notes->size(); i++)
 				notes->at(i).parent().parent().remove_child(notes->at(i).parent());
 		}
 

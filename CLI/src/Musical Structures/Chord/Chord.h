@@ -12,7 +12,7 @@ namespace ReMu {
 		std::vector<Note> components;
 		float duration = -1;
 	public:
-		Chord(std::vector<Note> __components) {	components = __components; }
+		Chord(std::vector<Note> __components) : components(__components) { }
 
 		inline void addNote(Note note) 
 		{ 
@@ -20,7 +20,7 @@ namespace ReMu {
 		}
 		inline void removeNote(Note note) 
 		{ 
-			std::remove_if(components.begin(), components.end(), [note](Note& component) { return component == note; });
+			components.erase(std::remove_if(components.begin(), components.end(), [note](Note& component) { return component == note; }));
 		}
 
 		inline const std::vector<Note>* getComponents()

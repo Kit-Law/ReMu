@@ -12,8 +12,7 @@ namespace ReMu {
 
 		TransitionTable transitionTable;
 	public:
-		Section(std::string __label, int start, int end) { label = __label; duration.first = start, duration.second = end; }
-		~Section() {  } //TODO: write this
+		Section(std::string __label, int start, int end) : label(__label), duration(std::pair<int, int>(start, end)) {  }
 
 		inline TransitionTable* getTransitionTable() { return &transitionTable; }
 

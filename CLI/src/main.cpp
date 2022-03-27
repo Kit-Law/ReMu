@@ -1,62 +1,46 @@
-#include <iostream>
+#include "API.h"
 
-#include "antlr4-runtime.h"
-#include ".\Grammar\SheetMusicLexer.h"
-#include ".\Grammar\SheetMusicParser.h"
-#include ".\Grammar\SheetMusicBaseListener.h"
+#include "./Timers/DeltaTime.h"
 
-#include "Listeners/Listener.h"
+#define DEBUG
 
-#include "Evaluators/Evaluator.h"
-
-#include "Tokens/scaleRule.h"
-
-#include "Musical Structures/KeySig/KeySig.h"
-
-#include "pugixml.hpp"
-
-#include "Timers/DeltaTime.h"
-
-int main()//const char* argv[]) 
+#ifdef DEBUG
+int main()
+#else
+int main(const char* argv[])
+#endif // DEBUG
 {
 	Utils::DeltaTime deltaTime;
 	deltaTime.resetDeltaTime();
 
 	std::ifstream stream;
-	//stream.open(argv[1]);
+#ifdef DEBUG
 	stream.open("..//Programs//example.txt");
-	antlr4::ANTLRInputStream input(stream);
-	SheetMusicLexer lexer(&input);
-	antlr4::CommonTokenStream tokens(&lexer);
-	SheetMusicParser parser(&tokens);
+#else
+	stream.open(argv[1]);
+#endif // DEBUG
 
-	ReMu::ScaleDatabase::initalize();
-	ReMu::KeySig::initalize();
+	ReMu::Listener* listener = ReMu::API::parse(stream);
 
-	antlr4::tree::ParseTree* tree = parser.script();
-	ReMu::Listener listener;
+	deltaTime.calDeltaTime();
+	std::cout << "Parsing Time = " << deltaTime.getDeltaTime() << "s" << std::endl;
 
-	try
-	{
-		antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, tree);
+#ifdef DEBUG
+	ReMu::API::eval(listener, "..//MusicXMLFiles//Output//AAAAAA.musicxml", "..//MusicXMLFiles//Output//PatternTest.musicxml");
 
-		deltaTime.calDeltaTime();
-		std::cout << "Parsing Time = " << deltaTime.getDeltaTime() << "s" << std::endl;
+	//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//Chord.musicxml", "..//MusicXMLFiles//Output//Gmin.musicxml");
+	//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//D_Lydian_scale.musicxml");
+	//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Output//AAAAAA.musicxml", "..//MusicXMLFiles//Output//PatternTest.musicxml");
 
-		//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//Chord.musicxml", "..//MusicXMLFiles//Output//Gmin.musicxml");
-		//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//D_Lydian_scale.musicxml");
-		ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Output//C_Major.musicxml", "..//MusicXMLFiles//Output//D#_Mixolydian.musicxml");
+	//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//AAAAAA.musicxml");
+#else
+	ReMu::API::eval(listener, argv[2], argv[3]);
+#endif // DEBUG
+	
+	deltaTime.calDeltaTime();
+	std::cout << "Evaluation Time = " << deltaTime.getDeltaTime() << "s" << std::endl;
 
-		//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//AAAAAA.musicxml");
-
-		deltaTime.calDeltaTime();
-		std::cout << "Evaluation Time = " << deltaTime.getDeltaTime() << "s" << std::endl;
-
-	}
-	catch (std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	delete listener;
 
 	return 0;
 }
