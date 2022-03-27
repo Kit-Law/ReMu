@@ -36,8 +36,8 @@ namespace ReMu {
 
 	inline bool operator==(const Pitch& lhs, const Pitch& rhs)
 	{
-		return lhs.step == rhs.step && lhs.accidental == rhs.accidental;
-	} //TODO: Fix this because this isn't true
+		return lhs.step + lhs.accidental == rhs.step + rhs.accidental;
+	}
 
 	inline std::ostream& operator<<(std::ostream& os, const Pitch& note)
 	{
