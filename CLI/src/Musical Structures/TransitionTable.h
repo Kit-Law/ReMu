@@ -23,7 +23,7 @@ namespace ReMu {
 		std::vector<std::tuple<Sequence, Sequence, int>> sequenceTransitions;
 
 		Pitch relativeMajorKey;
-		std::tuple<const char*, Note, std::string, short> scaleBuffer;
+		std::tuple<const char*, Note, short> scaleBuffer;
 	public:
 		~TransitionTable()
 		{
@@ -36,8 +36,8 @@ namespace ReMu {
 			noteTransitions.clear();
 		}
 
-		void addTransition(Pitch inital, Pitch result, std::string instrument);
-		void addTransition(Sequence inital, Sequence result, int occurance, std::string instrument);
+		void addTransition(Pitch inital, Pitch result);
+		void addTransition(Sequence inital, Sequence result, int occurance);
 
 		std::vector<std::pair<Pitch, Pitch>*>* const getNoteTransitions() { return &noteTransitions; }
 		std::vector<std::tuple<Sequence, Sequence, int>>* const getSequenceTransitions() { return &sequenceTransitions; }
@@ -45,8 +45,8 @@ namespace ReMu {
 		inline const void setRelativeMajorKey(Pitch relativeMajorKey) { this->relativeMajorKey = relativeMajorKey; }
 		inline const Pitch* getRelativeMajorKey() { return &relativeMajorKey; }
 
-		inline void setScaleBuffer(const Note& rootNote, const char* scale, std::string instrument, short line) { scaleBuffer = std::tuple<const char*, Note, std::string, short>(scale, rootNote, instrument, line); }
-		inline std::tuple<const char*, Note, std::string, short> getScaleBuffer() { return scaleBuffer; }
+		inline void setScaleBuffer(const Note& rootNote, const char* scale, short line) { scaleBuffer = std::tuple<const char*, Note, short>(scale, rootNote, line); }
+		inline std::tuple<const char*, Note, short> getScaleBuffer() { return scaleBuffer; }
 
 		friend std::ostream& operator<<(std::ostream& os, const TransitionTable& transitionTable);
 	};

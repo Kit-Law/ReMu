@@ -10,8 +10,8 @@ namespace ReMu { namespace Tokens {
 	class ScaleRule
 	{
 	public:
-		static void evalScaleRule(const Note& initalRootNote, const char* initalScale, const Note& resultRootNote, const char* resultScale, std::string instrument, TransitionTable* transitionTable, short line);
-		static void evalScaleRule(const Note& rootNote, const char* scale, std::string instrument, TransitionTable* transitionTable, short line);
+		static void evalScaleRule(const Note& initalRootNote, const char* initalScale, const Note& resultRootNote, const char* resultScale, TransitionTable* transitionTable, short line);
+		static void evalScaleRule(const Note& rootNote, const char* scale, TransitionTable* transitionTable, short line);
 		
 		static void evalScaleBuffer(const Note& rootNote, const char* scale, TransitionTable* transitionTable);
 	private:

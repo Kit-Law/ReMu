@@ -2,7 +2,7 @@
 
 namespace ReMu {
 
-	void TransitionTable::addTransition(Sequence inital, Sequence result, int occurance, std::string instrument)
+	void TransitionTable::addTransition(Sequence inital, Sequence result, int occurance)
 	{
 		if (inital.calDuration() != result.calDuration())
 			throw UnbalancedTranstion(inital, result);
@@ -10,7 +10,7 @@ namespace ReMu {
 		sequenceTransitions.push_back(std::tuple<Sequence, Sequence, int>(inital, result, occurance));
 	}
 
-	void TransitionTable::addTransition(Pitch inital, Pitch result, std::string instrument)
+	void TransitionTable::addTransition(Pitch inital, Pitch result)
 	{ 
 		noteTransitions.push_back(new std::pair<Pitch, Pitch>(inital, result));
 	}

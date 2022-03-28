@@ -2,7 +2,7 @@
 
 namespace ReMu { namespace Tokens {
 
-	void ScaleRule::evalScaleRule(const Note& initalRootNote, const char* initalScale, const Note& resultRootNote, const char* resultScale, std::string instrument, TransitionTable* transitionTable, short line)
+	void ScaleRule::evalScaleRule(const Note& initalRootNote, const char* initalScale, const Note& resultRootNote, const char* resultScale, TransitionTable* transitionTable, short line)
 	{
 		ScaleInfo* initalScaleInfo = ScaleDatabase::getScale(initalScale, line);
 		ScaleInfo* resultScaleInfo = ScaleDatabase::getScale(resultScale, line);
@@ -15,20 +15,20 @@ namespace ReMu { namespace Tokens {
 			if (initalNotes[i] == resultNotes[i])
 				continue;
 		
-			transitionTable->addTransition(initalNotes[i], resultNotes[i], instrument);
+			transitionTable->addTransition(initalNotes[i], resultNotes[i]);
 		}
 
 		transitionTable->setRelativeMajorKey(resultScaleInfo->getRelativeMajorKey(resultRootNote));
 	}
 	
-	void ScaleRule::evalScaleRule(const Note& rootNote, const char* scale, std::string instrument, TransitionTable* transitionTable, short line)
+	void ScaleRule::evalScaleRule(const Note& rootNote, const char* scale, TransitionTable* transitionTable, short line)
 	{
-		transitionTable->setScaleBuffer(rootNote, scale, instrument, line);
+		transitionTable->setScaleBuffer(rootNote, scale, line);
 	}
 
 	void ScaleRule::evalScaleBuffer(const Note& rootNote, const char* scale, TransitionTable* transitionTable)
 	{
-		evalScaleRule(rootNote, scale, std::get<1>(transitionTable->getScaleBuffer()), std::get<0>(transitionTable->getScaleBuffer()), std::get<2>(transitionTable->getScaleBuffer()), transitionTable, std::get<3>(transitionTable->getScaleBuffer()));
+		evalScaleRule(rootNote, scale, std::get<1>(transitionTable->getScaleBuffer()), std::get<0>(transitionTable->getScaleBuffer()), transitionTable, std::get<2>(transitionTable->getScaleBuffer()));
 	}
 
 	std::vector<Note> ScaleRule::genNotes(ScaleInfo* scaleInfo, const Note& rootNote)

@@ -35,8 +35,8 @@ namespace ReMu { namespace Evaluator {
 			std::cout << "Saving result: " << doc.save_file(output) << std::endl;
 		}
 
-		void changeKey(const ReMu::Pitch* relativeMajorKey, Section* section, pugi::xml_document& doc);
-		void evaluateSection(pugi::xml_document& doc, Section* section);
+		void changeKey(const ReMu::Pitch* relativeMajorKey, Section* section, std::string instrument, pugi::xml_document& doc);
+		void evaluateSection(pugi::xml_document& doc, Section* section, TransitionTable* transitionTable, std::string instrument);
 	};
 
 } }

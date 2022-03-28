@@ -1,7 +1,10 @@
 "Intro" = 0 - 20;
 
 "Intro":
-Occurrence 2: A -> B,
+Piano
+{
+	A -> F#,
+}
 
 /*"Intro" = 1 - 20;
 
