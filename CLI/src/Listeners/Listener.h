@@ -33,7 +33,7 @@ namespace ReMu {
 		Sequence initalSequence;
 		Sequence resultSequence;
 
-		int occurance = 0;
+		int occurance = 1;
 
 		std::map<std::string, Section*> sections;
 		Section* currentSection;
@@ -55,7 +55,7 @@ namespace ReMu {
 		inline void exitInstrument(SheetMusicParser::InstrumentContext* ctx) override { currentIntstument = ""; }
 
 		inline void enterOccurrenceRule(SheetMusicParser::OccurrenceRuleContext* ctx) override { occurance = std::stoi(ctx->NUMBER()->getText()); }
-		inline void exitOccurrenceRule(SheetMusicParser::OccurrenceRuleContext* ctx) override { occurance = 0; }
+		inline void exitOccurrenceRule(SheetMusicParser::OccurrenceRuleContext* ctx) override { occurance = 1; }
 
 		inline void enterTransitionRule(SheetMusicParser::TransitionRuleContext* ctx) override { notes.clear(); initalSequence.getStuctsToMapping()->clear(); resultSequence.getStuctsToMapping()->clear(); }
 

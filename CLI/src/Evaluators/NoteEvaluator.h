@@ -45,12 +45,30 @@ namespace ReMu { namespace Evaluator {
 
 			if (resultNote->getDuration() > 0)
 			{
+				//if notes can fit in devisions then fair enough 
+				//Otherwise change them and thusly change all of the notes in that measure
+				//caculate the correct conversion from devisions and duration to actual note value
+				//proceed
 				note->parent().child("duration").text() = resultNote->getDuration();
 
 				if (resultNote->getDuration() == 1)
-				{
-					//TODO: Fix duration and type :((
-				}
+					note->parent().child("type").text() = "whole";
+				else if (resultNote->getDuration() == 2)
+					note->parent().child("type").text() = "half";
+				else if (resultNote->getDuration() == 4)
+					note->parent().child("type").text() = "quarter";
+				else if (resultNote->getDuration() == 8)
+					note->parent().child("type").text() = "eighth";
+				else if (resultNote->getDuration() == 16)
+					note->parent().child("type").text() = "16th";
+				else if (resultNote->getDuration() == 32)
+					note->parent().child("type").text() = "32nd";
+				else if (resultNote->getDuration() == 64)
+					note->parent().child("type").text() = "64th";
+				else if (resultNote->getDuration() == 128)
+					note->parent().child("type").text() = "128th";
+				else if (resultNote->getDuration() == 256)
+					note->parent().child("type").text() = "256th";
 			}
 		}
 	};

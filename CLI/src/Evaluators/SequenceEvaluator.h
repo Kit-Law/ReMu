@@ -18,6 +18,7 @@ namespace ReMu { namespace Evaluator {
 		std::tuple<Sequence, Sequence, int> sequenceTransitions;
 		std::vector<pugi::xml_node>* nodeBuffer;
 		int nextNode = 0;
+		int occurance = 1;
 	public:
 		SequenceEvaluator(std::tuple<Sequence, Sequence, int> __sequenceTransitions)
 		{
@@ -82,8 +83,17 @@ namespace ReMu { namespace Evaluator {
 
 			if (nextNode == std::get<0>(sequenceTransitions).size())
 			{
-				colapse();
-				nextNode = 0;
+				if (occurance == std::get<2>(sequenceTransitions))
+				{
+					colapse();
+					nextNode = 0;
+					occurance = 1;
+				}
+				else
+				{
+					occurance++;
+					nextNode = 0;
+				}
 			}		
 		}
 	private:

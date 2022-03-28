@@ -26,7 +26,7 @@ int main(const char* argv[])
 	std::cout << "Parsing Time = " << deltaTime.getDeltaTime() << "s" << std::endl;
 
 #ifdef DEBUG
-	ReMu::API::eval(listener, "..//MusicXMLFiles//Output//AAAAAA.musicxml", "..//MusicXMLFiles//Output//PatternTest.musicxml");
+	ReMu::API::eval(listener, "..//MusicXMLFiles//Output//AAAAAA.musicxml", "..//MusicXMLFiles//Output//occurTest.musicxml");
 
 	//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//Chord.musicxml", "..//MusicXMLFiles//Output//Gmin.musicxml");
 	//ReMu::Evaluator::Evaluator(listener.getSections(), "..//MusicXMLFiles//Input//D_Major_Scale.musicxml", "..//MusicXMLFiles//Output//D_Lydian_scale.musicxml");

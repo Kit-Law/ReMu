@@ -103,7 +103,7 @@ namespace ReMu {
 		if (ctx->NUMBER(0) != nullptr)
 		{
 			if (sequence->hasDuration())
-				notes.back().setDuration(std::stof(ctx->NUMBER(0)->toString()));
+				notes.back().setDuration(std::stoi(ctx->NUMBER(0)->toString()));
 			else
 				throw IncompleteTranstionRythem(ctx->start->getLine());
 		}
