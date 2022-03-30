@@ -161,11 +161,19 @@
     <ClInclude Include="src\MemLeak.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Grammar\SheetMusic.interp" />
     <None Include="src\Grammar\SheetMusic.tokens" />
     <None Include="src\Grammar\SheetMusicLexer.interp" />
     <None Include="src\Grammar\SheetMusicLexer.tokens" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CLI.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
