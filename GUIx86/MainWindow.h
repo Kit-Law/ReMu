@@ -18,6 +18,11 @@
 #include "SyntaxHighlighter.h"
 #include "ProjectWindow.h"
 
+#include "ScoreViewer.h"
+
+#include <QGraphicsScene>
+#include <QGraphicsView>
+
 //#include "API.h"
 
 QT_BEGIN_NAMESPACE
@@ -31,16 +36,20 @@ private:
     Ui::MainWindow* ui;
     SyntaxHighlighter* highlighter;
 
-    QTabWidget* tabWidget;
+    ScoreViewer* inputScore;
+    ScoreViewer* outputScore;
 
     std::string projectName;
     std::string projectFile;
     std::string inputFile;
     std::string outputFile;
-    std::string exportFile;
+    std::string inputScoreLoc;
+    std::string outputScoreLoc;
 public:
     MainWindow(QWidget *parent = Q_NULLPTR);
     ~MainWindow();
+
+    void updateSizes();
 private slots:
     void setupEditor();
 
@@ -52,7 +61,7 @@ private slots:
     void on_actionSave_triggered();
 };
 
-void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* exportFile, const char* project);
+void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, const char* project);
 
 inline pugi::xml_document openDoc(const char* input) //TODO: Remove this and use the one in CLI
 {

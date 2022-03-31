@@ -24,12 +24,13 @@ private:
     std::string* projectName;
     std::string* inputFile;
     std::string* outputFile;
-    std::string* exportFile;
+    std::string* inputScore;
+    std::string* outputScore;
 
-    void (*save) (std::string*, std::string*, std::string*, std::string*, std::string*, const char*);
+    void (*save) (std::string*, std::string*, std::string*, std::string*, std::string*, std::string*, const char*);
 public:
     ProjectWindow(QWidget* parent, std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile,
-        void (*save) (std::string*, std::string*, std::string*, std::string*, std::string*, const char*));
+        void (*save) (std::string*, std::string*, std::string*, std::string*, std::string*, std::string*, const char*));
     ~ProjectWindow();
 private slots:
     void on_actionChange_Input_triggered();

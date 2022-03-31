@@ -97,9 +97,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ScoreViewer.cpp" />
     <ClCompile Include="ProjectWindow.cpp" />
     <ClCompile Include="SyntaxHighlighter.cpp" />
     <QtRcc Include="mainwindow.qrc" />
+    <QtUic Include="ImageViewer.ui" />
     <QtUic Include="mainwindow.ui" />
     <QtMoc Include="MainWindow.h" />
     <ClCompile Include="MainWindow.cpp" />
@@ -116,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ProjectWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="ScoreViewer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

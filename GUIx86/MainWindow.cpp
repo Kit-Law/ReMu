@@ -6,6 +6,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    inputScore = new ScoreViewer();
+    outputScore = new ScoreViewer();
+
+    ui->tabWidget->removeTab(0);
+    ui->tabWidget->addTab(inputScore, "Input");
+    ui->tabWidget->addTab(outputScore, "Output");
+
     setupEditor();
 }
 
@@ -37,10 +44,17 @@ void MainWindow::on_actionOpen_triggered()
     projectName = doc.child("ProjectName").text().as_string();
     inputFile = doc.child("InputFile").text().as_string();
     outputFile = doc.child("OutputFile").text().as_string();
-    exportFile = doc.child("ExportFile").text().as_string();
+    inputScoreLoc = doc.child("InputScore").text().as_string();
+    outputScoreLoc = doc.child("OutputScore").text().as_string();
     ui->textEdit->setText(doc.child("Program").text().as_string());
 
     closeDoc(doc, projectFile.c_str());
+
+    std::string options = "\"" + inputFile + "\" -o \"" + inputScoreLoc + "\\temp\"";
+    ShellExecuteA(NULL, "open", "D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe", options.c_str(), NULL, 0);
+
+    //inputScore->loadFile(QString::fromStdString(inputScoreLoc));
+    inputScore->loadScores(QString::fromStdString(inputScoreLoc));
 }
 
 void MainWindow::on_actionChange_Input_triggered()
@@ -57,7 +71,7 @@ void MainWindow::on_actionChange_Output_triggered()
     outputFile = filename.toStdString().c_str();
 }
 
-void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* exportFile, const char* project)
+void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, const char* project)
 {
     try
     {
@@ -66,7 +80,8 @@ void updateProjectDoc(std::string* projectFile, std::string* projectName, std::s
         doc.child("ProjectName").text().set(projectName->c_str());
         doc.child("InputFile").text().set(inputFile->c_str());
         doc.child("OutputFile").text().set(outputFile->c_str());
-        doc.child("ExportFile").text().set(exportFile->c_str());
+        doc.child("InputScore").text().set(inputScore->c_str());
+        doc.child("OutputScore").text().set(outputScore->c_str());
         doc.child("Program").text().set(project);
 
         closeDoc(doc, projectFile->c_str());
@@ -77,10 +92,13 @@ void updateProjectDoc(std::string* projectFile, std::string* projectName, std::s
 
 void MainWindow::on_actionSave_triggered()
 {
-    updateProjectDoc(&projectFile, &projectName, &inputFile, &outputFile, &exportFile, ui->textEdit->toPlainText().toStdString().c_str());
+    updateProjectDoc(&projectFile, &projectName, &inputFile, &outputFile, &inputScoreLoc, &outputScoreLoc, ui->textEdit->toPlainText().toStdString().c_str());
 
-    ShellExecuteA(NULL, "open", "U:\\3rd\ Yr\ Project\\ReMu\\Debug\\CLI.exe", projectFile.c_str(), NULL, 0);
+    std::string pojectFileOption = '\"' + projectFile + '\"';
+    ShellExecuteA(NULL, "open", "U:\\3rd\ Yr\ Project\\ReMu\\Debug\\CLI.exe", pojectFileOption.c_str(), NULL, 0);
 
-    std::string options = "\"" + outputFile + "\" -o \"" + exportFile +"\"";
+    std::string options = "\"" + outputFile + "\" -o \"" + outputScoreLoc +"\\temp.png\"";
     ShellExecuteA(NULL, "open", "D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe", options.c_str(), NULL, 0);
+
+    outputScore->loadScores(QString::fromStdString(outputScoreLoc));
 }

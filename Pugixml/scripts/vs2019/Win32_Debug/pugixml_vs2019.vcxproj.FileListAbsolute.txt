@@ -1,3 +1,3 @@
 U:\3rd Yr Project\TEst\ReMu\PUGIXML\scripts\vs2019\Win32_Debug\pugixml.lib
-U:\3rd Yr Project\ReMu\PUGIXML\scripts\vs2019\Win32_Debug\pugixml.lib
 U:\3rd Yr Project\ReMu-c23c4d60414137c696a455ad838868246f20173e\PUGIXML\scripts\vs2019\Win32_Debug\pugixml.lib
+U:\3rd Yr Project\ReMu\PUGIXML\scripts\vs2019\Win32_Debug\pugixml.lib

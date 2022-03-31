@@ -28,7 +28,7 @@ int main(int argc, const char* argv[])
 	stream.open(argv[1]);
 #endif // CLI
 #ifdef XML
-	pugi::xml_document doc = ReMu::Evaluator::Evaluator::openDoc("..//MusicXMLFiles//Output//Project.xml");//argv[1]);
+	pugi::xml_document doc = ReMu::Evaluator::Evaluator::openDoc(argv[1]);
 
 	const char* inputFile = doc.child("InputFile").text().as_string();
 	const char* outputFile = doc.child("OutputFile").text().as_string();

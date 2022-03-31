@@ -2,7 +2,7 @@
 #include "ui_projectwindow.h"
 
 ProjectWindow::ProjectWindow(QWidget* parent, std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile,
-        void (*save) (std::string*, std::string*, std::string*, std::string*, std::string*, const char*))
+        void (*save) (std::string*, std::string*, std::string*, std::string*, std::string*, std::string*, const char*))
     : QDialog(parent)
     , ui(new Ui::ProjectWindow)
 {
@@ -51,12 +51,13 @@ void ProjectWindow::on_actionCreate()
     *projectFile = outputDir + "/Project.xml";
     *inputFile = ui->input->text().toStdString();
     *outputFile = outputDir + "/Output.musicxml";
-    *exportFile = outputDir + "/Output.pdf";
+    *inputScore = outputDir + "/Input.png";
+    *outputScore = outputDir + "/Output.pdf";
 
     const char* program = "";
 
     setupProjectDoc(&outputDir);
-    (*save)(projectFile, projectName, inputFile, outputFile, exportFile, program);
+    (*save)(projectFile, projectName, inputFile, outputFile, inputScore, outputScore, program);
     
     on_actionClose();
 }
@@ -75,7 +76,8 @@ void ProjectWindow::setupProjectDoc(std::string* outputDir)
     doc.append_child("ProjectName");
     doc.append_child("InputFile");
     doc.append_child("OutputFile");
-    doc.append_child("ExportFile");
+    doc.append_child("InputScore");
+    doc.append_child("OutputScore");
     doc.append_child("Program");
 
     doc.save_file((*outputDir + "/Project.xml").c_str());
