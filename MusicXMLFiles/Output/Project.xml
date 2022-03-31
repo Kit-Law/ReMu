@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ProjectName>ReMu-Test-Project</ProjectName>
+<InputFile>U:/3rd Yr Project/ReMu/MusicXMLFiles/Output/AAAAAA.musicxml</InputFile>
+<OutputFile>U:/3rd Yr Project/ReMu-Test-Project/Output.MUSICXML</OutputFile>
+<Program>"Intro" = 0 - 20;
+
+"Intro":
+Piano
+{
+	A -> F#,
+}</Program>

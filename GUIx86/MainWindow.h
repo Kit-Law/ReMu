@@ -3,16 +3,22 @@
 #include <QMainWindow>
 #include <QFileDialog>
 
-#include <filesystem>
+#include <direct.h>
 #include <fstream>  
 #include <sstream>
 #include <regex>
+
+#include <iostream>
+#include <windows.h>
 
 #include "ui_mainwindow.h"
 
 #include "pugixml.hpp"
 
 #include "SyntaxHighlighter.h"
+#include "ProjectWindow.h"
+
+//#include "API.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,6 +37,7 @@ private:
     std::string projectFile;
     std::string inputFile;
     std::string outputFile;
+    std::string exportFile;
 public:
     MainWindow(QWidget *parent = Q_NULLPTR);
     ~MainWindow();
@@ -42,17 +49,20 @@ private slots:
 
     void on_actionChange_Input_triggered();
     void on_actionChange_Output_triggered();
-    void on_actionSave();
+    void on_actionSave_triggered();
 };
 
-void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, const char* project);
+void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* exportFile, const char* project);
 
 inline pugi::xml_document openDoc(const char* input) //TODO: Remove this and use the one in CLI
 {
+    if (std::string(input) == "")
+        throw std::exception("No file selected");
+
     pugi::xml_document doc;
     pugi::xml_parse_result result = doc.load_file(input);
     if (!result)
-        throw;
+        throw std::exception("File not found");
 
     return doc;
 }

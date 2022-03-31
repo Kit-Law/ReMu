@@ -23,7 +23,7 @@ void MainWindow::setupEditor()
 
 void MainWindow::on_actionNew_triggered() //TODO: Fix mem leak
 {
-    //new ProjectWindow(this, &projectFile, &projectName, &inputFile, &outputFile, &updateProjectDoc);
+    new ProjectWindow(this, &projectFile, &projectName, &inputFile, &outputFile, &updateProjectDoc);
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -37,6 +37,7 @@ void MainWindow::on_actionOpen_triggered()
     projectName = doc.child("ProjectName").text().as_string();
     inputFile = doc.child("InputFile").text().as_string();
     outputFile = doc.child("OutputFile").text().as_string();
+    exportFile = doc.child("ExportFile").text().as_string();
     ui->textEdit->setText(doc.child("Program").text().as_string());
 
     closeDoc(doc, projectFile.c_str());
@@ -56,22 +57,30 @@ void MainWindow::on_actionChange_Output_triggered()
     outputFile = filename.toStdString().c_str();
 }
 
-void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, const char* project)
+void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* exportFile, const char* project)
 {
-    pugi::xml_document doc = openDoc(projectFile->c_str());
+    try
+    {
+        pugi::xml_document doc = openDoc(projectFile->c_str());
 
-    doc.child("ProjectName").text().set(projectName->c_str());
-    doc.child("InputFile").text().set(inputFile->c_str());
-    doc.child("OutputFile").text().set(outputFile->c_str());
-    doc.child("Program").text().set(project);
+        doc.child("ProjectName").text().set(projectName->c_str());
+        doc.child("InputFile").text().set(inputFile->c_str());
+        doc.child("OutputFile").text().set(outputFile->c_str());
+        doc.child("ExportFile").text().set(exportFile->c_str());
+        doc.child("Program").text().set(project);
 
-    closeDoc(doc, projectFile->c_str());
+        closeDoc(doc, projectFile->c_str());
+    }
+    catch(std::exception& e)
+    { }
 }
 
-void MainWindow::on_actionSave()
+void MainWindow::on_actionSave_triggered()
 {
-    updateProjectDoc(&projectFile, &projectName, &inputFile, &outputFile, ui->textEdit->toPlainText().toStdString().c_str());
+    updateProjectDoc(&projectFile, &projectName, &inputFile, &outputFile, &exportFile, ui->textEdit->toPlainText().toStdString().c_str());
 
-    //ReMu::Listener* listener = ReMu::API::parse(ss);
-    //ReMu::API::eval(listener, inputFile, outputFile);
+    ShellExecuteA(NULL, "open", "U:\\3rd\ Yr\ Project\\ReMu\\Debug\\CLI.exe", projectFile.c_str(), NULL, 0);
+
+    std::string options = "\"" + outputFile + "\" -o \"" + exportFile +"\"";
+    ShellExecuteA(NULL, "open", "D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe", options.c_str(), NULL, 0);
 }
