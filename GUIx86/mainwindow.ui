@@ -41,6 +41,31 @@ QWidget:item:selected
     background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #5E838F, stop: 1 #6e9ba7);
 }
 
+QTabWidget
+{
+	border: 0px solid c6c6c6;
+}
+
+QTabbar
+{
+	background: transparent;
+}
+
+QTabBar::tab
+{
+	background: #3c3f41;
+    color: #c6c6c6;
+	border: 1px solid #c6c6c6;
+	min-width: 60px;
+	padding: 2px;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover
+{
+	background: white;
+	color: #3c3f41;
+}
+
 QLabel
 {
     background-color: #b1b1b1;
@@ -108,10 +133,10 @@ QTextEdit
 QSplitter::handle
 {
     background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #F5A573, stop: 1 #d27f5c);
-    border: 1px solid #afb1b3;
+    border: 0px solid #afb1b3;
 }
 
-QScrollBar:vertical
+QScrollBar
 {
     background: #6E738F;
     width: 10px;
@@ -119,7 +144,7 @@ QScrollBar:vertical
     border: 1px solid #afb1b3;
 }
 
-QScrollBar::handle:vertical
+QScrollBar::handle
 {
     background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #F5A573, stop: 1 #d27f5c);
     border: 1px solid #afb1b3;
@@ -127,26 +152,36 @@ QScrollBar::handle:vertical
     border-radius: 2px;
 }
 
-QScrollBar::right-arrow:vertical, QScrollBar::left-arrow:vertical
+QScrollBar::right-arrow, QScrollBar::left-arrow
 {
     border: none;
     background: none;
     color: none;
 }
 
-QScrollBar::add-line:vertical {
+QScrollBar::add-line {
     border: none;
     background: none;
 }
 
-QScrollBar::sub-line:vertical {
+QScrollBar::sub-line {
     border: none;
     background: none;
 }
 
-QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
+QScrollBar::add-page, QScrollBar::sub-page
 {
     background: none;
+}
+
+QToolButton
+{
+	background: #d27f5c;
+}
+
+QToolButton:Disabled
+{
+	background: #9c6048;
 }
 </string>
   </property>
@@ -169,11 +204,14 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
     </property>
     <item row="0" column="0">
      <widget class="QSplitter" name="splitter">
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
       <property name="handleWidth">
-       <number>16</number>
+       <number>22</number>
       </property>
       <widget class="QTabWidget" name="tabWidget">
        <property name="sizePolicy">
@@ -194,7 +232,13 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
          <height>300</height>
         </size>
        </property>
-       <widget class="QWidget" name="tabWidgetPage1" native="true">
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <widget class="QWidget" name="tabWidgetPage1">
         <attribute name="title">
          <string/>
         </attribute>

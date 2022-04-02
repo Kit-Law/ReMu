@@ -7,163 +7,119 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>302</height>
+    <height>411</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>401</width>
-     <height>301</height>
-    </rect>
+  <property name="styleSheet">
+   <string notr="true">QWidget
+{
+    background-color: #ffffff;
+}
+
+QLabel
+{
+    background-color: #ffffff;
+}
+
+QPushButton
+{
+	background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #B4D2E7, stop: 1 #94C5CC);
+	border: 1px solid #afb1b3;
+}
+
+QHBoxLayout
+{
+	color: #3E2A35;
+}
+
+QScrollBar
+{
+    background: #6E738F;
+    width: 10px;
+    padding: 0px 0px 0px 0px;
+    border: 1px solid #afb1b3;
+}
+
+QScrollBar::handle
+{
+    background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #F5A573, stop: 1 #d27f5c);
+    border: 1px solid #afb1b3;
+    min-height: 20px;
+    border-radius: 2px;
+}
+
+QScrollBar::right-arrow, QScrollBar::left-arrow
+{
+    border: none;
+    background: none;
+    color: none;
+}
+
+QScrollBar::add-line {
+    border: none;
+    background: none;
+}
+
+QScrollBar::sub-line {
+    border: none;
+    background: none;
+}
+
+QScrollBar::add-page, QScrollBar::sub-page
+{
+    background: none;
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="spacing">
+    <number>0</number>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QScrollArea" name="scrollArea">
-      <property name="widgetResizable">
-       <bool>true</bool>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAsNeeded</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOn</enum>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>398</width>
+        <height>409</height>
+       </rect>
       </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>397</width>
-         <height>264</height>
-        </rect>
-       </property>
-      </widget>
      </widget>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetFixedSize</enum>
-      </property>
-      <property name="leftMargin">
-       <number>120</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>120</number>
-      </property>
-      <item>
-       <widget class="QPushButton" name="prevPage">
-        <property name="minimumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="baseSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>&lt;</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="nextPage">
-        <property name="minimumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="baseSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="zoomIn">
-        <property name="minimumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="baseSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>+</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="zoomOut">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="baseSize">
-         <size>
-          <width>25</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>-</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-   </layout>
-  </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

@@ -5,13 +5,35 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    inputScore = new ScoreViewer();
-    outputScore = new ScoreViewer();
+    
+    outputScore = new ScoreViewer(prevPage, nextPage, zoomIn, zoomOut);
+    inputScore = new ScoreViewer(prevPage, nextPage, zoomIn, zoomOut);
 
     ui->tabWidget->removeTab(0);
     ui->tabWidget->addTab(inputScore, "Input");
     ui->tabWidget->addTab(outputScore, "Output");
+
+    QHBoxLayout* buttons = new QHBoxLayout();
+    buttons->setSpacing(4);
+    buttons->setContentsMargins(2, 0, 2, 0);
+
+    connect(run, SIGNAL(clicked()), this, SLOT(runParser()));
+
+    run->setEnabled(false);
+    run->setText("Run");
+    run->setIcon(QIcon("..\\GUIx86\\Resources\\run.png"));
+    prevPage->setIcon(QIcon("..\\GUIx86\\Resources\\back.png"));
+    nextPage->setIcon(QIcon("..\\GUIx86\\Resources\\next.png"));
+    zoomIn->setIcon(QIcon("..\\GUIx86\\Resources\\zoom_in.png"));
+    zoomOut->setIcon(QIcon("..\\GUIx86\\Resources\\zoom_out.png"));
+
+    buttons->addWidget(run);
+    buttons->addStretch();
+    buttons->addWidget(prevPage);
+    buttons->addWidget(nextPage);
+    buttons->addWidget(zoomIn);
+    buttons->addWidget(zoomOut);
+    ui->splitter->handle(1)->setLayout(buttons);
 
     setupEditor();
 }
@@ -31,6 +53,8 @@ void MainWindow::setupEditor()
 void MainWindow::on_actionNew_triggered() //TODO: Fix mem leak
 {
     new ProjectWindow(this, &projectFile, &projectName, &inputFile, &outputFile, &updateProjectDoc);
+
+    run->setEnabled(true);
 }
 
 void MainWindow::on_actionOpen_triggered()
@@ -53,8 +77,10 @@ void MainWindow::on_actionOpen_triggered()
     std::string options = "\"" + inputFile + "\" -o \"" + inputScoreLoc + "\\temp\"";
     ShellExecuteA(NULL, "open", "D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe", options.c_str(), NULL, 0);
 
-    //inputScore->loadFile(QString::fromStdString(inputScoreLoc));
+    outputScore->loadScores(QString::fromStdString(outputScoreLoc));
     inputScore->loadScores(QString::fromStdString(inputScoreLoc));
+
+    run->setEnabled(true);
 }
 
 void MainWindow::on_actionChange_Input_triggered()
@@ -93,6 +119,11 @@ void updateProjectDoc(std::string* projectFile, std::string* projectName, std::s
 void MainWindow::on_actionSave_triggered()
 {
     updateProjectDoc(&projectFile, &projectName, &inputFile, &outputFile, &inputScoreLoc, &outputScoreLoc, ui->textEdit->toPlainText().toStdString().c_str());
+}
+
+void MainWindow::runParser()
+{
+    on_actionSave_triggered();;
 
     std::string pojectFileOption = '\"' + projectFile + '\"';
     ShellExecuteA(NULL, "open", "U:\\3rd\ Yr\ Project\\ReMu\\Debug\\CLI.exe", pojectFileOption.c_str(), NULL, 0);

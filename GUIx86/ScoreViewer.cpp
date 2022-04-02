@@ -2,7 +2,7 @@
 
 #include "ScoreViewer.h"
 
-ScoreViewer::ScoreViewer()
+ScoreViewer::ScoreViewer(QToolButton* prevPageToolButton, QToolButton* nextPageToolButton, QToolButton* zoomInToolButton, QToolButton* zoomOutToolButton)
     : ui(new Ui::ImageViewer)
 {
     ui->setupUi(this);
@@ -15,6 +15,11 @@ ScoreViewer::ScoreViewer()
 
     scrollArea->setWidget(score);
 
+    this->prevPageToolButton = prevPageToolButton;
+    this->nextPageToolButton = nextPageToolButton;
+    this->zoomInToolButton = zoomInToolButton;
+    this->zoomOutToolButton = zoomOutToolButton;
+
     createActions();
     updateActions();
 
@@ -24,7 +29,7 @@ ScoreViewer::ScoreViewer()
 void ScoreViewer::loadScores(const QString& dir)
 {
     QImageReader reader;
-    scores.clear();
+    scores->clear();
 
     for (int i = 1; true; i++)
     {
@@ -35,10 +40,10 @@ void ScoreViewer::loadScores(const QString& dir)
         if (newImage.isNull())
             break;
 
-        scores.push_back(newImage);
+        scores->push_back(newImage);
     }
 
-    if (scores.size() == 0)
+    if (scores->size() == 0)
         return;
 
     currectScore = 0;
@@ -49,7 +54,7 @@ void ScoreViewer::loadScores(const QString& dir)
 
 void ScoreViewer::setScore(const size_t i)
 {
-    score->setPixmap(QPixmap::fromImage(scores[i]));
+    score->setPixmap(QPixmap::fromImage(scores->at(i)));
     scaleFactor = 1.0;
 
     score->adjustSize();
@@ -89,16 +94,25 @@ void ScoreViewer::normalSize()
 
 void ScoreViewer::createActions()
 {
-    connect(ui->nextPage, SIGNAL(clicked()), this, SLOT(nextPage()));
-    connect(ui->prevPage, SIGNAL(clicked()), this, SLOT(prevPage()));
-    connect(ui->zoomIn, SIGNAL(clicked()), this, SLOT(zoomIn()));
-    connect(ui->zoomOut, SIGNAL(clicked()), this, SLOT(zoomOut()));
+    nextPageToolButton->disconnect();
+    prevPageToolButton->disconnect();
+    zoomInToolButton->disconnect();
+    zoomOutToolButton->disconnect();
+
+    connect(nextPageToolButton, SIGNAL(clicked()), this, SLOT(nextPage()));
+    connect(prevPageToolButton, SIGNAL(clicked()), this, SLOT(prevPage()));
+    connect(zoomInToolButton, SIGNAL(clicked()), this, SLOT(zoomIn()));
+    connect(zoomOutToolButton, SIGNAL(clicked()), this, SLOT(zoomOut()));
+
+    updateActions();
 }
 
 void ScoreViewer::updateActions()
 {
-    ui->prevPage->setEnabled(currectScore != 0);
-    ui->nextPage->setEnabled(scores.size() != 0 && currectScore != scores.size() - 1);
+    prevPageToolButton->setEnabled(currectScore != 0);
+    nextPageToolButton->setEnabled(scores->size() != 0 && currectScore != scores->size() - 1);
+    zoomInToolButton->setEnabled(scores->size() != 0);
+    zoomOutToolButton->setEnabled(scores->size() != 0);
 }
 
 void ScoreViewer::scaleImage(double factor)

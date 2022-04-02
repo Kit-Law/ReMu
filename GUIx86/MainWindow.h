@@ -2,6 +2,8 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
+#include <QToolButton>
+#include <QTabBar>
 
 #include <direct.h>
 #include <fstream>  
@@ -39,6 +41,12 @@ private:
     ScoreViewer* inputScore;
     ScoreViewer* outputScore;
 
+    QToolButton* run = new QToolButton();
+    QToolButton* prevPage = new QToolButton();
+    QToolButton* nextPage = new QToolButton();
+    QToolButton* zoomIn = new QToolButton();
+    QToolButton* zoomOut = new QToolButton();
+
     std::string projectName;
     std::string projectFile;
     std::string inputFile;
@@ -59,6 +67,14 @@ private slots:
     void on_actionChange_Input_triggered();
     void on_actionChange_Output_triggered();
     void on_actionSave_triggered();
+
+    void on_tabWidget_currentChanged(int index)
+    {
+        if (index == 0) inputScore->createActions();
+        else if (index == 1) outputScore->createActions();
+    }
+
+    void runParser();
 };
 
 void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, const char* project);

@@ -3,6 +3,7 @@
 
 #include <QScrollArea>
 #include <QImage>
+#include <QToolButton>
 
 #include <vector>
 
@@ -28,28 +29,32 @@ private:
     QLabel* score;
     QScrollArea* scrollArea;
 
-    std::vector<QImage> scores;
+    std::vector<QImage>* scores = new std::vector<QImage>();
     size_t currectScore = 0;
     double scaleFactor = 1.0;
 
     QAction* zoomInAct;
     QAction* zoomOutAct;
     QAction* normalSizeAct;
+
+    QToolButton* prevPageToolButton;
+    QToolButton* nextPageToolButton;
+    QToolButton* zoomInToolButton;
+    QToolButton* zoomOutToolButton;
 public:
-    ScoreViewer();
+    ScoreViewer(QToolButton* prevPageToolButton, QToolButton* nextPageToolButton, QToolButton* zoomInToolButton, QToolButton* zoomOutToolButton);
     void loadScores(const QString& dir);
 
+    void createActions();
 private slots:
     void nextPage();
     void prevPage();
     void zoomIn();
     void zoomOut();
     void normalSize();
-
 private:
     void setScore(const size_t i);
 
-    void createActions();
     void updateActions();
     
     void scaleImage(double factor);
