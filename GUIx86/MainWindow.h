@@ -25,6 +25,8 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 
+#include <sys/stat.h>
+
 //#include "API.h"
 
 QT_BEGIN_NAMESPACE

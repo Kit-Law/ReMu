@@ -125,11 +125,39 @@ void MainWindow::runParser()
 {
     on_actionSave_triggered();;
 
-    std::string pojectFileOption = '\"' + projectFile + '\"';
-    ShellExecuteA(NULL, "open", "U:\\3rd\ Yr\ Project\\ReMu\\Debug\\CLI.exe", pojectFileOption.c_str(), NULL, 0);
+    std::string options = '\"' + projectFile + '\"';
+    std::wstring stemp = std::wstring(options.begin(), options.end());
 
-    std::string options = "\"" + outputFile + "\" -o \"" + outputScoreLoc +"\\temp.png\"";
-    ShellExecuteA(NULL, "open", "D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe", options.c_str(), NULL, 0);
+    SHELLEXECUTEINFO ShExecInfo = { 0 };
+    ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+    ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
+    ShExecInfo.hwnd = NULL;
+    ShExecInfo.lpVerb = NULL;
+    ShExecInfo.lpFile = L"U:\\3rd\ Yr\ Project\\ReMu\\Debug\\CLI.exe";
+    ShExecInfo.lpParameters = stemp.c_str();
+    ShExecInfo.lpDirectory = NULL;
+    ShExecInfo.nShow = SW_HIDE;
+    ShExecInfo.hInstApp = NULL;
+    ShellExecuteEx(&ShExecInfo);
+    WaitForSingleObject(ShExecInfo.hProcess, INFINITE);
+    CloseHandle(ShExecInfo.hProcess);
+
+    options = "\"" + outputFile + "\" -o \"" + outputScoreLoc +"\\temp.png\"";
+    stemp = std::wstring(options.begin(), options.end());
+ 
+    ShExecInfo = { 0 };
+    ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+    ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
+    ShExecInfo.hwnd = NULL;
+    ShExecInfo.lpVerb = NULL;
+    ShExecInfo.lpFile = L"D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe";
+    ShExecInfo.lpParameters = stemp.c_str();
+    ShExecInfo.lpDirectory = NULL;
+    ShExecInfo.nShow = SW_HIDE;
+    ShExecInfo.hInstApp = NULL;
+    ShellExecuteEx(&ShExecInfo);
+    WaitForSingleObject(ShExecInfo.hProcess, INFINITE);
+    CloseHandle(ShExecInfo.hProcess);
 
     outputScore->loadScores(QString::fromStdString(outputScoreLoc));
 }
