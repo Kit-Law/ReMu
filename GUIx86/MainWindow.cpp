@@ -9,9 +9,13 @@ MainWindow::MainWindow(QWidget *parent)
     outputScore = new ScoreViewer(prevPage, nextPage, zoomIn, zoomOut);
     inputScore = new ScoreViewer(prevPage, nextPage, zoomIn, zoomOut);
 
+    logText->setReadOnly(true);
+    logText->setFontPointSize(12);
+
     ui->tabWidget->removeTab(0);
     ui->tabWidget->addTab(inputScore, "Input");
     ui->tabWidget->addTab(outputScore, "Output");
+    ui->tabWidget->addTab(logText, "Log");
 
     QHBoxLayout* buttons = new QHBoxLayout();
     buttons->setSpacing(4);
@@ -48,11 +52,13 @@ void MainWindow::setupEditor()
     highlighter = new SyntaxHighlighter(ui->textEdit->document());
 
     ui->textEdit->setTextColor(Qt::white);
+    ui->textEdit->setTabStopDistance(20);
+    ui->textEdit->setFontPointSize(textSize);
 }
 
 void MainWindow::on_actionNew_triggered() //TODO: Fix mem leak
 {
-    new ProjectWindow(this, &projectFile, &projectName, &inputFile, &outputFile, &updateProjectDoc);
+    new ProjectWindow(this, &projectFile, &projectName, &inputFile, &outputFile, &logFile, &updateProjectDoc);
 
     run->setEnabled(true);
 }
@@ -70,6 +76,7 @@ void MainWindow::on_actionOpen_triggered()
     outputFile = doc.child("OutputFile").text().as_string();
     inputScoreLoc = doc.child("InputScore").text().as_string();
     outputScoreLoc = doc.child("OutputScore").text().as_string();
+    logFile = doc.child("LogFile").text().as_string();
     ui->textEdit->setText(doc.child("Program").text().as_string());
 
     closeDoc(doc, projectFile.c_str());
@@ -97,7 +104,7 @@ void MainWindow::on_actionChange_Output_triggered()
     outputFile = filename.toStdString().c_str();
 }
 
-void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, const char* project)
+void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, std::string* logFile, const char* project)
 {
     try
     {
@@ -108,6 +115,7 @@ void updateProjectDoc(std::string* projectFile, std::string* projectName, std::s
         doc.child("OutputFile").text().set(outputFile->c_str());
         doc.child("InputScore").text().set(inputScore->c_str());
         doc.child("OutputScore").text().set(outputScore->c_str());
+        doc.child("LogFile").text().set(logFile->c_str());
         doc.child("Program").text().set(project);
 
         closeDoc(doc, projectFile->c_str());
@@ -118,11 +126,13 @@ void updateProjectDoc(std::string* projectFile, std::string* projectName, std::s
 
 void MainWindow::on_actionSave_triggered()
 {
-    updateProjectDoc(&projectFile, &projectName, &inputFile, &outputFile, &inputScoreLoc, &outputScoreLoc, ui->textEdit->toPlainText().toStdString().c_str());
+    updateProjectDoc(&projectFile, &projectName, &inputFile, &outputFile, &inputScoreLoc, &outputScoreLoc, &logFile, ui->textEdit->toPlainText().toStdString().c_str());
 }
 
 void MainWindow::runParser()
 {
+    outputScore->loadingBar();
+
     on_actionSave_triggered();;
 
     std::string options = '\"' + projectFile + '\"';
@@ -142,9 +152,13 @@ void MainWindow::runParser()
     WaitForSingleObject(ShExecInfo.hProcess, INFINITE);
     CloseHandle(ShExecInfo.hProcess);
 
-    options = "\"" + outputFile + "\" -o \"" + outputScoreLoc +"\\temp.png\"";
+    QFile logQFile(logFile.c_str());
+    if (logQFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        logText->setText(QString(logQFile.readAll()));
+
+    options = "\"" + outputFile + "\" -o \"" + outputScoreLoc + "\\temp.png\"";
     stemp = std::wstring(options.begin(), options.end());
- 
+
     ShExecInfo = { 0 };
     ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
     ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
@@ -160,4 +174,17 @@ void MainWindow::runParser()
     CloseHandle(ShExecInfo.hProcess);
 
     outputScore->loadScores(QString::fromStdString(outputScoreLoc));
+
+    /*WorkerThread* workerThread = new WorkerThread();
+    connect(workerThread, &WorkerThread::resultReady, this, &MainWindow::runParserThread);
+    connect(workerThread, &WorkerThread::finished, workerThread, &QObject::deleteLater);
+    workerThread->start();*/
+
+    if (ui->tabWidget->currentIndex() == 0) inputScore->createActions();
+    else if (ui->tabWidget->currentIndex() == 1) outputScore->createActions();
+}
+
+void MainWindow::runParserThread()
+{
+    
 }

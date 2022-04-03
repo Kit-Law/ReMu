@@ -14,6 +14,8 @@
 
 #include "..\Exceptions\ParseExceptions.h"
 
+#include "..\Logger\Logger.h"
+
 #include <string>
 
 namespace ReMu {
@@ -78,9 +80,11 @@ namespace ReMu {
 
 		void exitScript(SheetMusicParser::ScriptContext* ctx) override 
 		{ 
-			std::cout << std::string("==================================") << std::endl;
+			Logger logger;
+
+			logger << std::string("==================================") << std::endl;
 			for(auto const& section : sections) 
-				std::cout << *section.second << std::endl << "==================================" << std::endl; 
+				logger << *section.second << std::endl << "==================================" << std::endl; 
 		}
 
 		inline std::map<std::string, Section*> getSections() { return sections; }

@@ -166,6 +166,7 @@
     <ClCompile Include="src\Grammar\SheetMusicLexer.cpp" />
     <ClCompile Include="src\Grammar\SheetMusicListener.cpp" />
     <ClCompile Include="src\Grammar\SheetMusicParser.cpp" />
+    <ClCompile Include="src\Logger\Logger.cpp" />
     <ClCompile Include="src\Musical Structures\Chord\Symbol.cpp" />
     <ClCompile Include="src\Musical Structures\KeySig\KeySig.cpp" />
     <ClCompile Include="src\Musical Structures\Note\Accidental.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="src\Grammar\SheetMusicListener.h" />
     <ClInclude Include="src\Grammar\SheetMusicParser.h" />
     <ClInclude Include="src\Listeners\Listener.h" />
+    <ClInclude Include="src\Logger\Logger.h" />
     <ClInclude Include="src\MemLeak.h" />
     <ClInclude Include="src\Musical Structures\Chord\Addition.h" />
     <ClInclude Include="src\Musical Structures\Chord\Chord.h" />

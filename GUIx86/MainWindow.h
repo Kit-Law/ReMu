@@ -22,6 +22,8 @@
 
 #include "ScoreViewer.h"
 
+#include ".\WorkerThread.h"
+
 #include <QGraphicsScene>
 #include <QGraphicsView>
 
@@ -43,6 +45,8 @@ private:
     ScoreViewer* inputScore;
     ScoreViewer* outputScore;
 
+    QTextEdit* logText = new QTextEdit();
+
     QToolButton* run = new QToolButton();
     QToolButton* prevPage = new QToolButton();
     QToolButton* nextPage = new QToolButton();
@@ -55,6 +59,9 @@ private:
     std::string outputFile;
     std::string inputScoreLoc;
     std::string outputScoreLoc;
+    std::string logFile;
+
+    int textSize = 13;
 public:
     MainWindow(QWidget *parent = Q_NULLPTR);
     ~MainWindow();
@@ -77,9 +84,10 @@ private slots:
     }
 
     void runParser();
+    void runParserThread();
 };
 
-void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, const char* project);
+void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, std::string* logFile, const char* project);
 
 inline pugi::xml_document openDoc(const char* input) //TODO: Remove this and use the one in CLI
 {

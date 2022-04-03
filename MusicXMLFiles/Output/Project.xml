@@ -4,10 +4,11 @@
 <OutputFile>U:/3rd Yr Project/ReMu-Test-Project/Output.musicxml</OutputFile>
 <InputScore>U:/3rd Yr Project/ReMu-Test-Project/InputScore</InputScore>
 <OutputScore>U:/3rd Yr Project/ReMu-Test-Project/OutputScore</OutputScore>
+<LogFile>U:/3rd Yr Project/ReMu-Test-Project/Log.log</LogFile>
 <Program>"Intro" = 0 - 20;
 
 "Intro":
 Piano
 {
-	A -&gt; F#,
+	A -&gt;
 }</Program>

@@ -49,7 +49,7 @@ void ScoreViewer::loadScores(const QString& dir)
     currectScore = 0;
     setScore(currectScore);
 
-    updateActions();
+    //updateActions();
 }
 
 void ScoreViewer::setScore(const size_t i)
@@ -132,4 +132,12 @@ void ScoreViewer::adjustScrollBar(QScrollBar* scrollBar, double factor)
 {
     scrollBar->setValue(int(factor * scrollBar->value()
         + ((factor - 1) * scrollBar->pageStep() / 2)));
+}
+
+void ScoreViewer::loadingBar()
+{
+    QMovie* movie = new QMovie("..\\GUIx86\\Resources\\loading-spinning.gif");
+    score->setMovie(movie);
+    score->show();
+    movie->start();
 }

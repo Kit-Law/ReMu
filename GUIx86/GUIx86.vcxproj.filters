@@ -60,6 +60,9 @@
     <QtMoc Include="ScoreViewer.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="WorkerThread.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="projectWindow.ui">

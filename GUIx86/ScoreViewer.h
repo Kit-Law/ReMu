@@ -4,6 +4,7 @@
 #include <QScrollArea>
 #include <QImage>
 #include <QToolButton>
+#include <QMovie>
 
 #include <vector>
 
@@ -46,6 +47,8 @@ public:
     void loadScores(const QString& dir);
 
     void createActions();
+
+    void loadingBar();
 private slots:
     void nextPage();
     void prevPage();

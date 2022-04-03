@@ -7,6 +7,8 @@
 #include "./NoteEvaluator.h"
 #include "./SequenceEvaluator.h"
 
+#include "../Logger/Logger.h"
+
 #include "pugixml.hpp"
 
 #include <map>
@@ -32,7 +34,7 @@ namespace ReMu { namespace Evaluator {
 
 		inline static void closeDoc(pugi::xml_document &doc, const char* output)
 		{
-			std::cout << "Saving result: " << doc.save_file(output) << std::endl;
+			Logger() << "Saving result: " << doc.save_file(output) << std::endl;
 		}
 	private:
 		void changeKey(const ReMu::Pitch* relativeMajorKey, Section* section, std::string instrument, pugi::xml_document& doc);
