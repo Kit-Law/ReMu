@@ -61,7 +61,7 @@ private:
     std::string outputScoreLoc;
     std::string logFile;
 
-    int textSize = 13;
+    int textSize = 11;
 public:
     MainWindow(QWidget *parent = Q_NULLPTR);
     ~MainWindow();

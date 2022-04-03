@@ -27,8 +27,13 @@ private:
     QVector<HighlightingRule> highlightingRules;
 
     QTextCharFormat sectionDefFormat;
+    QTextCharFormat wordFormat;
     QTextCharFormat messureFormat;
     QTextCharFormat transitionFormat;
     QTextCharFormat noteFormat;
+    QTextCharFormat scaleFormat;
+    QTextCharFormat commandFormat;
+    QTextCharFormat qualityFormat;
     QTextCharFormat commentFormat;
+    QTextCharFormat instrumentFormat;
 };

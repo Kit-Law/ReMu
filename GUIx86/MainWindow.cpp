@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     inputScore = new ScoreViewer(prevPage, nextPage, zoomIn, zoomOut);
 
     logText->setReadOnly(true);
-    logText->setFontPointSize(12);
+    logText->setFontPointSize(11);
 
     ui->tabWidget->removeTab(0);
     ui->tabWidget->addTab(inputScore, "Input");
