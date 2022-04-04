@@ -18,16 +18,7 @@
 {
     color: #4d4d4d;
     background-color: #3c3f41;
-}
-
-QWidget:focus
-{
-    border: transparent;
-}
-
-QWidget::selected
-{
-    border: 1px solid #afb1b3;
+    boader: transparent;
 }
 
 QWidget:item:hover
@@ -135,7 +126,7 @@ QSplitter::handle
     border: 0px solid #afb1b3;
 }
 
-QScrollBar
+QScrollBar:vertical
 {
     background: #6E738F;
     width: 10px;
@@ -143,7 +134,7 @@ QScrollBar
     border: 1px solid #afb1b3;
 }
 
-QScrollBar::handle
+QScrollBar::handle:vertical
 {
     background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #F5A573, stop: 1 #d27f5c);
     border: 1px solid #afb1b3;
@@ -151,24 +142,24 @@ QScrollBar::handle
     border-radius: 2px;
 }
 
-QScrollBar::right-arrow, QScrollBar::left-arrow
+QScrollBar::right-arrow:vertical, QScrollBar::left-arrow:vertical
 {
     border: none;
     background: none;
     color: none;
 }
 
-QScrollBar::add-line {
+QScrollBar::add-line:vertical {
     border: none;
     background: none;
 }
 
-QScrollBar::sub-line {
+QScrollBar::sub-line:vertical {
     border: none;
     background: none;
 }
 
-QScrollBar::add-page, QScrollBar::sub-page
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
 {
     background: none;
 }

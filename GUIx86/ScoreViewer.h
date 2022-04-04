@@ -31,6 +31,7 @@ private:
     QScrollArea* scrollArea;
 
     std::vector<QImage>* scores = new std::vector<QImage>();
+    QPixmap scorePixMap;
     size_t currectScore = 0;
     double scaleFactor = 1.0;
 
@@ -47,6 +48,7 @@ public:
     void loadScores(const QString& dir);
 
     void createActions();
+    void updateActions();
 
     void loadingBar();
 private slots:
@@ -54,11 +56,8 @@ private slots:
     void prevPage();
     void zoomIn();
     void zoomOut();
-    void normalSize();
 private:
     void setScore(const size_t i);
-
-    void updateActions();
     
     void scaleImage(double factor);
     void adjustScrollBar(QScrollBar* scrollBar, double factor);

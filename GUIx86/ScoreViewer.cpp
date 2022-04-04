@@ -22,8 +22,6 @@ ScoreViewer::ScoreViewer(QToolButton* prevPageToolButton, QToolButton* nextPageT
 
     createActions();
     updateActions();
-
-    //resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
 }
 
 void ScoreViewer::loadScores(const QString& dir)
@@ -54,8 +52,9 @@ void ScoreViewer::loadScores(const QString& dir)
 
 void ScoreViewer::setScore(const size_t i)
 {
-    score->setPixmap(QPixmap::fromImage(scores->at(i)));
-    scaleFactor = 1.0;
+    scorePixMap = QPixmap::fromImage(scores->at(i));
+    scaleFactor = 0.3;
+    score->setPixmap(scorePixMap.scaled(scaleFactor * scorePixMap.width(), scaleFactor * scorePixMap.height(), Qt::KeepAspectRatio));
 
     score->adjustSize();
 }
@@ -78,18 +77,12 @@ void ScoreViewer::prevPage()
 
 void ScoreViewer::zoomIn()
 {
-    scaleImage(1.25);
+    scaleImage(1.1);
 }
 
 void ScoreViewer::zoomOut()
 {
-    scaleImage(0.8);
-}
-
-void ScoreViewer::normalSize()
-{
-    score->adjustSize();
-    scaleFactor = 1.0;
+    scaleImage(0.9);
 }
 
 void ScoreViewer::createActions()
@@ -119,7 +112,7 @@ void ScoreViewer::scaleImage(double factor)
 {
     Q_ASSERT(score->pixmap());
     scaleFactor *= factor;
-    score->resize(scaleFactor * score->pixmap()->size());
+    score->setPixmap(scorePixMap.scaled(scaleFactor * scorePixMap.width(), scaleFactor * scorePixMap.height(), Qt::KeepAspectRatio));
 
     adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
     adjustScrollBar(scrollArea->verticalScrollBar(), factor);

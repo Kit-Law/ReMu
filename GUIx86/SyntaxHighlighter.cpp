@@ -11,7 +11,7 @@ SyntaxHighlighter::SyntaxHighlighter(QTextDocument* parent)
 
     sectionDefFormat.setFontWeight(QFont::Bold);
     sectionDefFormat.setForeground(QColor(QRgb(qRgb(242, 161, 80))));
-    rule.pattern = QRegularExpression(QStringLiteral("\"[A-Za-z\n( )]*\""));
+    rule.pattern = QRegularExpression(QStringLiteral("\"[A-Za-z ]*\""));
     rule.format = sectionDefFormat;
     highlightingRules.append(rule);
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>411</height>
+    <width>442</width>
+    <height>290</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -27,6 +27,7 @@
 
 QLabel
 {
+	color: black;
     background-color: #ffffff;
 }
 
@@ -41,7 +42,7 @@ QHBoxLayout
 	color: #3E2A35;
 }
 
-QScrollBar
+QScrollBar:vertical
 {
     background: #6E738F;
     width: 10px;
@@ -49,11 +50,27 @@ QScrollBar
     border: 1px solid #afb1b3;
 }
 
-QScrollBar::handle
+QScrollBar::handle:vertical
 {
     background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #F5A573, stop: 1 #d27f5c);
     border: 1px solid #afb1b3;
     min-height: 20px;
+    border-radius: 2px;
+}
+
+QScrollBar:horizontal
+{
+    background: #6E738F;
+    height: 10px;
+    padding: 0px 0px 0px 0px;
+    border: 1px solid #afb1b3;
+}
+
+QScrollBar::handle:horizontal
+{
+	background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #F5A573, stop: 1 #d27f5c);
+    border: 1px solid #afb1b3;
+    min-width: 20px;
     border-radius: 2px;
 }
 
@@ -102,7 +119,7 @@ QScrollBar::add-page, QScrollBar::sub-page
       <enum>Qt::ScrollBarAsNeeded</enum>
      </property>
      <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOn</enum>
+      <enum>Qt::ScrollBarAsNeeded</enum>
      </property>
      <property name="widgetResizable">
       <bool>true</bool>
@@ -112,8 +129,8 @@ QScrollBar::add-page, QScrollBar::sub-page
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>398</width>
-        <height>409</height>
+        <width>440</width>
+        <height>288</height>
        </rect>
       </property>
      </widget>

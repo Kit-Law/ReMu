@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->menubar->addMenu(menu);
 
     ui->tabWidget->tabBar()->hide();
+    ui->textEdit->hide();
 }
 
 MainWindow::~MainWindow()
@@ -68,6 +69,7 @@ void MainWindow::setupTabWidget()
     run->setEnabled(true);
 
     ui->tabWidget->tabBar()->show();
+    ui->textEdit->show();
 }
 
 void MainWindow::setupEditor()
@@ -113,13 +115,23 @@ void MainWindow::on_actionChange_Input_triggered()
     QString filename = QFileDialog::getOpenFileName(this, tr("Select Input File"), "", tr("Music XML (*.MUSICXML)"));
     inputFile = filename.toStdString().c_str();
 
+    if (inputFile.empty())
+        return;
+
     on_actionSave_triggered();
+
+    rmdir(inputScoreLoc.c_str());
+    mkdir(inputScoreLoc.c_str());
+
     refresh();
 }
 
 void MainWindow::on_actionChange_Output_triggered()
 {
     QString filename = QFileDialog::getSaveFileName(this, tr("Export"), "", tr("PDF (*.pdf)"));
+
+    if (filename.isEmpty())
+        return;
 
     std::string options = "\"" + outputFile + "\" -o \"" + filename.toStdString().c_str() + "\"";
     ShellExecuteA(NULL, "open", "D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe", options.c_str(), NULL, 0);
@@ -189,11 +201,13 @@ void MainWindow::refresh()
     {
         outputScore->loadScores(QString::fromStdString(outputScoreLoc));
         inputScore->loadScores(QString::fromStdString(inputScoreLoc));
+        inputScore->updateActions();
     }
     else
     {
         inputScore->loadScores(QString::fromStdString(outputScoreLoc));
         outputScore->loadScores(QString::fromStdString(inputScoreLoc));
+        outputScore->updateActions();
     }
 
     run->setEnabled(true);
