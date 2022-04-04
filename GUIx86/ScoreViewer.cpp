@@ -8,7 +8,7 @@ ScoreViewer::ScoreViewer(QToolButton* prevPageToolButton, QToolButton* nextPageT
     ui->setupUi(this);
 
     scrollArea = ui->scrollArea;
-    score = new QLabel();
+    score = new QLabel("[Score needs to be generated]");
 
     score->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     score->setScaledContents(true);

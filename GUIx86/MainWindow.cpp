@@ -5,7 +5,33 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    
+
+    setWindowIcon(QIcon("..\\GUIx86\\Resources\\Logo.png"));
+    QPixmap logoPixMap("..\\GUIx86\\Resources\\ReMu-Full-Logo.png");
+    ui->logo->setPixmap(logoPixMap.scaled(400, 400, Qt::KeepAspectRatio));
+
+    connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(on_actionNew_triggered()));
+    connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(on_actionOpen_triggered()));
+
+    setupEditor();
+
+    QMenu* menu = ui->textEdit->createStandardContextMenu();
+    menu->setTitle("Edit");
+    ui->menubar->addMenu(menu);
+
+    ui->tabWidget->tabBar()->hide();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::setupTabWidget()
+{
+    if (tabsetUp) return;
+    tabsetUp = true;
+
     outputScore = new ScoreViewer(prevPage, nextPage, zoomIn, zoomOut);
     inputScore = new ScoreViewer(prevPage, nextPage, zoomIn, zoomOut);
 
@@ -39,12 +65,9 @@ MainWindow::MainWindow(QWidget *parent)
     buttons->addWidget(zoomOut);
     ui->splitter->handle(1)->setLayout(buttons);
 
-    setupEditor();
-}
+    run->setEnabled(true);
 
-MainWindow::~MainWindow()
-{
-    delete ui;
+    ui->tabWidget->tabBar()->show();
 }
 
 void MainWindow::setupEditor()
@@ -58,50 +81,48 @@ void MainWindow::setupEditor()
 
 void MainWindow::on_actionNew_triggered() //TODO: Fix mem leak
 {
-    new ProjectWindow(this, &projectFile, &projectName, &inputFile, &outputFile, &logFile, &updateProjectDoc);
-
-    run->setEnabled(true);
+    ProjectWindow* projectWindow = new ProjectWindow(this, &projectFile, &projectName, &inputFile, &outputFile, &inputScoreLoc, &outputScoreLoc, &logFile, &updateProjectDoc);
+    projectWindow->setAttribute(Qt::WA_DeleteOnClose);
+    connect(projectWindow, SIGNAL(destroyed(QObject*)), this, SLOT(refresh()));
 }
 
 void MainWindow::on_actionOpen_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(this, tr("Select Project File"), "", tr("XML (*.XML)"));
-
     projectFile = filename.toStdString().c_str();
 
-    pugi::xml_document doc = openDoc(projectFile.c_str());
+    refresh();
+}
 
-    projectName = doc.child("ProjectName").text().as_string();
-    inputFile = doc.child("InputFile").text().as_string();
-    outputFile = doc.child("OutputFile").text().as_string();
-    inputScoreLoc = doc.child("InputScore").text().as_string();
-    outputScoreLoc = doc.child("OutputScore").text().as_string();
-    logFile = doc.child("LogFile").text().as_string();
-    ui->textEdit->setText(doc.child("Program").text().as_string());
+void MainWindow::on_actionSave_As_triggered()
+{
+    if (projectFile == "")
+        return;
 
-    closeDoc(doc, projectFile.c_str());
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Open Directory"), "", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 
-    std::string options = "\"" + inputFile + "\" -o \"" + inputScoreLoc + "\\temp\"";
-    ShellExecuteA(NULL, "open", "D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe", options.c_str(), NULL, 0);
+    if (dir.isEmpty())
+        return;
 
-    outputScore->loadScores(QString::fromStdString(outputScoreLoc));
-    inputScore->loadScores(QString::fromStdString(inputScoreLoc));
-
-    run->setEnabled(true);
+    std::filesystem::copy(projectFile.substr(0, projectFile.length() - 11), dir.toStdString() + "/" + projectName);
+    //change all the elements
 }
 
 void MainWindow::on_actionChange_Input_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(this, tr("Select Input File"), "", tr("Music XML (*.MUSICXML)"));
-
     inputFile = filename.toStdString().c_str();
+
+    on_actionSave_triggered();
+    refresh();
 }
 
 void MainWindow::on_actionChange_Output_triggered()
 {
-    QString filename = QFileDialog::getSaveFileName(this, tr("Set Output File"), "", tr("Music XML (*.MUSICXML)"));
+    QString filename = QFileDialog::getSaveFileName(this, tr("Export"), "", tr("PDF (*.pdf)"));
 
-    outputFile = filename.toStdString().c_str();
+    std::string options = "\"" + outputFile + "\" -o \"" + filename.toStdString().c_str() + "\"";
+    ShellExecuteA(NULL, "open", "D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe", options.c_str(), NULL, 0);
 }
 
 void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, std::string* logFile, const char* project)
@@ -127,6 +148,55 @@ void updateProjectDoc(std::string* projectFile, std::string* projectName, std::s
 void MainWindow::on_actionSave_triggered()
 {
     updateProjectDoc(&projectFile, &projectName, &inputFile, &outputFile, &inputScoreLoc, &outputScoreLoc, &logFile, ui->textEdit->toPlainText().toStdString().c_str());
+}
+
+void MainWindow::refresh()
+{
+    if (projectFile.empty())
+        return;
+
+    setupTabWidget();
+
+    pugi::xml_document doc = openDoc(projectFile.c_str());
+
+    projectName = doc.child("ProjectName").text().as_string();
+    inputFile = doc.child("InputFile").text().as_string();
+    outputFile = doc.child("OutputFile").text().as_string();
+    inputScoreLoc = doc.child("InputScore").text().as_string();
+    outputScoreLoc = doc.child("OutputScore").text().as_string();
+    logFile = doc.child("LogFile").text().as_string();
+    ui->textEdit->setText(doc.child("Program").text().as_string());
+
+    closeDoc(doc, projectFile.c_str());
+
+    std::string options = "\"" + inputFile + "\" -o \"" + inputScoreLoc + "\\temp.png\"";
+    std::wstring stemp = std::wstring(options.begin(), options.end());
+    SHELLEXECUTEINFO ShExecInfo = { 0 };
+    ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+    ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
+    ShExecInfo.hwnd = NULL;
+    ShExecInfo.lpVerb = NULL;
+    ShExecInfo.lpFile = L"D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe";
+    ShExecInfo.lpParameters = stemp.c_str();
+    ShExecInfo.lpDirectory = NULL;
+    ShExecInfo.nShow = SW_HIDE;
+    ShExecInfo.hInstApp = NULL;
+    ShellExecuteEx(&ShExecInfo);
+    WaitForSingleObject(ShExecInfo.hProcess, INFINITE);
+    CloseHandle(ShExecInfo.hProcess);
+
+    if (ui->tabWidget->currentIndex() == 0)
+    {
+        outputScore->loadScores(QString::fromStdString(outputScoreLoc));
+        inputScore->loadScores(QString::fromStdString(inputScoreLoc));
+    }
+    else
+    {
+        inputScore->loadScores(QString::fromStdString(outputScoreLoc));
+        outputScore->loadScores(QString::fromStdString(inputScoreLoc));
+    }
+
+    run->setEnabled(true);
 }
 
 void MainWindow::runParser()

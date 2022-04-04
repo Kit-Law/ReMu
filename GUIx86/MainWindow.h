@@ -5,6 +5,8 @@
 #include <QToolButton>
 #include <QTabBar>
 
+#include <filesystem>
+
 #include <direct.h>
 #include <fstream>  
 #include <sstream>
@@ -62,6 +64,8 @@ private:
     std::string logFile;
 
     int textSize = 11;
+
+    bool tabsetUp = false;
 public:
     MainWindow(QWidget *parent = Q_NULLPTR);
     ~MainWindow();
@@ -76,6 +80,7 @@ private slots:
     void on_actionChange_Input_triggered();
     void on_actionChange_Output_triggered();
     void on_actionSave_triggered();
+    void on_actionSave_As_triggered();
 
     void on_tabWidget_currentChanged(int index)
     {
@@ -83,8 +88,12 @@ private slots:
         else if (index == 1) outputScore->createActions();
     }
 
+    void refresh();
+
     void runParser();
     void runParserThread();
+
+    void setupTabWidget();
 };
 
 void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, std::string* logFile, const char* project);

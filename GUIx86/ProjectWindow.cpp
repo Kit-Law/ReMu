@@ -1,7 +1,7 @@
 #include "ProjectWindow.h"
 #include "ui_projectwindow.h"
 
-ProjectWindow::ProjectWindow(QWidget* parent, std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* logFile,
+ProjectWindow::ProjectWindow(QWidget* parent, std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, std::string* logFile,
         void (*save) (std::string*, std::string*, std::string*, std::string*, std::string*, std::string*, std::string*, const char*))
     : QDialog(parent)
     , ui(new Ui::ProjectWindow)
@@ -17,11 +17,18 @@ ProjectWindow::ProjectWindow(QWidget* parent, std::string* projectFile, std::str
     this->projectName = projectName;
     this->inputFile = inputFile;
     this->outputFile = outputFile;
+    this->inputScore = inputScore;
+    this->outputScore = outputScore;
     this->logFile = logFile;
 
     this->save = save;
 
     this->show();
+
+    ui->input->setReadOnly(true);
+    ui->output->setReadOnly(true);
+
+    ui->create->setEnabled(false);
 }
 
 ProjectWindow::~ProjectWindow()
@@ -34,6 +41,8 @@ void ProjectWindow::on_actionChange_Input_triggered()
     QString filename = QFileDialog::getOpenFileName((QWidget*) this->parent(), tr("Select Input File"), "", tr("Music XML (*.MUSICXML)"));
 
     ui->input->setText(filename.toStdString().c_str());
+
+    ui->create->setEnabled(!ui->input->text().isEmpty() && !ui->output->text().isEmpty());
 }
 
 void ProjectWindow::on_actionChange_Output_triggered()
@@ -41,6 +50,8 @@ void ProjectWindow::on_actionChange_Output_triggered()
     QString filename = QFileDialog::getExistingDirectory(this, tr("Open Directory"), "", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
 
     ui->output->setText(filename.toStdString().c_str());
+
+    ui->create->setEnabled(!ui->input->text().isEmpty() && !ui->output->text().isEmpty());
 }
 
 void ProjectWindow::on_actionCreate()
@@ -60,7 +71,7 @@ void ProjectWindow::on_actionCreate()
 
     setupProjectDoc(&outputDir);
     (*save)(projectFile, projectName, inputFile, outputFile, inputScore, outputScore, logFile, program);
-    
+
     on_actionClose();
 }
 
@@ -72,6 +83,11 @@ void ProjectWindow::on_actionClose()
 void ProjectWindow::setupProjectDoc(std::string* outputDir)
 {
     _mkdir(outputDir->c_str());
+
+    std::string dirs = *outputDir + "\\InputScore";
+    _mkdir(dirs.c_str());
+    dirs = *outputDir + "\\OutputScore";
+    _mkdir(dirs.c_str());
 
     pugi::xml_document doc;
 

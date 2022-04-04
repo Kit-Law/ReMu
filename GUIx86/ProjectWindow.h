@@ -30,7 +30,7 @@ private:
 
     void (*save) (std::string*, std::string*, std::string*, std::string*, std::string*, std::string*, std::string*, const char*);
 public:
-    ProjectWindow(QWidget* parent, std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* logFile,
+    ProjectWindow(QWidget* parent, std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, std::string* logFile,
         void (*save) (std::string*, std::string*, std::string*, std::string*, std::string*, std::string*, std::string*, const char*));
     ~ProjectWindow();
 private slots:
