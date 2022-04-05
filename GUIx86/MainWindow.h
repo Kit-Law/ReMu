@@ -31,6 +31,8 @@
 
 #include <sys/stat.h>
 
+#include ".\configdialog.h"
+
 //#include "API.h"
 
 QT_BEGIN_NAMESPACE
@@ -43,6 +45,8 @@ class MainWindow : public QMainWindow
 private:
     Ui::MainWindow* ui;
     SyntaxHighlighter* highlighter;
+
+    ConfigDialog* configDialog;
 
     ScoreViewer* inputScore;
     ScoreViewer* outputScore;
@@ -64,6 +68,9 @@ private:
     std::string logFile;
 
     int textSize = 11;
+    std::string themeFile = "..\\GUIx86\\Resources\\Dark.css";
+    std::string cli = "U:\\3rd\ Yr\ Project\\ReMu\\Debug\\CLI.exe";
+    std::string musescore = "D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe";
 
     bool tabsetUp = false;
 public:
@@ -94,6 +101,9 @@ private slots:
     void runParserThread();
 
     void setupTabWidget();
+
+    void openSettingsDialog();
+    void closeSettingsDialog();
 };
 
 void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, std::string* logFile, const char* project);

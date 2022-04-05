@@ -98,6 +98,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="configdialog.cpp" />
+    <ClCompile Include="pages.cpp" />
     <ClCompile Include="ScoreViewer.cpp" />
     <ClCompile Include="ProjectWindow.cpp" />
     <ClCompile Include="SyntaxHighlighter.cpp" />
@@ -125,6 +127,12 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="WorkerThread.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="configdialog.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pages.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

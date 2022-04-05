@@ -15,12 +15,19 @@ MainWindow::MainWindow(QWidget *parent)
 
     setupEditor();
 
-    QMenu* menu = ui->textEdit->createStandardContextMenu();
-    menu->setTitle("Edit");
-    ui->menubar->addMenu(menu);
+    QMenu* editMenu = ui->textEdit->createStandardContextMenu();
+    editMenu->setTitle("Edit");
+    ui->menubar->addMenu(editMenu);
+
+    QAction* settingsMenu = new QAction("Settings");
+    connect(settingsMenu, SIGNAL(triggered()), this, SLOT(openSettingsDialog()));
+    ui->menubar->addAction(settingsMenu);
 
     ui->tabWidget->tabBar()->hide();
     ui->textEdit->hide();
+
+    configDialog = new ConfigDialog(&textSize, &themeFile, &cli, &musescore);
+    connect(configDialog, &ConfigDialog::updateValues, this, &MainWindow::closeSettingsDialog);
 }
 
 MainWindow::~MainWindow()
@@ -84,6 +91,12 @@ void MainWindow::setupEditor()
 void MainWindow::on_actionNew_triggered() //TODO: Fix mem leak
 {
     ProjectWindow* projectWindow = new ProjectWindow(this, &projectFile, &projectName, &inputFile, &outputFile, &inputScoreLoc, &outputScoreLoc, &logFile, &updateProjectDoc);
+
+    QFile file(themeFile.c_str());
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    projectWindow->setStyleSheet(styleSheet);
+
     projectWindow->setAttribute(Qt::WA_DeleteOnClose);
     connect(projectWindow, SIGNAL(destroyed(QObject*)), this, SLOT(refresh()));
 }
@@ -134,7 +147,7 @@ void MainWindow::on_actionChange_Output_triggered()
         return;
 
     std::string options = "\"" + outputFile + "\" -o \"" + filename.toStdString().c_str() + "\"";
-    ShellExecuteA(NULL, "open", "D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe", options.c_str(), NULL, 0);
+    ShellExecuteA(NULL, "open", musescore.c_str(), options.c_str(), NULL, 0);
 }
 
 void updateProjectDoc(std::string* projectFile, std::string* projectName, std::string* inputFile, std::string* outputFile, std::string* inputScore, std::string* outputScore, std::string* logFile, const char* project)
@@ -183,12 +196,14 @@ void MainWindow::refresh()
 
     std::string options = "\"" + inputFile + "\" -o \"" + inputScoreLoc + "\\temp.png\"";
     std::wstring stemp = std::wstring(options.begin(), options.end());
+    std::wstring musescoreWStr = std::wstring(musescore.begin(), musescore.end());
+
     SHELLEXECUTEINFO ShExecInfo = { 0 };
     ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
     ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
     ShExecInfo.hwnd = NULL;
     ShExecInfo.lpVerb = NULL;
-    ShExecInfo.lpFile = L"D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe";
+    ShExecInfo.lpFile = musescoreWStr.c_str();
     ShExecInfo.lpParameters = stemp.c_str();
     ShExecInfo.lpDirectory = NULL;
     ShExecInfo.nShow = SW_HIDE;
@@ -221,13 +236,14 @@ void MainWindow::runParser()
 
     std::string options = '\"' + projectFile + '\"';
     std::wstring stemp = std::wstring(options.begin(), options.end());
+    std::wstring cliWStr = std::wstring(cli.begin(), cli.end());
 
     SHELLEXECUTEINFO ShExecInfo = { 0 };
     ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
     ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
     ShExecInfo.hwnd = NULL;
     ShExecInfo.lpVerb = NULL;
-    ShExecInfo.lpFile = L"U:\\3rd\ Yr\ Project\\ReMu\\Debug\\CLI.exe";
+    ShExecInfo.lpFile = cliWStr.c_str();
     ShExecInfo.lpParameters = stemp.c_str();
     ShExecInfo.lpDirectory = NULL;
     ShExecInfo.nShow = SW_HIDE;
@@ -242,13 +258,14 @@ void MainWindow::runParser()
 
     options = "\"" + outputFile + "\" -o \"" + outputScoreLoc + "\\temp.png\"";
     stemp = std::wstring(options.begin(), options.end());
+    std::wstring musescoreWStr = std::wstring(musescore.begin(), musescore.end());
 
     ShExecInfo = { 0 };
     ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
     ShExecInfo.fMask = SEE_MASK_NOCLOSEPROCESS;
     ShExecInfo.hwnd = NULL;
     ShExecInfo.lpVerb = NULL;
-    ShExecInfo.lpFile = L"D:\\Program\ Files\\MuseScore\ 3\\bin\\MuseScore3.exe";
+    ShExecInfo.lpFile = musescoreWStr.c_str();
     ShExecInfo.lpParameters = stemp.c_str();
     ShExecInfo.lpDirectory = NULL;
     ShExecInfo.nShow = SW_HIDE;
@@ -271,4 +288,20 @@ void MainWindow::runParser()
 void MainWindow::runParserThread()
 {
     
+}
+
+void MainWindow::openSettingsDialog()
+{
+    configDialog->exec();
+}
+
+void MainWindow::closeSettingsDialog()
+{
+    ui->textEdit->setFontPointSize(textSize);
+
+    QFile file(themeFile.c_str());
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+
+    setStyleSheet(styleSheet);
 }

@@ -49,6 +49,12 @@
     <ClCompile Include="ScoreViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="configdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pages.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="SyntaxHighlighter.h">
@@ -63,6 +69,9 @@
     <QtMoc Include="WorkerThread.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="configdialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="projectWindow.ui">
@@ -71,5 +80,10 @@
     <QtUic Include="ImageViewer.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pages.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
