@@ -38,7 +38,7 @@ namespace Transitions
 
 				for (auto transition : *section.second->getTransitionTable()->getSequenceTransitions())
 				{
-					Assert::AreEqual(std::get<0>(transition).getStuctsToMapping()->at(0) == std::get<1>(transition).getStuctsToMapping()->at(0), true);
+					Assert::AreEqual(*(ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first) == *(ReMu::Chord*)(std::get<1>(transition).getStuctsToMapping()->at(0).first), true);
 				}
 			}
 		}
@@ -53,7 +53,7 @@ namespace Transitions
 
 				for (auto transition : *section.second->getTransitionTable()->getSequenceTransitions())
 				{
-					Assert::AreEqual(std::get<0>(transition).getStuctsToMapping()->at(0) == std::get<1>(transition).getStuctsToMapping()->at(0), true);
+					Assert::AreEqual(*(ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first) == *(ReMu::Note*)(std::get<1>(transition).getStuctsToMapping()->at(0).first), true);
 				}
 			}
 		}

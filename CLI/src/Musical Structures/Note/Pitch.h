@@ -6,6 +6,9 @@
 
 namespace ReMu {
 
+	class Pitch;
+	Pitch mapNumToNote(int, int);
+
 	class Pitch
 	{
 	protected:
@@ -25,18 +28,43 @@ namespace ReMu {
 		inline Accidental getAccidental() { return accidental; }
 		inline int getDuration() { return duration; }
 
-		friend bool operator==(const Pitch& lhs, const Pitch& rhs);
-		friend std::ostream& operator<<(std::ostream& os, const Pitch& note);
-
 		size_t operator()(const Pitch& p) const
 		{
 			return step * accidental;
 		}
+
+		Pitch incrementNote(int interval)
+		{
+			return mapNumToNote(mapNoteToNum() + interval, duration);
+		};
+
+		inline int mapStepToNum() const
+		{
+			int interval = step - 'A';
+			return interval + (interval >= 1 ? 1 : 0) + (interval >= 3 ? 1 : 0) + (interval >= 4 ? 1 : 0) + (interval >= 6 ? 1 : 0) + (interval >= 7 ? 1 : 0);
+		};
+
+		inline int mapNoteToNum() const
+		{
+			int step = mapStepToNum() + accidental;
+			return step < 0 ? step + 12 : step;
+		}
+
+		friend bool operator==(const Pitch& lhs, const Pitch& rhs);
+		friend std::ostream& operator<<(std::ostream& os, const Pitch& note);
 	};
+
+	inline Pitch mapNumToNote(int num, int duration = -1)
+	{
+		num = num % 12;
+		return Pitch((char)(num + 'A' - (num >= 1 ? 1 : 0) - (num >= 4 ? 1 : 0) - (num >= 6 ? 1 : 0) - (num >= 9 ? 1 : 0) - (num >= 11 ? 1 : 0)),
+			duration,
+			(num == 1 || num == 4 || num == 6 || num == 9 || num == 11) ? Accidental::Sharp : Accidental::None);
+	}
 
 	inline bool operator==(const Pitch& lhs, const Pitch& rhs)
 	{
-		return lhs.step + lhs.accidental == rhs.step + rhs.accidental;
+		return lhs.mapNoteToNum() == rhs.mapNoteToNum();
 	}
 
 	inline std::ostream& operator<<(std::ostream& os, const Pitch& note)

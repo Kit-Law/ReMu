@@ -98,6 +98,20 @@ namespace Parsing
 			}
 		}
 
+		TEST_METHOD(multipleSections)
+		{
+			try
+			{
+				std::map<std::string, ReMu::Section*> sections = parseProgram("../TestSuite/Files/Programs/multiSections.txt");
+
+				Assert::AreEqual(true, true);
+			}
+			catch (std::exception& e)
+			{
+				Assert::AreEqual(true, false);
+			}
+		}
+
 		TEST_METHOD(redefinedScale)
 		{
 			try
@@ -188,15 +202,15 @@ namespace Parsing
 			}
 		}
 
-		TEST_METHOD(incompleteTranstionRythem)
+		TEST_METHOD(incompleteTranstionrhythm)
 		{
 			try
 			{
-				std::map<std::string, ReMu::Section*> sections = parseProgram("../TestSuite/Files/Programs/Errors/incompleteTranstionRythem.txt");
+				std::map<std::string, ReMu::Section*> sections = parseProgram("../TestSuite/Files/Programs/Errors/incompleteTranstionrhythm.txt");
 
 				Assert::AreEqual(true, false);
 			}
-			catch (IncompleteTranstionRythem& e)
+			catch (IncompleteTranstionrhythm& e)
 			{
 				Assert::AreEqual(true, true);
 			}

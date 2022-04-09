@@ -110,7 +110,7 @@ struct UnbalancedTranstion : public std::exception
     { 
         std::stringstream ss;
 
-        ss << "Transition: " << inital << " -> " << result << ", has an unbalanced rythem.";
+        ss << "Transition: " << inital << " -> " << result << ", has an unbalanced rhythm.";
 
         message = ss.str();
     }
@@ -121,11 +121,11 @@ struct UnbalancedTranstion : public std::exception
     }
 };
 
-struct IncompleteTranstionRythem : public std::exception
+struct IncompleteTranstionrhythm : public std::exception
 {
     std::string message;
 
-    IncompleteTranstionRythem(short line) : message{ "Transition at line: " + std::to_string(line) + ", has an incomplete rythem." }
+    IncompleteTranstionrhythm(short line) : message{ "Transition at line: " + std::to_string(line) + ", has an incomplete rhythm." }
     { }
 
     const char* what() const throw ()

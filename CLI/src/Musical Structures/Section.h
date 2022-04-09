@@ -17,7 +17,7 @@ namespace ReMu {
 	public:
 		Section(std::string __label, int start, int end) : label(__label), duration(std::pair<int, int>(start, end)) {  }
 
-		inline TransitionTable* getTransitionTable(std::string instrument) { return &transitionTables[instrument]; }
+		inline TransitionTable* getTransitionTable(std::string instrument = "") { return &transitionTables[instrument]; }
 		inline std::map<std::string, TransitionTable>* getTransitionTableMap() { return &transitionTables; }
 
 		inline int getStartingMessure() { return duration.first; }
@@ -30,7 +30,7 @@ namespace ReMu {
 	{
 		os << std::endl << "Section: " << section.label << ", " << section.duration.first << " - " << section.duration.second << std::endl;
 
-		for (auto instrumentTrans : section.transitionTables)
+		for (const auto& instrumentTrans : section.transitionTables)
 		{
 			if (instrumentTrans.first != "")
 				os << std::endl << "Instrument: " << instrumentTrans.first << std::endl;

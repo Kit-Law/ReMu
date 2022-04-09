@@ -22,8 +22,8 @@ inline std::map<std::string, ReMu::Section*> parseProgram(const char* filepath)
 	SheetMusicParser parser(&tokens);
 
 	antlr4::tree::ParseTree* tree = parser.script();
-	ReMu::Listener listener;
-	antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, tree);
+	ReMu::Listener* listener = new ReMu::Listener();
+	antlr4::tree::ParseTreeWalker::DEFAULT.walk(listener, tree);
 
-	return listener.getSections();
+	return listener->getSections();
 }

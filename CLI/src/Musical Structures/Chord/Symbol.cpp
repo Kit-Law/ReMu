@@ -19,7 +19,7 @@ namespace ReMu {
 		case altered:
 			return std::vector<Degree>{ 3, 5 };
 		case userDefined:
-			if (userDef.count(quality) == 0)
+			if (userDef.count(quality) <= 0)
 				throw ChordNotFonud(quality);
 
 			return userDef[quality];

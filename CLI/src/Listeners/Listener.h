@@ -44,7 +44,11 @@ namespace ReMu {
 
 		std::string chordName;
 	public:
-		~Listener() { for (auto section : sections) delete section.second; }
+		~Listener()
+		{ 
+			for (auto section : sections) 
+				delete section.second;
+		}
 
 		void enterSectionDef(SheetMusicParser::SectionDefContext* ctx) override;
 		void enterSectionIdent(SheetMusicParser::SectionIdentContext* ctx) override;

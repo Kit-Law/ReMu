@@ -17,8 +17,8 @@ namespace ReMu {
 		{
 			if (section.second->getStartingMessure() > startMesure &&
 				section.second->getStartingMessure() < endMesure ||
-				section.second->getEndingMessure() < startMesure &&
-				section.second->getEndingMessure() > endMesure)
+				section.second->getEndingMessure() > startMesure &&
+				section.second->getEndingMessure() < endMesure)
 				throw OverlappingSections(section.first, ctx->children[0]->getText(), ctx->start->getLine());
 		}
 
@@ -77,10 +77,10 @@ namespace ReMu {
 			if (sequence->hasDuration())
 				chordBuffer->setDuration(std::stof(ctx->NUMBER()->toString()));
 			else
-				throw IncompleteTranstionRythem(ctx->start->getLine());
+				throw IncompleteTranstionrhythm(ctx->start->getLine());
 		}
-		else if (sequence->hasDuration())
-			throw IncompleteTranstionRythem(ctx->start->getLine());
+		else if (sequence->hasDuration() || !onInital && initalSequence.hasDuration())
+			throw IncompleteTranstionrhythm(ctx->start->getLine());
 
 		sequence->pushBack(chordBuffer);
 
@@ -105,10 +105,10 @@ namespace ReMu {
 			if (sequence->hasDuration())
 				notes.back().setDuration(std::stoi(ctx->NUMBER(0)->toString()));
 			else
-				throw IncompleteTranstionRythem(ctx->start->getLine());
+				throw IncompleteTranstionrhythm(ctx->start->getLine());
 		}
-		else if (sequence->hasDuration())
-			throw IncompleteTranstionRythem(ctx->start->getLine());
+		else if (sequence->hasDuration() || !onInital && initalSequence.hasDuration())
+			throw IncompleteTranstionrhythm(ctx->start->getLine());
 
 		sequence->pushBack(notes.at(0));
 		notes.clear();

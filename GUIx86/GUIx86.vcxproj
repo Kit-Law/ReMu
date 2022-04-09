@@ -59,6 +59,7 @@
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -70,6 +71,12 @@
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)Pugixml\src;%(AdditionalIncludeDirectories);$(Qt_INCLUDEPATH_)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'" Label="Configuration">
     <ClCompile>
@@ -98,18 +105,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="configdialog.cpp" />
-    <ClCompile Include="pages.cpp" />
-    <ClCompile Include="ScoreViewer.cpp" />
-    <ClCompile Include="ProjectWindow.cpp" />
-    <ClCompile Include="SyntaxHighlighter.cpp" />
-    <QtRcc Include="mainwindow.qrc" />
-    <QtUic Include="ImageViewer.ui" />
-    <QtUic Include="mainwindow.ui" />
-    <QtMoc Include="MainWindow.h" />
-    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="ConfigDialog\configdialog.cpp" />
+    <ClCompile Include="ConfigDialog\pages.cpp" />
+    <ClCompile Include="ScoreViewer\ScoreViewer.cpp" />
+    <ClCompile Include="ProjectWindow\ProjectWindow.cpp" />
+    <ClCompile Include="MainWindow\SyntaxHighlighter.cpp" />
+    <QtRcc Include="MainWindow\mainwindow.qrc" />
+    <QtUic Include="ScoreViewer\ImageViewer.ui" />
+    <QtUic Include="MainWindow\mainwindow.ui" />
+    <QtMoc Include="MainWindow\MainWindow.h" />
+    <ClCompile Include="MainWindow\MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
-    <QtUic Include="projectWindow.ui" />
+    <QtUic Include="ProjectWindow\projectWindow.ui" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PUGIXML\scripts\pugixml_vs2019.vcxproj">
@@ -117,22 +124,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="SyntaxHighlighter.h" />
+    <QtMoc Include="MainWindow\SyntaxHighlighter.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="ProjectWindow.h" />
+    <QtMoc Include="ProjectWindow\ProjectWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="ScoreViewer.h" />
+    <QtMoc Include="ScoreViewer\ScoreViewer.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="WorkerThread.h" />
+    <QtMoc Include="MainWindow\WorkerThread.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="configdialog.h" />
+    <QtMoc Include="ConfigDialog\configdialog.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pages.h" />
+    <ClInclude Include="ConfigDialog\pages.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

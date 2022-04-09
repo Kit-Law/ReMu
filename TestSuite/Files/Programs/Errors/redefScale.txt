@@ -1,2 +1,2 @@
-"a" = 1 - 20;
-"b" = 10 - 40;
+\addScale scale {1,2,3,4}
+\addScale scale {1,2,3,4}

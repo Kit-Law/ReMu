@@ -3,6 +3,8 @@
 #include "./Timers/DeltaTime.h"
 #include "./Logger/Logger.h"
 
+#include <iostream>
+
 //#define CLI
 //#define DEBUG
 #define XML
@@ -13,6 +15,36 @@ int main()
 int main(int argc, const char* argv[])
 #endif // DEBUG
 {
+
+
+
+
+
+
+	ReMu::ScaleDatabase::initalize();
+
+	std::stringstream prog;
+	prog << "\"test\" = 1 - 20;\n\n\"test\":";
+	prog << "F min -> A,";
+	std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(prog)->getSections();
+
+	for (auto const& section : sections)
+	{
+		auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+		ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+		std::cout << (chord->getComponents()->at(0) == ReMu::Note('F', ReMu::Accidental::None));
+		std::cout << (chord->getComponents()->at(1) == ReMu::Note('A', ReMu::Accidental::Flat));
+		std::cout << (chord->getComponents()->at(2) == ReMu::Note('C', ReMu::Accidental::None));
+	}
+
+
+
+
+
+
+
+
 	Utils::DeltaTime deltaTime;
 	deltaTime.resetDeltaTime();
 
@@ -23,7 +55,7 @@ int main(int argc, const char* argv[])
 #endif
 
 #ifdef DEBUG
-	stream.open("..//Programs//example.txt");
+	stream.open("../TestSuite/Files/Programs/ChordParsing/A#_Major.txt");//..//Programs//example.txt");
 #endif // DEBUG
 #ifdef CLI
 	stream.open(argv[1]);
@@ -39,6 +71,8 @@ int main(int argc, const char* argv[])
 	ReMu::Logger logger(logFile);
 
 	stream << program;
+#else
+	ReMu::Logger logger;
 #endif // XML
 	try 
 	{

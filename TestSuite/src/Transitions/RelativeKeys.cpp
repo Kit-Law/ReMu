@@ -25,10 +25,10 @@ namespace Transitions
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
 
-				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>>* transition = section.second->getTransitionTable()->getNoteTransitions();
+				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>*>* transition = section.second->getTransitionTable()->getNoteTransitions();
 
 				for (int i = 0; i < 7; i++)
-					Assert::AreEqual(transition->at(i).second == transition->at(((i < 6) ? (i + 1) : (i - 6))).first, true);
+					Assert::AreEqual(transition->at(i)->second == transition->at(((i < 6) ? (i + 1) : (i - 6)))->first, true);
 			}
 		}
 
@@ -40,10 +40,10 @@ namespace Transitions
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
 
-				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>>* transition = section.second->getTransitionTable()->getNoteTransitions();
+				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>*>* transition = section.second->getTransitionTable()->getNoteTransitions();
 
 				for (int i = 0; i < 7; i++)
-					Assert::AreEqual(transition->at(i).second == transition->at(((i < 5) ? (i + 2) : (i - 5))).first, true);
+					Assert::AreEqual(transition->at(i)->second == transition->at(((i < 5) ? (i + 2) : (i - 5)))->first, true);
 			}
 		}
 
@@ -55,10 +55,10 @@ namespace Transitions
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
 
-				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>>* transition = section.second->getTransitionTable()->getNoteTransitions();
+				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>*>* transition = section.second->getTransitionTable()->getNoteTransitions();
 
 				for (int i = 0; i < 7; i++)
-					Assert::AreEqual(transition->at(i).second == transition->at(((i < 4) ? (i + 3) : (i - 4))).first, true);
+					Assert::AreEqual(transition->at(i)->second == transition->at(((i < 4) ? (i + 3) : (i - 4)))->first, true);
 			}
 		}
 
@@ -70,10 +70,10 @@ namespace Transitions
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
 
-				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>>* transition = section.second->getTransitionTable()->getNoteTransitions();
+				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>*>* transition = section.second->getTransitionTable()->getNoteTransitions();
 
 				for (int i = 0; i < 7; i++)
-					Assert::AreEqual(transition->at(i).second == transition->at(((i < 3) ? (i + 4) : (i - 3))).first, true);
+					Assert::AreEqual(transition->at(i)->second == transition->at(((i < 3) ? (i + 4) : (i - 3)))->first, true);
 			}
 		}
 
@@ -85,10 +85,10 @@ namespace Transitions
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
 
-				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>>* transition = section.second->getTransitionTable()->getNoteTransitions();
+				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>*>* transition = section.second->getTransitionTable()->getNoteTransitions();
 
 				for (int i = 0; i < 7; i++)
-					Assert::AreEqual(transition->at(i).second == transition->at(((i < 2) ? (i + 5) : (i - 2))).first, true);
+					Assert::AreEqual(transition->at(i)->second == transition->at(((i < 2) ? (i + 5) : (i - 2)))->first, true);
 			}
 		}
 
@@ -100,10 +100,10 @@ namespace Transitions
 			{
 				Assert::AreEqual(section.second->getTransitionTable()->getSequenceTransitions()->size(), (size_t)0);
 
-				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>>* transition = section.second->getTransitionTable()->getNoteTransitions();
+				std::vector<std::pair<ReMu::Pitch, ReMu::Pitch>*>* transition = section.second->getTransitionTable()->getNoteTransitions();
 
 				for (int i = 0; i < 7; i++)
-					Assert::AreEqual(transition->at(i).second == transition->at(((i < 1) ? (i + 6) : (i - 1))).first, true);
+					Assert::AreEqual(transition->at(i)->second == transition->at(((i < 1) ? (i + 6) : (i - 1)))->first, true);
 			}
 		}
 	};

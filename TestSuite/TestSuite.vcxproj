@@ -160,6 +160,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Parsing\AddChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\AugmentedChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\Diminished7ChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\DiminishedChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\Dominant7ChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\Major6ChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\Major7ChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\MajorChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\Minor6ChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\Minor7ChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\MinorChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\NoteParsing.cpp" />
+    <ClCompile Include="src\Parsing\SusChordParsing.cpp" />
     <ClCompile Include="src\Transitions\RelativeKeys.cpp" />
     <ClCompile Include="src\Transitions\TransitionsToSelf.cpp" />
     <ClCompile Include="src\Parsing\ParsingTests.cpp" />

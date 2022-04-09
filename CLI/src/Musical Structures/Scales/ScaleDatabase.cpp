@@ -28,7 +28,7 @@ namespace ReMu {
 
 	ScaleInfo* ScaleDatabase::getScale(const char* scaleName, short line)
 	{ 
-		if (database.count(scaleName) == 0)
+		if (database.count(scaleName) <= 0)
 			throw ScaleNotFonud(scaleName, line);
 
 		return database.at(scaleName); 

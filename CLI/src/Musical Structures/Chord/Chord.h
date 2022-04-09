@@ -80,7 +80,7 @@ namespace ReMu {
 			found = false;
 
 			for (Note rnote : rhs.components)
-				if (lnote == rnote)
+				if ((Note) lnote == rnote)
 				{
 					found = true;
 					break;

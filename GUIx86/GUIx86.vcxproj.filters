@@ -23,16 +23,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="mainwindow.qrc">
+    <QtRcc Include="MainWindow\mainwindow.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="mainwindow.ui">
+    <QtUic Include="MainWindow\mainwindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="MainWindow.h">
+    <QtMoc Include="MainWindow\MainWindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="MainWindow.cpp">
+    <ClCompile Include="MainWindow\MainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -40,49 +40,49 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SyntaxHighlighter.cpp">
+    <ClCompile Include="MainWindow\SyntaxHighlighter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProjectWindow.cpp">
+    <ClCompile Include="ProjectWindow\ProjectWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ScoreViewer.cpp">
+    <ClCompile Include="ScoreViewer\ScoreViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="configdialog.cpp">
+    <ClCompile Include="ConfigDialog\configdialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pages.cpp">
+    <ClCompile Include="ConfigDialog\pages.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="SyntaxHighlighter.h">
+    <QtMoc Include="MainWindow\SyntaxHighlighter.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="ProjectWindow.h">
+    <QtMoc Include="ProjectWindow\ProjectWindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="ScoreViewer.h">
+    <QtMoc Include="ScoreViewer\ScoreViewer.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="WorkerThread.h">
+    <QtMoc Include="MainWindow\WorkerThread.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="configdialog.h">
+    <QtMoc Include="ConfigDialog\configdialog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="projectWindow.ui">
+    <QtUic Include="ProjectWindow\projectWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="ImageViewer.ui">
+    <QtUic Include="ScoreViewer\ImageViewer.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pages.h">
+    <ClInclude Include="ConfigDialog\pages.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
