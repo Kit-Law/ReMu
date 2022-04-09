@@ -174,7 +174,6 @@
     <ClCompile Include="src\Timers\DeltaTime.cpp" />
     <ClCompile Include="src\Tokens\ChordRule.cpp" />
     <ClCompile Include="src\Listeners\Listener.cpp" />
-    <ClCompile Include="src\Musical Structures\Note\Note.cpp" />
     <ClCompile Include="src\Musical Structures\Scales\ScaleDatabase.cpp" />
     <ClCompile Include="src\Tokens\ScaleRule.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -208,7 +207,6 @@
     <ClInclude Include="src\Timers\DeltaTime.h" />
     <ClInclude Include="src\Timers\Timer.h" />
     <ClInclude Include="src\Tokens\ChordRule.h" />
-    <ClInclude Include="src\Musical Structures\Note\Note.h" />
     <ClInclude Include="src\Musical Structures\Scales\ScaleDatabase.h" />
     <ClInclude Include="src\Musical Structures\Scales\ScaleInfo.h" />
     <ClInclude Include="src\Tokens\ScaleRule.h" />

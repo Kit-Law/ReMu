@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\Note\Note.h"
+#include "..\Note\Pitch.h"
 
 namespace ReMu {
 
@@ -14,7 +14,7 @@ namespace ReMu {
 		ScaleInfo(int* __intervales, int __scaleLength, short __relativeMajorKeyStep) : intervales(__intervales), scaleLength(__scaleLength), relativeMajorKeyStep(__relativeMajorKeyStep){ }
 		~ScaleInfo() { delete intervales; }
 
-		inline const Note getRelativeMajorKey(Note rootNote)
+		inline const Pitch getRelativeMajorKey(Pitch rootNote)
 		{
 			int interval = 0;
 

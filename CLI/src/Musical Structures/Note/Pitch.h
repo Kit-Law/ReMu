@@ -41,7 +41,7 @@ namespace ReMu {
 		inline int mapStepToNum() const
 		{
 			int interval = step - 'A';
-			return interval + (interval >= 1 ? 1 : 0) + (interval >= 3 ? 1 : 0) + (interval >= 4 ? 1 : 0) + (interval >= 6 ? 1 : 0) + (interval >= 7 ? 1 : 0);
+			return interval + (interval >= 1 ? interval >= 3 ? interval >= 4 ? interval >= 6 ? interval >= 7 ? 5 : 4 : 3 : 2 : 1 : 0);
 		};
 
 		inline int mapNoteToNum() const
@@ -57,7 +57,7 @@ namespace ReMu {
 	inline Pitch mapNumToNote(int num, int duration = -1)
 	{
 		num = num % 12;
-		return Pitch((char)(num + 'A' - (num >= 1 ? 1 : 0) - (num >= 4 ? 1 : 0) - (num >= 6 ? 1 : 0) - (num >= 9 ? 1 : 0) - (num >= 11 ? 1 : 0)),
+		return Pitch((char)(num + 'A' - (num >= 1 ? num >= 4 ? num >= 6 ? num >= 9 ? num >= 11 ? 5 : 4 : 3 : 2 : 1 : 0)),
 			duration,
 			(num == 1 || num == 4 || num == 6 || num == 9 || num == 11) ? Accidental::Sharp : Accidental::None);
 	}

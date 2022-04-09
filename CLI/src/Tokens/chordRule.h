@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-#include "..\Musical Structures\Note\Note.h"
+#include "..\Musical Structures\Note\Pitch.h"
 
 #include "..\Musical Structures\Chord\Symbol.h"
 #include "..\Musical Structures\Chord\Addition.h"

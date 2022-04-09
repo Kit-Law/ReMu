@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../Musical Structures/Note/Pitch.h"
-#include "../Musical Structures/Note/Note.h"
 #include "../Musical Structures/Chord/Chord.h"
 
 #include "../Musical Structures/Section.h"
@@ -21,7 +20,7 @@ namespace ReMu { namespace Evaluator {
 	public:	
 		inline static Chord parseChord(pugi::xml_node messure)
 		{
-			std::vector<Note> components;
+			std::vector<Pitch> components;
 
 			for (pugi::xml_node note : messure.children("note"))
 			{

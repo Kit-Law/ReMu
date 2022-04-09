@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-#include "..\Note\Note.h"
+#include "..\Note\Degree.h"
 
 namespace ReMu {
 

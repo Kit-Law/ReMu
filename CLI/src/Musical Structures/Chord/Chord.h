@@ -2,28 +2,28 @@
 
 #include <vector>
 
-#include "..\Note\Note.h"
+#include "..\Note\Pitch.h"
 
 namespace ReMu {
 
 	class Chord
 	{
 	private:
-		std::vector<Note> components;
+		std::vector<Pitch> components;
 		float duration = -1;
 	public:
-		Chord(std::vector<Note> __components) : components(__components) { }
+		Chord(std::vector<Pitch> __components) : components(__components) { }
 
-		inline void addNote(Note note) 
+		inline void addNote(Pitch note)
 		{ 
 			if (std::find(components.begin(), components.end(), note) != components.end()) components.push_back(note); 
 		}
-		inline void removeNote(Note note) 
+		inline void removeNote(Pitch note)
 		{ 
-			components.erase(std::remove_if(components.begin(), components.end(), [note](Note& component) { return component == note; }));
+			components.erase(std::remove_if(components.begin(), components.end(), [note](Pitch& component) { return component == note; }));
 		}
 
-		inline const std::vector<Note>* getComponents()
+		inline const std::vector<Pitch>* getComponents()
 		{
 			return &components;
 		}
@@ -38,7 +38,7 @@ namespace ReMu {
 
 	inline std::ostream& operator<<(std::ostream& os, const Chord& chord)
 	{
-		for (Note component : chord.components)
+		for (Pitch component : chord.components)
 			os << component << " ";
 
 		return os;
@@ -49,11 +49,11 @@ namespace ReMu {
 		bool diff = false;
 		bool found = false;
 
-		for (Note lnote : lhs.components)
+		for (Pitch lnote : lhs.components)
 		{
 			found = false;
 
-			for (Note rnote : rhs.components)
+			for (Pitch rnote : rhs.components)
 				if (lnote == rnote)
 				{
 					found = true;
@@ -79,8 +79,8 @@ namespace ReMu {
 		{
 			found = false;
 
-			for (Note rnote : rhs.components)
-				if ((Note) lnote == rnote)
+			for (Pitch rnote : rhs.components)
+				if (lnote == rnote)
 				{
 					found = true;
 					break;

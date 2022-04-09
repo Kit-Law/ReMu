@@ -42,9 +42,6 @@
     <ClCompile Include="src\Musical Structures\Scales\ScaleDatabase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Musical Structures\Note\Note.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Musical Structures\TransitionTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,9 +78,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Tokens\ScaleRule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Musical Structures\Note\Note.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Musical Structures\Scales\ScaleInfo.h">

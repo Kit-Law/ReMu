@@ -4,7 +4,7 @@ namespace ReMu {
 
 	int Degree::intervals[] = MAJOR_INTERVALS;
 
-	Note Degree::evaluateNote(Note& rootNote)
+	Pitch Degree::evaluateNote(Pitch& rootNote)
 	{
 		int interval = 0;
 

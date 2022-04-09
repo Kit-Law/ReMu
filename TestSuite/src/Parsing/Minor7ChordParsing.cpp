@@ -41,10 +41,10 @@ namespace Parsing
 				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Note('C', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Note('E', ReMu::Accidental::Flat), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Note('G', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Note('B', ReMu::Accidental::Flat), true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('C', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('E', ReMu::Accidental::Flat), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('G', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('B', ReMu::Accidental::Flat), true);
 			}
 		}
 
@@ -61,10 +61,10 @@ namespace Parsing
 				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Note('C', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Note('E', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Note('G', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Note('B', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('E', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('B', ReMu::Accidental::None), true);
 			}
 		}
 
@@ -82,10 +82,10 @@ namespace Parsing
 				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Note('D', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Note('F', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Note('A', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Note('C', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('D', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('F', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('A', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('C', ReMu::Accidental::None), true);
 			}
 		}
 
@@ -102,10 +102,10 @@ namespace Parsing
 				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Note('D', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Note('F', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Note('A', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Note('C', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('A', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
 			}
 		}
 
@@ -122,10 +122,10 @@ namespace Parsing
 				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Note('E', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Note('G', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Note('B', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Note('D', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('E', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('G', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('B', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('D', ReMu::Accidental::None), true);
 			}
 		}
 
@@ -142,10 +142,10 @@ namespace Parsing
 				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Note('F', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Note('A', ReMu::Accidental::Flat), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Note('C', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Note('D', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('F', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('A', ReMu::Accidental::Flat), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('C', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
 			}
 		}
 
@@ -162,10 +162,10 @@ namespace Parsing
 				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Note('F', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Note('A', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Note('C', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Note('E', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('A', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('E', ReMu::Accidental::None), true);
 			}
 		}
 
@@ -182,10 +182,10 @@ namespace Parsing
 				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Note('G', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Note('B', ReMu::Accidental::Flat), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Note('D', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Note('F', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('G', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('B', ReMu::Accidental::Flat), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('D', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('F', ReMu::Accidental::None), true);
 			}
 		}
 
@@ -202,10 +202,10 @@ namespace Parsing
 				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Note('G', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Note('B', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Note('D', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Note('F', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('B', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
 			}
 		}
 
@@ -222,10 +222,10 @@ namespace Parsing
 				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Note('A', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Note('C', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Note('E', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Note('G', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('A', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('C', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('E', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('G', ReMu::Accidental::None), true);
 			}
 		}
 
@@ -242,10 +242,10 @@ namespace Parsing
 				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Note('A', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Note('C', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Note('E', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Note('G', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('A', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('E', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
 			}
 		}
 
@@ -262,10 +262,10 @@ namespace Parsing
 				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Note('B', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Note('D', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Note('F', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Note('A', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('B', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('D', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('A', ReMu::Accidental::None), true);
 			}
 		}
 	};

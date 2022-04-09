@@ -53,7 +53,7 @@ namespace Transitions
 
 				for (auto transition : *section.second->getTransitionTable()->getSequenceTransitions())
 				{
-					Assert::AreEqual(*(ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first) == *(ReMu::Note*)(std::get<1>(transition).getStuctsToMapping()->at(0).first), true);
+					Assert::AreEqual(*(ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first) == *(ReMu::Pitch*)(std::get<1>(transition).getStuctsToMapping()->at(0).first), true);
 				}
 			}
 		}

@@ -133,9 +133,9 @@ namespace ReMu {
 	void Listener::exitScaleRule(SheetMusicParser::ScaleRuleContext* ctx)
 	{
 		if (notes.size() == 1)
-			Tokens::ScaleRule::evalScaleRule(static_cast<Note&>(notes.at(0)), initalScale.c_str(), currentSection->getTransitionTable(currentIntstument), ctx->start->getLine());
+			Tokens::ScaleRule::evalScaleRule(notes.at(0), initalScale.c_str(), currentSection->getTransitionTable(currentIntstument), ctx->start->getLine());
 		if (notes.size() == 2)
-			Tokens::ScaleRule::evalScaleRule(static_cast<Note&>(notes.at(0)), initalScale.c_str(), static_cast<Note&>(notes.at(1)), resultScale.c_str(), currentSection->getTransitionTable(currentIntstument), ctx->start->getLine());
+			Tokens::ScaleRule::evalScaleRule(notes.at(0), initalScale.c_str(), notes.at(1), resultScale.c_str(), currentSection->getTransitionTable(currentIntstument), ctx->start->getLine());
 	}
 
 	void Listener::enterPitch(SheetMusicParser::PitchContext* ctx)

@@ -38,9 +38,9 @@ namespace Parsing
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 
 				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Note* note = (ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+				ReMu::Pitch* note = (ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-				Assert::AreEqual(*note == ReMu::Note('C', ReMu::Accidental::None), true);
+				Assert::AreEqual(*note == ReMu::Pitch('C', ReMu::Accidental::None), true);
 			}
 		}
 
@@ -54,9 +54,9 @@ namespace Parsing
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 
 				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Note* note = (ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+				ReMu::Pitch* note = (ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-				Assert::AreEqual(*note == ReMu::Note('C', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(*note == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
 			}
 		}
 
@@ -71,9 +71,9 @@ namespace Parsing
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 
 				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Note* note = (ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+				ReMu::Pitch* note = (ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-				Assert::AreEqual(*note == ReMu::Note('D', ReMu::Accidental::None), true);
+				Assert::AreEqual(*note == ReMu::Pitch('D', ReMu::Accidental::None), true);
 			}
 		}
 
@@ -87,9 +87,9 @@ namespace Parsing
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 
 				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Note* note = (ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+				ReMu::Pitch* note = (ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-				Assert::AreEqual(*note == ReMu::Note('D', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(*note == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
 			}
 		}
 
@@ -103,9 +103,9 @@ namespace Parsing
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 
 				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Note* note = (ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+				ReMu::Pitch* note = (ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-				Assert::AreEqual(*note == ReMu::Note('E', ReMu::Accidental::None), true);
+				Assert::AreEqual(*note == ReMu::Pitch('E', ReMu::Accidental::None), true);
 			}
 		}
 
@@ -119,9 +119,9 @@ namespace Parsing
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 
 				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Note* note = (ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+				ReMu::Pitch* note = (ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-				Assert::AreEqual(*note == ReMu::Note('F', ReMu::Accidental::None), true);
+				Assert::AreEqual(*note == ReMu::Pitch('F', ReMu::Accidental::None), true);
 			}
 		}
 
@@ -135,9 +135,9 @@ namespace Parsing
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 
 				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Note* note = (ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+				ReMu::Pitch* note = (ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-				Assert::AreEqual(*note == ReMu::Note('F', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(*note == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
 			}
 		}
 
@@ -151,9 +151,9 @@ namespace Parsing
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 
 				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Note* note = (ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+				ReMu::Pitch* note = (ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-				Assert::AreEqual(*note == ReMu::Note('G', ReMu::Accidental::None), true);
+				Assert::AreEqual(*note == ReMu::Pitch('G', ReMu::Accidental::None), true);
 			}
 		}
 
@@ -167,9 +167,9 @@ namespace Parsing
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 
 				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Note* note = (ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+				ReMu::Pitch* note = (ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-				Assert::AreEqual(*note == ReMu::Note('G', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(*note == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
 			}
 		}
 
@@ -183,9 +183,9 @@ namespace Parsing
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 
 				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Note* note = (ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+				ReMu::Pitch* note = (ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-				Assert::AreEqual(*note == ReMu::Note('A', ReMu::Accidental::None), true);
+				Assert::AreEqual(*note == ReMu::Pitch('A', ReMu::Accidental::None), true);
 			}
 		}
 
@@ -199,9 +199,9 @@ namespace Parsing
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 
 				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Note* note = (ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+				ReMu::Pitch* note = (ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-				Assert::AreEqual(*note == ReMu::Note('A', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(*note == ReMu::Pitch('A', ReMu::Accidental::Sharp), true);
 			}
 		}
 
@@ -215,9 +215,9 @@ namespace Parsing
 				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
 
 				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Note* note = (ReMu::Note*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+				ReMu::Pitch* note = (ReMu::Pitch*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-				Assert::AreEqual(*note == ReMu::Note('B', ReMu::Accidental::None), true);
+				Assert::AreEqual(*note == ReMu::Pitch('B', ReMu::Accidental::None), true);
 			}
 		}
 	};

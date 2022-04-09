@@ -33,9 +33,9 @@ int main(int argc, const char* argv[])
 		auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
 		ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
 
-		std::cout << (chord->getComponents()->at(0) == ReMu::Note('F', ReMu::Accidental::None));
-		std::cout << (chord->getComponents()->at(1) == ReMu::Note('A', ReMu::Accidental::Flat));
-		std::cout << (chord->getComponents()->at(2) == ReMu::Note('C', ReMu::Accidental::None));
+		std::cout << (chord->getComponents()->at(0) == ReMu::Pitch('F', ReMu::Accidental::None));
+		std::cout << (chord->getComponents()->at(1) == ReMu::Pitch('A', ReMu::Accidental::Flat));
+		std::cout << (chord->getComponents()->at(2) == ReMu::Pitch('C', ReMu::Accidental::None));
 	}
 
 

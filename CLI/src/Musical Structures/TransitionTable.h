@@ -23,7 +23,7 @@ namespace ReMu {
 		std::vector<std::tuple<Sequence, Sequence, int>> sequenceTransitions;
 
 		Pitch relativeMajorKey;
-		std::tuple<const char*, Note, short> scaleBuffer;
+		std::tuple<const char*, Pitch, short> scaleBuffer;
 	public:
 		~TransitionTable()
 		{
@@ -45,8 +45,8 @@ namespace ReMu {
 		inline const void setRelativeMajorKey(Pitch relativeMajorKey) { this->relativeMajorKey = relativeMajorKey; }
 		inline const Pitch* getRelativeMajorKey() { return &relativeMajorKey; }
 
-		inline void setScaleBuffer(const Note& rootNote, const char* scale, short line) { scaleBuffer = std::tuple<const char*, Note, short>(scale, rootNote, line); }
-		inline std::tuple<const char*, Note, short> getScaleBuffer() { return scaleBuffer; }
+		inline void setScaleBuffer(const Pitch& rootNote, const char* scale, short line) { scaleBuffer = std::tuple<const char*, Pitch, short>(scale, rootNote, line); }
+		inline std::tuple<const char*, Pitch, short> getScaleBuffer() { return scaleBuffer; }
 
 		friend std::ostream& operator<<(std::ostream& os, const TransitionTable& transitionTable);
 	};
