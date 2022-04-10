@@ -160,7 +160,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Parsing\AddChordParsing.cpp" />
+    <ClCompile Include="src\Evaluation\Add11ChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\Add9ChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\AugmentedChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\Diminished7ChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\DiminishedChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\Dominant7ChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\Major6ChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\Major7ChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\MajorChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\Minor6ChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\Minor7ChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\MinorChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\NoteEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\Omit3ChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\Omit5ChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\SusChordEvaluation.cpp" />
+    <ClCompile Include="src\Parsing\Add11ChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\Add9ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\AugmentedChordParsing.cpp" />
     <ClCompile Include="src\Parsing\Diminished7ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\DiminishedChordParsing.cpp" />
@@ -172,6 +189,8 @@
     <ClCompile Include="src\Parsing\Minor7ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\MinorChordParsing.cpp" />
     <ClCompile Include="src\Parsing\NoteParsing.cpp" />
+    <ClCompile Include="src\Parsing\Omit3ChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\Omit5ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\SusChordParsing.cpp" />
     <ClCompile Include="src\Transitions\RelativeKeys.cpp" />
     <ClCompile Include="src\Transitions\TransitionsToSelf.cpp" />

@@ -40,6 +40,7 @@ transitionRule
  : scaleRule
  | occurrenceRule
  | sequenceRule
+ | flags
  ;
 
 scaleRule
@@ -60,7 +61,7 @@ sequenceRule
  ;
 
 sequence
- : (note | chord | '(' chord ')')+
+ : (note | chord | '(' chord ')' | rest)+
  ;
 
 chord
@@ -70,8 +71,7 @@ chord
  ;
 
 symbol
- : QUALITY NUMBER
- | QUALITY
+ : QUALITY
  ;
 
 additions
@@ -87,12 +87,20 @@ pitch
 note
  : pitch NUMBER? ('[' NUMBER ']')?
  ;
+ 
+rest
+ : '[' NUMBER ']'
+ ;
+
+flags
+ : '\\ScaleEffectsChords'
+ ;
 
 NUMBER     : [0-9]+;
 NATURAL    : [A-G] | '_';
 ACCIDENTAL : 'b' | 'bb' | 'bbb' | '###' | '##' | '#';
-QUALITY    : 'maj' | 'min' | 'dim' | 'aug' | 'alt' | 'M' | 'm' | '+' | '-' | '/';
-ADDITIONS  : 'sus' | 'add' | 'omit';
+QUALITY    : 'maj' | 'M' | 'maj7' | 'M7' | 'maj6' | 'M6' | 'min' | 'm' | 'min7' | 'm7' | 'min6' | 'm6' | 'dim' | '°' | 'dim7' | '°7' | 'dom7' | 'aug' | 'alt' | 'sus4' | 'sus2';
+ADDITIONS  : 'add' | 'omit';
 
 STRING
  : '"' (~["\r\n] | '""')* '"'

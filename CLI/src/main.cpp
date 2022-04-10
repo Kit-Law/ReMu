@@ -23,23 +23,21 @@ int main(int argc, const char* argv[])
 
 	ReMu::ScaleDatabase::initalize();
 
-	std::stringstream prog;
-	prog << "\"test\" = 1 - 20;\n\n\"test\":";
-	prog << "F min -> A,";
-	std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(prog)->getSections();
-
-	for (auto const& section : sections)
+	try
 	{
-		auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-		ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+		std::stringstream prog;
+		prog << "\"Test\" = 0 - 20;\"Test\":C maj add 9->A,";
 
-		std::cout << (chord->getComponents()->at(0) == ReMu::Pitch('F', ReMu::Accidental::None));
-		std::cout << (chord->getComponents()->at(1) == ReMu::Pitch('A', ReMu::Accidental::Flat));
-		std::cout << (chord->getComponents()->at(2) == ReMu::Pitch('C', ReMu::Accidental::None));
+		std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(prog)->getSections();
 	}
-
-
-
+	catch (IncompleteTranstionrhythm& e)
+	{
+		std::cout << e.what();
+	}
+	catch (std::exception& e)
+	{
+		std::cout << e.what();
+	}
 
 
 

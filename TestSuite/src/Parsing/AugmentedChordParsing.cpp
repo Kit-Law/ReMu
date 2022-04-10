@@ -61,7 +61,7 @@ namespace Parsing
 
 				Assert::AreEqual(chord->getComponents()->size() == 3, true);
 				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('F', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('E', ReMu::Accidental::Sharp), true);
 				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('G', ReMu::Accidental::DoubleSharp), true);
 			}
 		}

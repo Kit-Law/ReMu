@@ -76,6 +76,12 @@ public:
   virtual void enterNote(SheetMusicParser::NoteContext * /*ctx*/) override { }
   virtual void exitNote(SheetMusicParser::NoteContext * /*ctx*/) override { }
 
+  virtual void enterRest(SheetMusicParser::RestContext * /*ctx*/) override { }
+  virtual void exitRest(SheetMusicParser::RestContext * /*ctx*/) override { }
+
+  virtual void enterFlags(SheetMusicParser::FlagsContext * /*ctx*/) override { }
+  virtual void exitFlags(SheetMusicParser::FlagsContext * /*ctx*/) override { }
+
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
   virtual void exitEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }

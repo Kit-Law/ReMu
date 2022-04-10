@@ -206,7 +206,7 @@ namespace Parsing
 		{
 			try
 			{
-				std::map<std::string, ReMu::Section*> sections = parseProgram("../TestSuite/Files/Programs/Errors/incompleteTranstionrhythm.txt");
+				std::map<std::string, ReMu::Section*> sections = parseProgram("../TestSuite/Files/Programs/Errors/incompleteTranstionRhythm.txt");
 
 				Assert::AreEqual(true, false);
 			}

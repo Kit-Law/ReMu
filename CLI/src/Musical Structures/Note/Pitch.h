@@ -47,7 +47,7 @@ namespace ReMu {
 		inline int mapNoteToNum() const
 		{
 			int step = mapStepToNum() + accidental;
-			return step < 0 ? step + 12 : step;
+			return step < 0 ? step + 12 : step > 11 ? step - 12 : step;
 		}
 
 		friend bool operator==(const Pitch& lhs, const Pitch& rhs);

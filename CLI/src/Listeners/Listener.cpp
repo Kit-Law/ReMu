@@ -74,10 +74,10 @@ namespace ReMu {
 
 		if (ctx->NUMBER() != nullptr)
 		{
-			if (sequence->hasDuration())
-				chordBuffer->setDuration(std::stof(ctx->NUMBER()->toString()));
-			else
+			if (!sequence->hasDuration() || !onInital && initalSequence.hasDuration())
 				throw IncompleteTranstionrhythm(ctx->start->getLine());
+				
+			chordBuffer->setDuration(std::stof(ctx->NUMBER()->toString()));
 		}
 		else if (sequence->hasDuration() || !onInital && initalSequence.hasDuration())
 			throw IncompleteTranstionrhythm(ctx->start->getLine());
@@ -102,10 +102,10 @@ namespace ReMu {
 
 		if (ctx->NUMBER(0) != nullptr)
 		{
-			if (sequence->hasDuration())
-				notes.back().setDuration(std::stoi(ctx->NUMBER(0)->toString()));
-			else
+			if (!sequence->hasDuration() || !onInital && initalSequence.hasDuration())
 				throw IncompleteTranstionrhythm(ctx->start->getLine());
+
+			notes.back().setDuration(std::stoi(ctx->NUMBER(0)->toString()));
 		}
 		else if (sequence->hasDuration() || !onInital && initalSequence.hasDuration())
 			throw IncompleteTranstionrhythm(ctx->start->getLine());
@@ -116,7 +116,7 @@ namespace ReMu {
 
 	void Listener::enterSymbol(SheetMusicParser::SymbolContext* ctx)
 	{
-		symbol = Symbol(ctx->children[0]->getText(), (ctx->children.size() > 1) ? std::stoi(ctx->children[1]->getText()) : 0);
+		symbol = Symbol(ctx->children[0]->getText());
 	}
 
 	void Listener::enterAdditions(SheetMusicParser::AdditionsContext* ctx)
@@ -142,7 +142,7 @@ namespace ReMu {
 	{
 		Pitch note;
 		
-		note.setStep(ctx->children[0]->getText()[0]);
+		note.setStep(ctx->children[0]->getText().size() > 1 ? '0' + (char)std::stoi(ctx->children[0]->getText()) : ctx->children[0]->getText()[0]);
 		if (ctx->children.size() > 1) note.setAccidental(Accidental(ctx->children[1]->getText().size() * (ctx->children[1]->getText()[0] == '#' ? 1 : -1)));
 
 		notes.push_back(note);

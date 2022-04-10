@@ -74,6 +74,12 @@ public:
   virtual void enterNote(SheetMusicParser::NoteContext *ctx) = 0;
   virtual void exitNote(SheetMusicParser::NoteContext *ctx) = 0;
 
+  virtual void enterRest(SheetMusicParser::RestContext *ctx) = 0;
+  virtual void exitRest(SheetMusicParser::RestContext *ctx) = 0;
+
+  virtual void enterFlags(SheetMusicParser::FlagsContext *ctx) = 0;
+  virtual void exitFlags(SheetMusicParser::FlagsContext *ctx) = 0;
+
 
 };
 

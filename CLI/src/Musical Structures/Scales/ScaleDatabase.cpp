@@ -15,6 +15,7 @@ namespace ReMu {
 		database["Lydian"] = LYDIAN_SCALE_INFO;
 		database["Mixolydian"] = MIXOLYDIAN_SCALE_INFO;
 		database["Aeolian"] = AEOLIAN_SCALE_INFO;
+		database["Minor"] = AEOLIAN_SCALE_INFO;
 		database["Locrian"] = LOCRIAN_SCALE_INFO;
 	}
 

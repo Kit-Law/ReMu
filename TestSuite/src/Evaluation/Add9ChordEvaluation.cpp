@@ -1,0 +1,272 @@
+#include "CppUnitTest.h"
+
+#include "../Helper.h"
+#include "API.h"
+
+#include "Musical Structures/Section.h"
+#include "Musical Structures/Chord/Chord.h"
+
+#include "Exceptions/ParseExceptions.h"
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+namespace Evaluation
+{
+	//Generated using https://www.omnicalculator.com/other/chord
+	TEST_CLASS(Add9ChordEvaluation)
+	{
+	private:
+		std::stringstream program;
+	public:
+		TEST_CLASS_INITIALIZE(ParsingTestsInitalize)
+		{
+			ReMu::ScaleDatabase::initalize();
+		}
+
+		TEST_METHOD_INITIALIZE(StringStreamSetup)
+		{
+			program << "\"test\" = 1 - 20;\n\n\"test\":";
+		}
+
+		TEST_METHOD(CAdd9)
+		{
+			program << "C maj add 9 -> A,";
+			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+
+			for (auto const& section : sections)
+			{
+				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+
+				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+				Assert::AreEqual(chord->getComponents()->size() == 4, true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('C', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('E', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('G', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('D', ReMu::Accidental::None), true);
+			}
+		}
+
+		TEST_METHOD(CSharpAdd9)
+		{
+			program << "C# maj add 9 -> A,";
+			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+
+			for (auto const& section : sections)
+			{
+				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+
+				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+				Assert::AreEqual(chord->getComponents()->size() == 4, true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('F', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
+			}
+		}
+
+
+		TEST_METHOD(DAdd9)
+		{
+			program << "D maj add 9 -> A,";
+			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+
+			for (auto const& section : sections)
+			{
+				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+
+				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+				Assert::AreEqual(chord->getComponents()->size() == 4, true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('D', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('A', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('E', ReMu::Accidental::None), true);
+			}
+		}
+
+		TEST_METHOD(DSharpAdd9)
+		{
+			program << "D# maj add 9 -> A,";
+			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+
+			for (auto const& section : sections)
+			{
+				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+
+				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+				Assert::AreEqual(chord->getComponents()->size() == 4, true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('F', ReMu::Accidental::DoubleSharp), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('A', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('F', ReMu::Accidental::None), true);
+			}
+		}
+
+		TEST_METHOD(EAdd9)
+		{
+			program << "E maj add 9 -> A,";
+			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+
+			for (auto const& section : sections)
+			{
+				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+
+				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+				Assert::AreEqual(chord->getComponents()->size() == 4, true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('E', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('B', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
+			}
+		}
+
+		TEST_METHOD(FAdd9)
+		{
+			program << "F maj add 9 -> A,";
+			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+
+			for (auto const& section : sections)
+			{
+				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+
+				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+				Assert::AreEqual(chord->getComponents()->size() == 4, true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('F', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('A', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('C', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('G', ReMu::Accidental::None), true);
+			}
+		}
+
+		TEST_METHOD(FSharpAdd9)
+		{
+			program << "F# maj add 9 -> A,";
+			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+
+			for (auto const& section : sections)
+			{
+				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+
+				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+				Assert::AreEqual(chord->getComponents()->size() == 4, true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('A', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
+			}
+		}
+
+		TEST_METHOD(GAdd9)
+		{
+			program << "G maj add 9 -> A,";
+			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+
+			for (auto const& section : sections)
+			{
+				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+
+				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+				Assert::AreEqual(chord->getComponents()->size() == 4, true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('G', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('B', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('D', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('A', ReMu::Accidental::None), true);
+			}
+		}
+
+		TEST_METHOD(GSharpAdd9)
+		{
+			program << "G# maj add 9 -> A,";
+			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+
+			for (auto const& section : sections)
+			{
+				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+
+				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+				Assert::AreEqual(chord->getComponents()->size() == 4, true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('B', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('A', ReMu::Accidental::Sharp), true);
+			}
+		}
+
+		TEST_METHOD(AAdd9)
+		{
+			program << "A maj add 9 -> A,";
+			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+
+			for (auto const& section : sections)
+			{
+				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+
+				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+				Assert::AreEqual(chord->getComponents()->size() == 4, true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('A', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('E', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('B', ReMu::Accidental::None), true);
+			}
+		}
+
+		TEST_METHOD(ASharpAdd9)
+		{
+			program << "A# maj add 9 -> A,";
+			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+
+			for (auto const& section : sections)
+			{
+				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+
+				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+				Assert::AreEqual(chord->getComponents()->size() == 4, true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('A', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('C', ReMu::Accidental::DoubleSharp), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('E', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('C', ReMu::Accidental::None), true);
+			}
+		}
+
+		TEST_METHOD(BAdd9)
+		{
+			program << "B maj add 9 -> A,";
+			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+
+			for (auto const& section : sections)
+			{
+				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+
+				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
+				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+
+				Assert::AreEqual(chord->getComponents()->size() == 4, true);
+				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('B', ReMu::Accidental::None), true);
+				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
+				Assert::AreEqual(chord->getComponents()->at(3) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
+			}
+		}
+	};
+}
