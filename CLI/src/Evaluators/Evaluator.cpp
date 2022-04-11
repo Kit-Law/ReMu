@@ -63,8 +63,15 @@ namespace ReMu { namespace Evaluator {
 			for (auto sequence : sequenceBuffers)
 				sequence->evaluate(notesBuffers, notesBuffers.second.front().parent().child("duration").text().as_float());
 
-			if (notesBuffers.first.size() == 1 && noteTransitions.count(notesBuffers.first.at(0)) > 0)
-				NoteEvaluator::setNote(&notesBuffers.second.at(0), &noteTransitions.at(notesBuffers.first.at(0)));
+			if (notesBuffers.first.size() == 1)
+			{
+				if (noteTransitions.count(notesBuffers.first.at(0)) > 0)
+					NoteEvaluator::setNote(&notesBuffers.second.at(0), &noteTransitions.at(notesBuffers.first.at(0)));
+			}
+			else if (section->getFlag("\\ScaleEffectsChords"))
+				for (int j = 0; j < notesBuffers.first.size(); j++)
+					if (noteTransitions.count(notesBuffers.first.at(j)) > 0)
+						NoteEvaluator::setNote(&notesBuffers.second.at(j), &noteTransitions.at(notesBuffers.first.at(j)));
 		}
 	}
 

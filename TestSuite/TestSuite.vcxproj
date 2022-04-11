@@ -193,6 +193,7 @@
     <ClCompile Include="src\Parsing\Omit5ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\SusChordParsing.cpp" />
     <ClCompile Include="src\Transitions\RelativeKeys.cpp" />
+    <ClCompile Include="src\Transitions\Rhythm.cpp" />
     <ClCompile Include="src\Transitions\TransitionsToSelf.cpp" />
     <ClCompile Include="src\Parsing\ParsingTests.cpp" />
     <ClCompile Include="src\Transitions\Transpositions.cpp" />

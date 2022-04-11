@@ -7,8 +7,8 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace Transitions
-{
+namespace Parsing { namespace Transitions {
+
 	TEST_CLASS(RelativeKeys)
 	{
 	public:
@@ -107,4 +107,4 @@ namespace Transitions
 			}
 		}
 	};
-}
+} }

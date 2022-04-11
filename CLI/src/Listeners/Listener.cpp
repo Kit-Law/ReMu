@@ -102,12 +102,12 @@ namespace ReMu {
 
 		if (ctx->NUMBER(0) != nullptr)
 		{
-			if (!sequence->hasDuration() || !onInital && initalSequence.hasDuration())
+			if (!sequence->hasDuration())
 				throw IncompleteTranstionrhythm(ctx->start->getLine());
 
 			notes.back().setDuration(std::stoi(ctx->NUMBER(0)->toString()));
 		}
-		else if (sequence->hasDuration() || !onInital && initalSequence.hasDuration())
+		else if (sequence->hasDuration())
 			throw IncompleteTranstionrhythm(ctx->start->getLine());
 
 		sequence->pushBack(notes.at(0));
@@ -146,6 +146,25 @@ namespace ReMu {
 		if (ctx->children.size() > 1) note.setAccidental(Accidental(ctx->children[1]->getText().size() * (ctx->children[1]->getText()[0] == '#' ? 1 : -1)));
 
 		notes.push_back(note);
+	}
+
+	void Listener::enterRest(SheetMusicParser::RestContext* ctx)
+	{
+		Sequence* sequence;
+
+		if (onInital)
+			sequence = &initalSequence;
+		else
+			sequence = &resultSequence;
+
+		if (sequence->size() == 0 && ctx->NUMBER() != nullptr)
+			sequence->setDurationFlag(true);
+
+		if (!sequence->hasDuration())
+			throw IncompleteTranstionrhythm(ctx->start->getLine());
+
+		Pitch rest = Pitch('-', std::stoi(ctx->NUMBER()->toString()), Accidental::None);
+		sequence->pushBack(rest);
 	}
 
 	void Listener::exitSequenceRule(SheetMusicParser::SequenceRuleContext* ctx)

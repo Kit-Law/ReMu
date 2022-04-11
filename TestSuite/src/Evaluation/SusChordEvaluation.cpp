@@ -10,8 +10,8 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace Evaluation
-{
+namespace Evaluation { namespace Chords {
+
 	//Generated using https://www.omnicalculator.com/other/chord
 	TEST_CLASS(SusChordEvaluation)
 	{
@@ -486,4 +486,4 @@ namespace Evaluation
 			}
 		}
 	};
-}
+} }

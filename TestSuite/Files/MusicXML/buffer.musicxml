@@ -92,16 +92,6 @@
 			<barline location="right">
 				<bar-style>light-heavy</bar-style>
 			</barline>
-			<note default-x="80.72" default-y="-25.00">
-				<chord />
-				<pitch>
-					<step>C</step>
-					<octave>4</octave>
-				</pitch>
-				<duration>4</duration>
-				<voice>1</voice>
-				<type>whole</type>
-			</note>
 		</measure>
 	</part>
 </score-partwise>

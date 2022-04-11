@@ -66,12 +66,11 @@ sequence
 
 chord
  : pitch symbol additions* ('[' NUMBER ']')?
- | '{' (pitch ',')* pitch '}'
- | pitch WORD
+// | '{' (pitch ',')* pitch '}'
  ;
 
 symbol
- : QUALITY
+ : WORD
  ;
 
 additions
@@ -99,7 +98,7 @@ flags
 NUMBER     : [0-9]+;
 NATURAL    : [A-G] | '_';
 ACCIDENTAL : 'b' | 'bb' | 'bbb' | '###' | '##' | '#';
-QUALITY    : 'maj' | 'M' | 'maj7' | 'M7' | 'maj6' | 'M6' | 'min' | 'm' | 'min7' | 'm7' | 'min6' | 'm6' | 'dim' | '°' | 'dim7' | '°7' | 'dom7' | 'aug' | 'alt' | 'sus4' | 'sus2';
+//QUALITY    : 'maj' | 'M' | 'maj7' | 'M7' | 'maj6' | 'M6' | 'min' | 'm' | 'min7' | 'm7' | 'min6' | 'm6' | 'dim' | '°' | 'dim7' | '°7' | 'dom7' | 'aug' | 'alt' | 'sus4' | 'sus2';
 ADDITIONS  : 'add' | 'omit';
 
 STRING
@@ -107,7 +106,7 @@ STRING
  ;
 
 WORD
- : ([a-zA-Z])+
+ : ([a-zA-Z])+([a-zA-Z0-9])+
  ;
 
 COMMENT

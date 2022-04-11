@@ -26,8 +26,8 @@ int main(int argc, const char* argv[])
 	try
 	{
 		std::stringstream prog;
-		prog << "\"Test\" = 0 - 20;\"Test\":C maj add 9->A,";
-
+		prog << "\"Test\" = 0 - 20;\"Test\":\\ScaleEffectsChords,A[1] -> C[2] C[2],";
+		
 		std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(prog)->getSections();
 	}
 	catch (IncompleteTranstionrhythm& e)

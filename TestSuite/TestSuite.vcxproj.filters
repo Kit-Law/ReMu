@@ -123,6 +123,9 @@
     <ClCompile Include="src\Evaluation\Omit5ChordEvaluation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Transitions\Rhythm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Helper.h">

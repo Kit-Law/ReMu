@@ -60,6 +60,8 @@ namespace ReMu {
 		inline void enterInstrument(SheetMusicParser::InstrumentContext* ctx) override { currentIntstument = ctx->WORD()->getText(); }
 		inline void exitInstrument(SheetMusicParser::InstrumentContext* ctx) override { currentIntstument = ""; }
 
+		inline void enterFlags(SheetMusicParser::FlagsContext* ctx) override { currentSection->setFlag(ctx->children[0]->toString()); }
+
 		inline void enterOccurrenceRule(SheetMusicParser::OccurrenceRuleContext* ctx) override { occurance = std::stoi(ctx->NUMBER()->getText()); }
 		inline void exitOccurrenceRule(SheetMusicParser::OccurrenceRuleContext* ctx) override { occurance = 1; }
 
@@ -79,6 +81,8 @@ namespace ReMu {
 		inline void exitScale(SheetMusicParser::ScaleContext* ctx) override { onInital = !onInital; }
 
 		void enterPitch(SheetMusicParser::PitchContext* ctx) override;
+
+		void enterRest(SheetMusicParser::RestContext* ctx) override;
 
 		void exitSequenceRule(SheetMusicParser::SequenceRuleContext* ctx) override;
 

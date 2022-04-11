@@ -45,9 +45,9 @@ namespace ReMu {
 			for (std::pair<void*, structType> seq : structsToMapping)
 			{
 				if (seq.second == PITCH)
-					duration += ((Pitch*)seq.first)->getDuration();
+					duration += 1.0f / (float)((Pitch*)seq.first)->getDuration();
 				else if (seq.second == CHORD)
-					duration += ((Chord*)seq.first)->getDuration();
+					duration += 1.0f / (float)((Chord*)seq.first)->getDuration();
 			}
 
 			return duration;

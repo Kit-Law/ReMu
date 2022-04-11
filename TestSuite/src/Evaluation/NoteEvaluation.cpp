@@ -10,8 +10,8 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace Evaluation
-{
+namespace Evaluation { namespace Note {
+
 	//Generated using https://www.omnicalculator.com/other/chord
 	TEST_CLASS(NoteEvaluation)
 	{
@@ -173,4 +173,4 @@ namespace Evaluation
 			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 	};
-}
+} }

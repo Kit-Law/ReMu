@@ -10,8 +10,8 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace Parsing
-{
+namespace Parsing { namespace Note {
+
 	//Generated using https://www.omnicalculator.com/other/chord
 	TEST_CLASS(NoteParsing)
 	{
@@ -221,4 +221,4 @@ namespace Parsing
 			}
 		}
 	};
-}
+} }
