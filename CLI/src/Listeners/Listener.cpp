@@ -74,12 +74,12 @@ namespace ReMu {
 
 		if (ctx->NUMBER() != nullptr)
 		{
-			if (!sequence->hasDuration() || !onInital && initalSequence.hasDuration())
+			if (!sequence->hasDuration())
 				throw IncompleteTranstionrhythm(ctx->start->getLine());
 				
 			chordBuffer->setDuration(std::stof(ctx->NUMBER()->toString()));
 		}
-		else if (sequence->hasDuration() || !onInital && initalSequence.hasDuration())
+		else if (sequence->hasDuration())
 			throw IncompleteTranstionrhythm(ctx->start->getLine());
 
 		sequence->pushBack(chordBuffer);

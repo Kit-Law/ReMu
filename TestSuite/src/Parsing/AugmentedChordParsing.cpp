@@ -257,4 +257,4 @@ namespace Parsing { namespace Chords {
 			}
 		}
 	};
-}}
+} }

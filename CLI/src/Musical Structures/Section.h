@@ -25,7 +25,7 @@ namespace ReMu {
 		inline int getStartingMessure() { return duration.first; }
 		inline int getEndingMessure() { return duration.second; }
 
-		inline bool getFlag(std::string flag) { if (flag == "\\ScaleEffectsChords") return scaleEffectsChords; return false }
+		inline bool getFlag(std::string flag) { if (flag == "\\ScaleEffectsChords") return scaleEffectsChords; return false; }
 		inline void setFlag(std::string flag) { if (flag == "\\ScaleEffectsChords") scaleEffectsChords = true; }
 
 		friend std::ostream& operator<<(std::ostream& os, const Section& section);

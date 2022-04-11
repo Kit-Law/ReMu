@@ -9,9 +9,9 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace Parsing { namespace ParseErrors {
-
-	TEST_CLASS(ParsingTests)
+namespace Parsing
+{
+	TEST_CLASS(ErrorTests)
 	{
 	public:
 		TEST_CLASS_INITIALIZE(ParsingTestsInitalize)
@@ -220,4 +220,4 @@ namespace Parsing { namespace ParseErrors {
 			}
 		}
 	};
-} }
+}

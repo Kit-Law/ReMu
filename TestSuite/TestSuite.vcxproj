@@ -176,6 +176,7 @@
     <ClCompile Include="src\Evaluation\Omit3ChordEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\Omit5ChordEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\SusChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\WildcardEvaluation.cpp" />
     <ClCompile Include="src\Parsing\Add11ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\Add9ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\AugmentedChordParsing.cpp" />
@@ -191,12 +192,14 @@
     <ClCompile Include="src\Parsing\NoteParsing.cpp" />
     <ClCompile Include="src\Parsing\Omit3ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\Omit5ChordParsing.cpp" />
-    <ClCompile Include="src\Parsing\SusChordParsing.cpp" />
-    <ClCompile Include="src\Transitions\RelativeKeys.cpp" />
-    <ClCompile Include="src\Transitions\Rhythm.cpp" />
-    <ClCompile Include="src\Transitions\TransitionsToSelf.cpp" />
     <ClCompile Include="src\Parsing\ParsingTests.cpp" />
-    <ClCompile Include="src\Transitions\Transpositions.cpp" />
+    <ClCompile Include="src\Parsing\RelativeKeys.cpp" />
+    <ClCompile Include="src\Parsing\RhythmParsing.cpp" />
+    <ClCompile Include="src\Parsing\SusChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\TransitionsToSelf.cpp" />
+    <ClCompile Include="src\Parsing\Transpositions.cpp" />
+    <ClCompile Include="src\Parsing\UserDef.cpp" />
+    <ClCompile Include="src\Parsing\WildcardParsing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Helper.h" />

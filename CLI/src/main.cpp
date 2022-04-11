@@ -26,7 +26,7 @@ int main(int argc, const char* argv[])
 	try
 	{
 		std::stringstream prog;
-		prog << "\"Test\" = 0 - 20;\"Test\":\\ScaleEffectsChords,A[1] -> C[2] C[2],";
+		prog << "\"test\" = 1 - 20;\n\\addChord chrom {1,2,3,4,5,6,7}\n\n\"test\": A chrom -> A,";
 		
 		std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(prog)->getSections();
 	}
