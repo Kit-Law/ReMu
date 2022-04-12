@@ -29,10 +29,11 @@ void ScoreViewer::loadScores(const QString& dir)
     QImageReader reader;
     scores->clear();
 
-    for (int i = 1; true; i++)
+    for (const auto& entry : std::filesystem::directory_iterator(dir.toStdString()))
+    //for (int i = 1; true; i++)
     {
-        QString scoreFile = dir + "\\temp-" + (i + '0') + ".png";
-        reader.setFileName(scoreFile);
+        //QString scoreFile = dir + "\\temp-" + (i + '0') + ".png";
+        reader.setFileName(QString(entry.path().string().c_str()));
         const QImage newImage = reader.read();
 
         if (newImage.isNull())

@@ -35,12 +35,7 @@
 
 //#include "API.h"
 
-//Rythem spelt wrong
-//Pixmap not delted
 //Large files break
-//Rytehm not syntax highlighed
-//Grammar for flats now doesn't work because it thinks its a custom chord lol
-//Syntaxhighliing when white is clappeds
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

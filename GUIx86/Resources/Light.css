@@ -107,11 +107,9 @@ QWidget:disabled
     background-color: #323232;
 }
 
-QTextEdit
-{
-    background-color: #e0dee7;
+QTextEdit {
+    background-color: #a39a84;
     border: 1px solid #3c3f41;
-
     selection-background-color: #6e9ba7;
     selection-color: #d7e3e7;
     color: #ffffff;

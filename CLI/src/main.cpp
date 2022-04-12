@@ -15,34 +15,6 @@ int main()
 int main(int argc, const char* argv[])
 #endif // DEBUG
 {
-
-
-
-
-
-
-	ReMu::ScaleDatabase::initalize();
-
-	try
-	{
-		std::stringstream prog;
-		prog << "\"test\" = 1 - 20;\n\\addChord chrom {1,2,3,4,5,6,7}\n\n\"test\": A chrom -> A,";
-		
-		std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(prog)->getSections();
-	}
-	catch (IncompleteTranstionrhythm& e)
-	{
-		std::cout << e.what();
-	}
-	catch (std::exception& e)
-	{
-		std::cout << e.what();
-	}
-
-
-
-
-
 	Utils::DeltaTime deltaTime;
 	deltaTime.resetDeltaTime();
 

@@ -27,7 +27,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -183,6 +183,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\API.h" />
     <ClInclude Include="src\Evaluators\ChordEvaluator.h" />
+    <ClInclude Include="src\Evaluators\DivisionsMap.h" />
     <ClInclude Include="src\Evaluators\Evaluator.h" />
     <ClInclude Include="src\Evaluators\NoteEvaluator.h" />
     <ClInclude Include="src\Evaluators\SequenceEvaluator.h" />

@@ -79,15 +79,15 @@
           <sign>G</sign>
           <line>2</line>
           </clef>
-        </attributes>
+      </attributes>
       <note default-x="84.22" default-y="-50.00">
         <pitch>
           <step>C</step>
           <octave>4</octave>
           </pitch>
-        <duration>1</duration>
+        <duration>8</duration>
         <voice>1</voice>
-        <type>quarter</type>
+        <type>eighth</type>
         <stem>up</stem>
         </note>
       <note default-x="106.23" default-y="-45.00">

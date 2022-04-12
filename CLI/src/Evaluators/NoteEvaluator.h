@@ -3,6 +3,8 @@
 #include "../Musical Structures/Note/Pitch.h"
 #include "../Musical Structures/Note/Accidental.h"
 
+#include "./DivisionsMap.h"
+
 #include "pugixml.hpp"
 
 #include <map>
@@ -19,15 +21,15 @@ namespace ReMu { namespace Evaluator {
 			return Pitch(note.child_value("step")[0], note.child("alter") ? Accidental(std::stoi(note.child_value("alter"))) : Accidental::None);
 		}
 
-		inline static void setNotes(std::vector<pugi::xml_node>* notes, Pitch* resultNote)
+		inline static void setNotes(std::vector<pugi::xml_node>* notes, Pitch* resultNote, DivisionsMap* divisionsMap)
 		{
-			setNote(&notes->front(), resultNote);
+			setNote(&notes->front(), resultNote, divisionsMap);
 
 			for (size_t i = 1; i < notes->size(); i++)
 				notes->at(i).parent().parent().remove_child(notes->at(i).parent());
 		}
 
-		inline static void setNote(pugi::xml_node* note, Pitch* resultNote)
+		inline static void setNote(pugi::xml_node* note, Pitch* resultNote, DivisionsMap* divisionsMap)
 		{
 			pugi::char_t noteStep[2] = { resultNote->getStep() };
 			note->child("step").text() = noteStep;
@@ -44,11 +46,7 @@ namespace ReMu { namespace Evaluator {
 
 			if (resultNote->getDuration() > 0)
 			{
-				//if notes can fit in devisions then fair enough 
-				//Otherwise change them and thusly change all of the notes in that measure
-				//caculate the correct conversion from devisions and duration to actual note value
-				//proceed
-				note->parent().child("duration").text() = resultNote->getDuration();
+				note->parent().child("duration").text() = 4.0f / resultNote->getDuration() * divisionsMap->getDivision(note->parent().parent().attribute("number").as_int());
 
 				if (resultNote->getDuration() == 1)
 					note->parent().child("type").text() = "whole";

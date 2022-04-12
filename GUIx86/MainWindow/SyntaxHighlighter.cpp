@@ -15,6 +15,11 @@ SyntaxHighlighter::SyntaxHighlighter(QTextDocument* parent)
     rule.format = sectionDefFormat;
     highlightingRules.append(rule);
 
+    noteFormat.setForeground(QColor(QRgb(qRgb(255, 225, 122))));
+    rule.pattern = QRegularExpression(QStringLiteral("([A-G](#|b)*(\[[0-9]+\])?(,| ))|(\[)|(\])"));
+    rule.format = noteFormat;
+    highlightingRules.append(rule);
+
     wordFormat.setFontWeight(QFont::StyleItalic);
     wordFormat.setForeground(QColor(QRgb(qRgb(255, 225, 122))));
     rule.pattern = QRegularExpression(QStringLiteral("[a-zA-Z]+( |,)"));
@@ -25,11 +30,6 @@ SyntaxHighlighter::SyntaxHighlighter(QTextDocument* parent)
     transitionFormat.setForeground(QColor(QRgb(qRgb(242, 161, 80))));
     rule.pattern = QRegularExpression(QStringLiteral("->"));
     rule.format = transitionFormat;
-    highlightingRules.append(rule);
-
-    noteFormat.setForeground(QColor(QRgb(qRgb(255, 225, 122))));
-    rule.pattern = QRegularExpression(QStringLiteral("[A-G](#|b)*(,| )"));
-    rule.format = noteFormat;
     highlightingRules.append(rule);
     
     scaleFormat.setFontWeight(QFont::Bold);

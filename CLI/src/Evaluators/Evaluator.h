@@ -7,6 +7,8 @@
 #include "./NoteEvaluator.h"
 #include "./SequenceEvaluator.h"
 
+#include "./DivisionsMap.h"
+
 #include "../Logger/Logger.h"
 
 #include "pugixml.hpp"
@@ -38,7 +40,7 @@ namespace ReMu { namespace Evaluator {
 		}
 	private:
 		void changeKey(const ReMu::Pitch* relativeMajorKey, Section* section, std::string instrument, pugi::xml_document& doc);
-		void evaluateSection(pugi::xml_document& doc, Section* section, TransitionTable* transitionTable, std::string instrument);
+		void evaluateSection(pugi::xml_document& doc, Section* section, TransitionTable* transitionTable, std::string instrument, DivisionsMap& divisionsMap);
 	};
 
 } }

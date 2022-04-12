@@ -8,6 +8,8 @@
 
 #include <vector>
 
+#include <filesystem>
+
 #include "ui_ImageViewer.h"
 
 class QAction;
@@ -45,6 +47,9 @@ private:
     QToolButton* zoomOutToolButton;
 public:
     ScoreViewer(QToolButton* prevPageToolButton, QToolButton* nextPageToolButton, QToolButton* zoomInToolButton, QToolButton* zoomOutToolButton);
+    //~ScoreViewer() { delete score; delete scrollArea; delete scores; delete zoomInAct; delete zoomOutAct; delete normalSizeAct; delete prevPageToolButton;
+    //        delete nextPageToolButton; delete zoomInToolButton; delete zoomOutToolButton; }
+
     void loadScores(const QString& dir);
 
     void createActions();

@@ -137,8 +137,10 @@ void MainWindow::on_actionChange_Input_triggered()
 
     on_actionSave_triggered();
 
-    rmdir(inputScoreLoc.c_str());
-    mkdir(inputScoreLoc.c_str());
+    for (const auto& entry : std::filesystem::directory_iterator(inputScoreLoc))
+        std::filesystem::remove_all(entry.path());
+    for (const auto& entry : std::filesystem::directory_iterator(outputScoreLoc))
+        std::filesystem::remove_all(entry.path());
 
     refresh();
 }
@@ -259,6 +261,9 @@ void MainWindow::runParser()
     QFile logQFile(logFile.c_str());
     if (logQFile.open(QIODevice::ReadOnly | QIODevice::Text))
         logText->setText(QString(logQFile.readAll()));
+
+    for (const auto& entry : std::filesystem::directory_iterator(outputScoreLoc))
+        std::filesystem::remove_all(entry.path());
 
     options = "\"" + outputFile + "\" -o \"" + outputScoreLoc + "\\temp.png\"";
     stemp = std::wstring(options.begin(), options.end());

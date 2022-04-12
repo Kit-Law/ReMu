@@ -30,460 +30,340 @@ namespace Evaluation { namespace Chords {
 
 		TEST_METHOD(CSus4)
 		{
-			program << "C sus4 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> C sus4,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('C', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('F', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('G', ReMu::Accidental::None));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('C', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('F', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('G', ReMu::Accidental::None), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(CSharpSus4)
 		{
-			program << "C# sus4 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> C# sus4,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('C', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('F', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('G', ReMu::Accidental::Sharp));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 
 		TEST_METHOD(DSus4)
 		{
-			program << "D sus4 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> D sus4,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('D', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('G', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('A', ReMu::Accidental::None));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('D', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('G', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('A', ReMu::Accidental::None), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(DSharpSus4)
 		{
-			program << "D# sus4 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> D# sus4,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('D', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('G', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('A', ReMu::Accidental::Sharp));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('A', ReMu::Accidental::Sharp), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(ESus4)
 		{
-			program << "E sus4 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> E sus4,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('E', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('A', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('B', ReMu::Accidental::None));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('E', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('A', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('B', ReMu::Accidental::None), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(FSus4)
 		{
-			program << "F sus4 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> F sus4,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('F', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('B', ReMu::Accidental::Flat));
+			resultNotes.push_back(ReMu::Pitch('C', ReMu::Accidental::None));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('F', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('B', ReMu::Accidental::Flat), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('C', ReMu::Accidental::None), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(FSharpSus4)
 		{
-			program << "F# sus4 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> F# sus4,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('F', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('B', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('C', ReMu::Accidental::Sharp));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('B', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(GSus4)
 		{
-			program << "G sus4 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> G sus4,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('G', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('C', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('D', ReMu::Accidental::None));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('G', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('C', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('D', ReMu::Accidental::None), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(GSharpSus4)
 		{
-			program << "G# sus4 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> G# sus4,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('G', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('C', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('D', ReMu::Accidental::Sharp));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(ASus4)
 		{
-			program << "A sus4 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> A sus4,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('A', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('D', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('E', ReMu::Accidental::None));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('A', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('D', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('E', ReMu::Accidental::None), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(ASharpSus4)
 		{
-			program << "A# sus4 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> A# sus4,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('A', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('D', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('E', ReMu::Accidental::Sharp));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('A', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('E', ReMu::Accidental::Sharp), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(BSus4)
 		{
-			program << "B sus4 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> B sus4,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('B', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('E', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('F', ReMu::Accidental::Sharp));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('B', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('E', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(CSus2)
 		{
-			program << "C sus2 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> C sus2,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('C', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('D', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('G', ReMu::Accidental::None));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('C', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('D', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('G', ReMu::Accidental::None), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(CSharpSus2)
 		{
-			program << "C# sus2 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> C# sus2,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('C', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('D', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('G', ReMu::Accidental::Sharp));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 
 		TEST_METHOD(DSus2)
 		{
-			program << "D sus2 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> D sus2,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('D', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('E', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('A', ReMu::Accidental::None));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('D', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('E', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('A', ReMu::Accidental::None), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(DSharpSus2)
 		{
-			program << "D# sus2 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> D# sus2,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('D', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('E', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('A', ReMu::Accidental::Sharp));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('E', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('A', ReMu::Accidental::Sharp), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(ESus2)
 		{
-			program << "E sus2 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> E sus2,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('E', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('F', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('B', ReMu::Accidental::None));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('E', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('B', ReMu::Accidental::None), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(FSus2)
 		{
-			program << "F sus2 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> F sus2,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('F', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('G', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('C', ReMu::Accidental::None));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('F', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('G', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('C', ReMu::Accidental::None), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(FSharpSus2)
 		{
-			program << "F# sus2 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> F# sus2,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('F', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('G', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('C', ReMu::Accidental::Sharp));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(GSus2)
 		{
-			program << "G sus2 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> G sus2,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('G', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('A', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('D', ReMu::Accidental::None));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('G', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('A', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('D', ReMu::Accidental::None), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(GSharpSus2)
 		{
-			program << "G# sus2 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> G# sus2,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('G', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('A', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('D', ReMu::Accidental::Sharp));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('G', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('A', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('D', ReMu::Accidental::Sharp), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(ASus2)
 		{
-			program << "A sus2 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> A sus2,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('A', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('B', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('E', ReMu::Accidental::None));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('A', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('B', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('E', ReMu::Accidental::None), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(ASharpSus2)
 		{
-			program << "A# sus2 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> A# sus2,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('A', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('B', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('E', ReMu::Accidental::Sharp));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('A', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('B', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('E', ReMu::Accidental::Sharp), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 
 		TEST_METHOD(BSus2)
 		{
-			program << "B sus2 -> A,";
-			std::map<std::string, ReMu::Section*> sections = ReMu::API::parse(program)->getSections();
+			program << "A -> B sus2,";
 
-			for (auto const& section : sections)
-			{
-				Assert::AreEqual(section.second->getTransitionTable()->getNoteTransitions()->size(), (size_t)0);
+			ReMu::API::eval(ReMu::API::parse(program), "../TestSuite/Files/MusicXML/Input/A.musicxml", "../TestSuite/Files/MusicXML/buffer.musicxml");
 
-				auto transition = section.second->getTransitionTable()->getSequenceTransitions()->at(0);
-				ReMu::Chord* chord = (ReMu::Chord*)(std::get<0>(transition).getStuctsToMapping()->at(0).first);
+			std::vector<ReMu::Pitch> resultNotes;
+			resultNotes.push_back(ReMu::Pitch('B', ReMu::Accidental::None));
+			resultNotes.push_back(ReMu::Pitch('C', ReMu::Accidental::Sharp));
+			resultNotes.push_back(ReMu::Pitch('F', ReMu::Accidental::Sharp));
 
-				Assert::AreEqual(chord->getComponents()->size() == 3, true);
-				Assert::AreEqual(chord->getComponents()->at(0) == ReMu::Pitch('B', ReMu::Accidental::None), true);
-				Assert::AreEqual(chord->getComponents()->at(1) == ReMu::Pitch('C', ReMu::Accidental::Sharp), true);
-				Assert::AreEqual(chord->getComponents()->at(2) == ReMu::Pitch('F', ReMu::Accidental::Sharp), true);
-			}
+			Assert::AreEqual(verifyXmlFile("../TestSuite/Files/MusicXML/buffer.musicxml", resultNotes), true);
 		}
 	};
 } }

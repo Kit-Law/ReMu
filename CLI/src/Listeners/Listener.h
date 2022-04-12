@@ -46,8 +46,8 @@ namespace ReMu {
 	public:
 		~Listener()
 		{ 
-			for (auto section : sections) 
-				delete section.second;
+			//for (auto section : sections) 
+			//	delete section.second;
 		}
 
 		void enterSectionDef(SheetMusicParser::SectionDefContext* ctx) override;

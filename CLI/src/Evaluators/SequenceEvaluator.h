@@ -5,6 +5,7 @@
 
 #include "./NoteEvaluator.h"
 #include "./ChordEvaluator.h"
+#include "./DivisionsMap.h"
 
 #include "pugixml.hpp"
 
@@ -19,11 +20,15 @@ namespace ReMu { namespace Evaluator {
 		std::vector<pugi::xml_node>* nodeBuffer;
 		int nextNode = 0;
 		int occurance = 1;
+
+		DivisionsMap* divisionsMap;
 	public:
-		SequenceEvaluator(std::tuple<Sequence, Sequence, int> __sequenceTransitions)
+		SequenceEvaluator(std::tuple<Sequence, Sequence, int> __sequenceTransitions, DivisionsMap* __divisionsMap)
 		{
 			sequenceTransitions = __sequenceTransitions;
-			nodeBuffer = new std::vector<pugi::xml_node>[std::get<0>(__sequenceTransitions).size()];
+			nodeBuffer = new std::vector<pugi::xml_node>[std::get<1>(__sequenceTransitions).size() > std::get<0>(__sequenceTransitions).size() ? std::get<1>(__sequenceTransitions).size() : std::get<0>(__sequenceTransitions).size()];
+
+			divisionsMap = __divisionsMap;
 		}
 
 		~SequenceEvaluator()
@@ -99,14 +104,31 @@ namespace ReMu { namespace Evaluator {
 	private:
 		void colapse()
 		{
+			int initalSize = std::get<0>(sequenceTransitions).getStuctsToMapping()->size();
+			int resultSize = std::get<1>(sequenceTransitions).getStuctsToMapping()->size();
+			int toAdd = resultSize - initalSize;
+
+			for (int i = 0; i < toAdd; i++)
+			{
+				if (std::get<1>(sequenceTransitions).getStuctsToMapping()->at(initalSize + i).second == CHORD)
+					for (int j = 0; j < ((ReMu::Chord*)std::get<1>(sequenceTransitions).getStuctsToMapping()->at(initalSize + i).first)->getComponents()->size(); j++)
+						nodeBuffer[initalSize + i].push_back(nodeBuffer[initalSize + i - 1].at(0).parent().parent().insert_copy_after(nodeBuffer[initalSize + i - 1].back().parent(), nodeBuffer[initalSize + i - 1].back().parent()).child("pitch"));
+				else
+					nodeBuffer[initalSize + i].push_back(nodeBuffer[initalSize + i - 1].at(0).parent().parent().insert_copy_after(nodeBuffer[initalSize + i - 1].back().parent(), nodeBuffer[initalSize + i - 1].back().parent()).child("pitch"));
+			}
+
+			for (int i = toAdd; i < 0; i++)
+				for (int j = 0; j < nodeBuffer[i].size(); j++)
+					nodeBuffer[i].at(j).parent().parent().remove_child(nodeBuffer[i].at(j).parent());
+
 			for (size_t j = 0; j < std::get<1>(sequenceTransitions).size(); j++)
 			{
 				std::pair<void*, structType>* next = &std::get<1>(sequenceTransitions).getStuctsToMapping()->at(j);
 
 				if (next->second == PITCH)
-					NoteEvaluator::setNotes(&nodeBuffer[j], (Pitch*)next->first);
+					NoteEvaluator::setNotes(&nodeBuffer[j], (Pitch*)next->first, divisionsMap);
 				else if (next->second == CHORD)
-					ChordEvaluator::setChord(&nodeBuffer[j], (Chord*)next->first);
+					ChordEvaluator::setChord(&nodeBuffer[j], (Chord*)next->first, divisionsMap);
 			}
 		}
 	};

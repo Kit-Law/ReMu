@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 <score-partwise version="3.1">
+	<work>
+		<work-title>TEstRythem</work-title>
+	</work>
 	<identification>
 		<encoding>
 			<software>MuseScore 3.6.2</software>
-			<encoding-date>2022-04-10</encoding-date>
+			<encoding-date>2022-04-11</encoding-date>
 			<supports element="accidental" type="yes" />
 			<supports element="beam" type="yes" />
 			<supports element="print" attribute="new-page" type="yes" value="yes" />
@@ -35,6 +38,10 @@
 		<word-font font-family="Edwin" font-size="10" />
 		<lyric-font font-family="Edwin" font-size="10" />
 	</defaults>
+	<credit page="1">
+		<credit-type>title</credit-type>
+		<credit-words default-x="600" default-y="1611.43" justify="center" valign="top" font-size="22">TEstRythem</credit-words>
+	</credit>
 	<part-list>
 		<part-group type="start" number="1">
 			<group-symbol>brace</group-symbol>
@@ -55,18 +62,18 @@
 		</score-part>
 	</part-list>
 	<part id="P1">
-		<measure number="1" width="306.47">
+		<measure number="1" width="330.11">
 			<print>
 				<system-layout>
 					<system-margins>
 						<left-margin>50.00</left-margin>
-						<right-margin>672.10</right-margin>
+						<right-margin>0.00</right-margin>
 					</system-margins>
-					<top-system-distance>70.00</top-system-distance>
+					<top-system-distance>170.00</top-system-distance>
 				</system-layout>
 			</print>
 			<attributes>
-				<divisions>1</divisions>
+				<divisions>2</divisions>
 				<key>
 					<fifths>0</fifths>
 				</key>
@@ -79,15 +86,75 @@
 					<line>2</line>
 				</clef>
 			</attributes>
-			<note default-x="80.72" default-y="-25.00">
+			<note default-x="80.72" default-y="-35.00">
 				<pitch>
-					<step>G</step>
-					<alter>1</alter>
+					<step>A</step>
 					<octave>4</octave>
 				</pitch>
+				<duration>1</duration>
+				<voice>1</voice>
+				<type>eighth</type>
+				<stem>up</stem>
+			</note>
+			<note default-x="149.02" default-y="-35.00">
+				<pitch>
+					<step>B</step>
+					<octave>4</octave>
+				</pitch>
+				<duration>2</duration>
+				<voice>1</voice>
+				<type>quarter</type>
+				<stem>up</stem>
+				<beam number="1">begin</beam>
+			</note>
+			<note default-x="191.71" default-y="-35.00">
+				<pitch>
+					<step>A</step>
+					<octave>4</octave>
+				</pitch>
+				<duration>0.5</duration>
+				<voice>1</voice>
+				<type>16th</type>
+				<stem>up</stem>
+				<beam number="1">end</beam>
+			</note>
+			<note default-x="191.71" default-y="-35.00">
+				<pitch>
+					<step>A</step>
+					<octave>4</octave>
+				</pitch>
+				<duration>0.5</duration>
+				<voice>1</voice>
+				<type>16th</type>
+				<stem>up</stem>
+				<beam number="1">end</beam>
+			</note>
+			<note>
+				<rest />
 				<duration>4</duration>
 				<voice>1</voice>
-				<type>whole</type>
+				<type>half</type>
+			</note>
+		</measure>
+		<measure number="2" width="215.60">
+			<note>
+				<rest measure="yes" />
+				<duration>4</duration>
+				<voice>1</voice>
+			</note>
+		</measure>
+		<measure number="3" width="215.60">
+			<note>
+				<rest measure="yes" />
+				<duration>4</duration>
+				<voice>1</voice>
+			</note>
+		</measure>
+		<measure number="4" width="217.25">
+			<note>
+				<rest measure="yes" />
+				<duration>4</duration>
+				<voice>1</voice>
 			</note>
 			<barline location="right">
 				<bar-style>light-heavy</bar-style>

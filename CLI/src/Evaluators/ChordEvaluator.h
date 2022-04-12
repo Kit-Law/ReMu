@@ -6,6 +6,7 @@
 #include "../Musical Structures/Section.h"
 
 #include "./NoteEvaluator.h"
+#include "./DivisionsMap.h"
 
 #include "pugixml.hpp"
 
@@ -32,7 +33,7 @@ namespace ReMu { namespace Evaluator {
 			return Chord(components);
 		}
 
-		inline static void setChord(std::vector<pugi::xml_node>* notes, Chord* chord)
+		inline static void setChord(std::vector<pugi::xml_node>* notes, Chord* chord, DivisionsMap* divisionsMap)
 		{
 			size_t i = 0;
 			pugi::xml_node* lastNote = nullptr;
@@ -43,9 +44,8 @@ namespace ReMu { namespace Evaluator {
 					auto pitchBuffer = static_cast<Pitch>(chord->getComponents()->at(i));
 					pitchBuffer.setDuration(chord->getDuration());
 
-					NoteEvaluator::setNote(&note, &pitchBuffer);
+					NoteEvaluator::setNote(&note, &pitchBuffer, divisionsMap);
 				}
-					
 				else
 					note.parent().parent().remove_child(note.parent());
 
@@ -56,13 +56,13 @@ namespace ReMu { namespace Evaluator {
 			//TODO: add chord tag here
 			for (; i < chord->getComponents()->size(); i++)
 			{
-				auto noteBuffer = notes->at(0).parent().parent().append_copy(lastNote->parent()).child("pitch");//.append_child("chord");
-				auto pitchBuffer = static_cast<Pitch>(chord->getComponents()->at(i));
+				auto noteBuffer = notes->back().parent().parent().insert_copy_after(lastNote->parent(), lastNote->parent()).child("pitch");//.append_child("chord");
+				auto pitchBuffer = chord->getComponents()->at(i);
 
 				if (!noteBuffer.parent().child("chord"))
 					noteBuffer.parent().prepend_child("chord");
 
-				NoteEvaluator::setNote(&noteBuffer, &pitchBuffer);
+				NoteEvaluator::setNote(&noteBuffer, &pitchBuffer, divisionsMap);
 			}
 		}
 	};

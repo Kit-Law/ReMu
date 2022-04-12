@@ -166,6 +166,8 @@
     <ClCompile Include="src\Evaluation\Diminished7ChordEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\DiminishedChordEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\Dominant7ChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\FlagEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\InstrumentEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\Major6ChordEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\Major7ChordEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\MajorChordEvaluation.cpp" />
@@ -173,8 +175,10 @@
     <ClCompile Include="src\Evaluation\Minor7ChordEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\MinorChordEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\NoteEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\OccurrenceRuleEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\Omit3ChordEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\Omit5ChordEvaluation.cpp" />
+    <ClCompile Include="src\Evaluation\ScaleEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\SusChordEvaluation.cpp" />
     <ClCompile Include="src\Evaluation\WildcardEvaluation.cpp" />
     <ClCompile Include="src\Parsing\Add11ChordParsing.cpp" />
@@ -183,6 +187,8 @@
     <ClCompile Include="src\Parsing\Diminished7ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\DiminishedChordParsing.cpp" />
     <ClCompile Include="src\Parsing\Dominant7ChordParsing.cpp" />
+    <ClCompile Include="src\Parsing\FlagParsing.cpp" />
+    <ClCompile Include="src\Parsing\InstrumentParsing.cpp" />
     <ClCompile Include="src\Parsing\Major6ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\Major7ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\MajorChordParsing.cpp" />
@@ -190,6 +196,7 @@
     <ClCompile Include="src\Parsing\Minor7ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\MinorChordParsing.cpp" />
     <ClCompile Include="src\Parsing\NoteParsing.cpp" />
+    <ClCompile Include="src\Parsing\OccurrenceRuleParsing.cpp" />
     <ClCompile Include="src\Parsing\Omit3ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\Omit5ChordParsing.cpp" />
     <ClCompile Include="src\Parsing\ParsingTests.cpp" />
