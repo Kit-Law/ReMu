@@ -15,15 +15,20 @@ SyntaxHighlighter::SyntaxHighlighter(QTextDocument* parent)
     rule.format = sectionDefFormat;
     highlightingRules.append(rule);
 
-    noteFormat.setForeground(QColor(QRgb(qRgb(255, 225, 122))));
-    rule.pattern = QRegularExpression(QStringLiteral("([A-G](#|b)*(\[[0-9]+\])?(,| ))|(\[)|(\])"));
-    rule.format = noteFormat;
-    highlightingRules.append(rule);
-
     wordFormat.setFontWeight(QFont::StyleItalic);
     wordFormat.setForeground(QColor(QRgb(qRgb(255, 225, 122))));
     rule.pattern = QRegularExpression(QStringLiteral("[a-zA-Z]+( |,)"));
     rule.format = wordFormat;
+    highlightingRules.append(rule);
+
+    qualityFormat.setForeground(QColor(QRgb(qRgb(255, 171, 174))));
+    rule.pattern = QRegularExpression(QStringLiteral("(maj[ ,\[])|(M[ ,\[])|(maj7[ ,\[])|(M7[ ,\[])|(maj6[ ,\[])|(M6[ ,\[])|(min[ ,\[])|(m[ ,\[])|(min7[ ,\[])|(m7[ ,\[])|(min6[ ,\[])|(m6[ ,\[])|(dim[ ,\[])|(°[ ,\[])|(dim7[ ,\[])|(°7[ ,\[])|(dom7[ ,\[])|(aug[ ,\[])|(alt[ ,\[])|(sus4[ ,\[])|(sus2[ ,\[])|([0-9]+)"));
+    rule.format = qualityFormat;
+    highlightingRules.append(rule);
+
+    noteFormat.setForeground(QColor(QRgb(qRgb(255, 225, 122))));
+    rule.pattern = QRegularExpression(QStringLiteral("([A-G](#|b)*(\[[0-9]+\])?(,| ))|(\[[0-9]+\])"));
+    rule.format = noteFormat;
     highlightingRules.append(rule);
 
     transitionFormat.setFontWeight(QFont::Bold);
@@ -42,11 +47,6 @@ SyntaxHighlighter::SyntaxHighlighter(QTextDocument* parent)
     instrumentFormat.setForeground(QColor(QRgb(qRgb(144, 195, 209))));
     rule.pattern = QRegularExpression(QStringLiteral("^((?!((addScale)|(addChord))).)*{$|^((?![0-9,{]).)*}$"));
     rule.format = instrumentFormat;
-    highlightingRules.append(rule);
-
-    qualityFormat.setForeground(QColor(QRgb(qRgb(255, 171, 174))));
-    rule.pattern = QRegularExpression(QStringLiteral("(maj( |,))|(min( |,))|(dim( |,))|(aug( |,))|(alt( |,))|(sus( |,))|(add( |,))|(omit( |,))|([0-9]+)"));
-    rule.format = qualityFormat;
     highlightingRules.append(rule);
 
     commandFormat.setFontWeight(QFont::Bold);

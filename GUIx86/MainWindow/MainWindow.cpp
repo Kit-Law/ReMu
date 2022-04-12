@@ -147,7 +147,7 @@ void MainWindow::on_actionChange_Input_triggered()
 
 void MainWindow::on_actionChange_Output_triggered()
 {
-    QString filename = QFileDialog::getSaveFileName(this, tr("Export"), "", tr("PDF (*.pdf)"));
+    QString filename = QFileDialog::getSaveFileName(this, tr("Export"), "", tr("PDF (*.pdf);;MP3 (*.mp3)"));
 
     if (filename.isEmpty())
         return;
