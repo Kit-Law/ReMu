@@ -226,8 +226,8 @@ void MainWindow::refresh()
     }
     else
     {
-        inputScore->loadScores(QString::fromStdString(outputScoreLoc));
-        outputScore->loadScores(QString::fromStdString(inputScoreLoc));
+        inputScore->loadScores(QString::fromStdString(inputScoreLoc));
+        outputScore->loadScores(QString::fromStdString(outputScoreLoc));
         outputScore->updateActions();
     }
 

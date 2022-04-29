@@ -43,7 +43,10 @@ void ScoreViewer::loadScores(const QString& dir)
     }
 
     if (scores->size() == 0)
+    {
+        score->setText("[Score needs to be generated]");
         return;
+    }
 
     currectScore = 0;
     setScore(currectScore);
