@@ -2,10 +2,43 @@
   ANTLRErrorStrategy.cpp
   ANTLRFileStream.cpp
   ANTLRInputStream.cpp
-  AbstractPredicateTransition.cpp
-  ActionTransition.cpp
-  AmbiguityInfo.cpp
-  ArrayPredictionContext.cpp
+  BailErrorStrategy.cpp
+  BaseErrorListener.cpp
+  BufferedTokenStream.cpp
+  CharStream.cpp
+  CommonToken.cpp
+  CommonTokenFactory.cpp
+  CommonTokenStream.cpp
+  ConsoleErrorListener.cpp
+  DefaultErrorStrategy.cpp
+  DiagnosticErrorListener.cpp
+  Exceptions.cpp
+  FailedPredicateException.cpp
+  InputMismatchException.cpp
+  IntStream.cpp
+  InterpreterRuleContext.cpp
+  Lexer.cpp
+  LexerInterpreter.cpp
+  LexerNoViableAltException.cpp
+  ListTokenSource.cpp
+  NoViableAltException.cpp
+  Parser.cpp
+  ParserInterpreter.cpp
+  ParserRuleContext.cpp
+  ProxyErrorListener.cpp
+  RecognitionException.cpp
+  Recognizer.cpp
+  RuleContext.cpp
+  RuleContextWithAltNum.cpp
+  RuntimeMetaData.cpp
+  Token.cpp
+  TokenSource.cpp
+  TokenStream.cpp
+  TokenStreamRewriter.cpp
+  UnbufferedCharStream.cpp
+  UnbufferedTokenStream.cpp
+  Vocabulary.cpp
+  WritableToken.cpp
   ATN.cpp
   ATNConfig.cpp
   ATNConfigSet.cpp
@@ -14,6 +47,10 @@
   ATNSerializer.cpp
   ATNSimulator.cpp
   ATNState.cpp
+  AbstractPredicateTransition.cpp
+  ActionTransition.cpp
+  AmbiguityInfo.cpp
+  ArrayPredictionContext.cpp
   AtomTransition.cpp
   BasicBlockStartState.cpp
   BasicState.cpp
@@ -26,10 +63,11 @@
   EmptyPredictionContext.cpp
   EpsilonTransition.cpp
   ErrorInfo.cpp
-  LexerAction.cpp
-  LexerActionExecutor.cpp
+  LL1Analyzer.cpp
   LexerATNConfig.cpp
   LexerATNSimulator.cpp
+  LexerAction.cpp
+  LexerActionExecutor.cpp
   LexerChannelAction.cpp
   LexerCustomAction.cpp
   LexerIndexedCustomAction.cpp
@@ -39,7 +77,6 @@
   LexerPushModeAction.cpp
   LexerSkipAction.cpp
   LexerTypeAction.cpp
-  LL1Analyzer.cpp
   LookaheadEventInfo.cpp
   LoopEndState.cpp
   NotSetTransition.cpp
@@ -62,58 +99,25 @@
   SetTransition.cpp
   SingletonPredictionContext.cpp
   StarBlockStartState.cpp
-  StarLoopbackState.cpp
   StarLoopEntryState.cpp
+  StarLoopbackState.cpp
   TokensStartState.cpp
   Transition.cpp
   WildcardTransition.cpp
-  BailErrorStrategy.cpp
-  BaseErrorListener.cpp
-  BufferedTokenStream.cpp
-  CharStream.cpp
-  CommonToken.cpp
-  CommonTokenFactory.cpp
-  CommonTokenStream.cpp
-  ConsoleErrorListener.cpp
-  DefaultErrorStrategy.cpp
   DFA.cpp
   DFASerializer.cpp
   DFAState.cpp
   LexerDFASerializer.cpp
-  DiagnosticErrorListener.cpp
-  Exceptions.cpp
-  FailedPredicateException.cpp
-  InputMismatchException.cpp
-  InterpreterRuleContext.cpp
-  IntStream.cpp
-  Lexer.cpp
-  LexerInterpreter.cpp
-  LexerNoViableAltException.cpp
-  ListTokenSource.cpp
   InterpreterDataReader.cpp
   Interval.cpp
   IntervalSet.cpp
   MurmurHash.cpp
   Predicate.cpp
-  NoViableAltException.cpp
-  Parser.cpp
-  ParserInterpreter.cpp
-  ParserRuleContext.cpp
-  ProxyErrorListener.cpp
-  RecognitionException.cpp
-  Recognizer.cpp
-  RuleContext.cpp
-  RuleContextWithAltNum.cpp
-  RuntimeMetaData.cpp
   Any.cpp
   Arrays.cpp
   CPPUtils.cpp
-  guid.cpp
   StringUtils.cpp
-  Token.cpp
-  TokenSource.cpp
-  TokenStream.cpp
-  TokenStreamRewriter.cpp
+  guid.cpp
   ErrorNode.cpp
   ErrorNodeImpl.cpp
   IterativeParseTreeWalker.cpp
@@ -121,6 +125,9 @@
   ParseTreeListener.cpp
   ParseTreeVisitor.cpp
   ParseTreeWalker.cpp
+  TerminalNode.cpp
+  TerminalNodeImpl.cpp
+  Trees.cpp
   Chunk.cpp
   ParseTreeMatch.cpp
   ParseTreePattern.cpp
@@ -129,9 +136,6 @@
   TagChunk.cpp
   TextChunk.cpp
   TokenTagToken.cpp
-  TerminalNode.cpp
-  TerminalNodeImpl.cpp
-  Trees.cpp
   XPath.cpp
   XPathElement.cpp
   XPathLexer.cpp
@@ -142,8 +146,4 @@
   XPathTokenElement.cpp
   XPathWildcardAnywhereElement.cpp
   XPathWildcardElement.cpp
-  UnbufferedCharStream.cpp
-  UnbufferedTokenStream.cpp
-  Vocabulary.cpp
-  WritableToken.cpp
   antlr4cpp-vs2019.vcxproj -> U:\3rd Yr Project\ReMu\ANTLR\bin\vs-2019\x86\Debug Static\antlr4-runtime.lib

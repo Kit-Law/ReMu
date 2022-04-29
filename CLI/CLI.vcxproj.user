@@ -4,7 +4,7 @@
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LocalDebuggerCommandArguments>"D:\Users\Kit\Downloads\goodpoint\Project.xml"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>"D:\Users\Kit\Downloads\Challenge 2\Project.xml"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

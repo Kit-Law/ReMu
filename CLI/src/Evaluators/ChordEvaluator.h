@@ -58,6 +58,7 @@ namespace ReMu { namespace Evaluator {
 			{
 				auto noteBuffer = notes->back().parent().parent().insert_copy_after(lastNote->parent(), lastNote->parent()).child("pitch");//.append_child("chord");
 				auto pitchBuffer = chord->getComponents()->at(i);
+				*lastNote = noteBuffer;
 
 				if (!noteBuffer.parent().child("chord"))
 					noteBuffer.parent().prepend_child("chord");
