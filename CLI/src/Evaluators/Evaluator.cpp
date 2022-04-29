@@ -22,7 +22,11 @@ namespace ReMu { namespace Evaluator {
 
 	void Evaluator::changeKey(const ReMu::Pitch* relativeMajorKey, Section* section, std::string instrument, pugi::xml_document& doc)
 	{
-		pugi::xpath_node_set keys = doc.select_nodes(("/score-partwise" + (instrument != "" ? "[part-list/score-part/part-name/text() = '" + instrument + "']" : "") + " /part/measure[@number >= " + std::to_string(section->getStartingMessure()) + " and @number <= " + std::to_string(section->getEndingMessure()) + "] /attributes/key/fifths").c_str());
+		pugi::xpath_node partId;
+		if (instrument != "")
+			partId = doc.select_node(("/score-partwise/part-list/score-part[part-name/text() = '" + instrument + "']").c_str());
+
+		pugi::xpath_node_set keys = doc.select_nodes(("/score-partwise/part" + (instrument != "" ? "[@id = '" + std::string(partId.node().attribute("id").as_string()) + "']" : "") + "/measure[@number >= " + std::to_string(section->getStartingMessure()) + " and @number <= " + std::to_string(section->getEndingMessure()) + "] /attributes/key/fifths").c_str());
 
 		for (pugi::xpath_node key : keys) //Let key change notes in sections
 			key.node().first_child().set_value(std::to_string(ReMu::KeySig::getFiths(relativeMajorKey)).c_str());
@@ -30,7 +34,11 @@ namespace ReMu { namespace Evaluator {
 
 	void Evaluator::evaluateSection(pugi::xml_document& doc, Section* section, TransitionTable* transitionTable, std::string instrument, DivisionsMap& divisionsMap)
 	{
-		pugi::xpath_node_set notes = doc.select_nodes(("/score-partwise" + (instrument != "" ? "[part-list/score-part/part-name/text() = '" + instrument + "']" : "") + " / part / measure[@number >= " + std::to_string(section->getStartingMessure()) + " and @number <= " + std::to_string(section->getEndingMessure()) + "] / note / pitch").c_str());
+		pugi::xpath_node partId;
+		if (instrument != "")
+			partId = doc.select_node(("/score-partwise/part-list/score-part[part-name/text() = '" + instrument + "']").c_str());
+
+		pugi::xpath_node_set notes = doc.select_nodes(("/score-partwise/part" + (instrument != "" ? "[@id = '" + std::string(partId.node().attribute("id").as_string()) + "']" : "") + "/ measure[@number >= " + std::to_string(section->getStartingMessure()) + " and @number <= " + std::to_string(section->getEndingMessure()) + "] / note / pitch").c_str());
 		
 		std::vector<SequenceEvaluator*> sequenceBuffers;
 		for (auto sequence : *transitionTable->getSequenceTransitions())
